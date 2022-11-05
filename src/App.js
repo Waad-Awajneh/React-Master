@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import Tab from "./components/Tab";
 import "./App.css";
 import Header from "./components/Header";
 import {
@@ -13,6 +13,7 @@ function App() {
   return (
     <>
       <Header />
+      <Tab />
       <Routes>
         <Route exact path="/" element={<CardInfo />}></Route>
       </Routes>
