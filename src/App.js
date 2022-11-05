@@ -14,11 +14,10 @@ function App() {
   return (
     <>
       <Header />
-      <TabsRender x={1} />
+      <TabsRender />
       <Routes>
-        <Route exact path="/" element={<TabsRender x={1} />}></Route>
-        <Route exact path="/ForYou" element={<TabsRender x={1} />}></Route>
-        <Route exact path="/follow" element={<TabsRender x={2} />}></Route>
+        <Route exact path="/" element={<Home openTap={1} />}></Route>
+        <Route exact path="/follow" element={<Home openTap={2} />}></Route>
       </Routes>
     </>
   );
