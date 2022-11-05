@@ -1,4 +1,4 @@
-import Tab from "./components/Tab";
+import TabsRender from "./components/TabsRender";
 import "./App.css";
 import Header from "./components/Header";
 import {
@@ -13,9 +13,9 @@ function App() {
   return (
     <>
       <Header />
-      <Tab />
+
       <Routes>
-        <Route exact path="/" element={<CardInfo />}></Route>
+        <Route exact path="/" element={<TabsRender open={"rand"} />}></Route>
       </Routes>
     </>
   );

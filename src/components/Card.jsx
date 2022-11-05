@@ -5,7 +5,7 @@ import { RiMessage3Fill } from "react-icons/ri";
 import YourImage from "./e.jpg";
 
 function Card(cards) {
-  console.log(cards.cards);
+  // console.log(cards.cards);
 
   return (
     <>
