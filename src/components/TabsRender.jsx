@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CardInfo from "./CardInfo";
 
-const Tabs = ({ color }) => {
-  const [openTab, setOpenTab] = useState(1);
+const Tabs = ({ color, x }) => {
+  const [openTab, setOpenTab] = useState(x);
   return (
     <>
       <div className="flex flex-wrap  mx-auto">
@@ -26,7 +26,7 @@ const Tabs = ({ color }) => {
                   setOpenTab(1);
                 }}
                 data-toggle="tab"
-                to="#follow"
+                to="/ForYou"
                 role="tablist"
               >
                 Profile
@@ -45,35 +45,23 @@ const Tabs = ({ color }) => {
                   setOpenTab(2);
                 }}
                 data-toggle="tab"
-                to="#rand"
+                to="/follow"
                 role="tablist"
               >
                 Profile
               </Link>
             </li>
           </ul>
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded">
-            <div className="px-4 py-5 flex-auto">
-              <div className="tab-content tab-space">
-                <div className={openTab === 1 ? "block" : "hidden"} id="rand">
-                  {<CardInfo open={"rand"} />}
-                </div>
-                <div className={openTab === 2 ? "block" : "hidden"} id="follow">
-                  {<CardInfo open={"follow"} />}
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default function TabsRender() {
+export default function TabsRender(x) {
   return (
     <>
-      <Tabs color="red" />
+      <Tabs color="red" x={x} />
     </>
   );
 }
