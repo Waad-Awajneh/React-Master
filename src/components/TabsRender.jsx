@@ -26,7 +26,7 @@ const Tabs = ({ color }) => {
                   setOpenTab(1);
                 }}
                 data-toggle="tab"
-                to="/"
+                to="/Home"
                 role="tablist"
               >
                 For You

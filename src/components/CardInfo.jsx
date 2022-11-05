@@ -18,9 +18,18 @@ function CardInfo(open) {
         .catch(() => {
           alert("There was an error while retrieving the data");
         });
-    } else {
+    } else if (openData == "rand") {
       axios
         .get("info.json")
+        .then((res) => {
+          setData(res.data);
+        })
+        .catch(() => {
+          alert("There was an error while retrieving the data");
+        });
+    } else if (openData == "me") {
+      axios
+        .get("me.json")
         .then((res) => {
           setData(res.data);
         })

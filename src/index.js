@@ -6,12 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import HomeGallery from "./components/HomeGallery";
 import CardInfo from "./components/CardInfo";
 import Card from "./components/Card";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Profile from "./views/Profile";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <App />
+    <Routes>
+      <Route exact path="/" element=<App /> />
+      <Route exact path="/profile" element=<Profile /> />
+    </Routes>
   </BrowserRouter>
 );
 
