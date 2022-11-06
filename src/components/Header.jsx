@@ -106,8 +106,7 @@ class Header extends Component {
                 ></path>
               </svg>
               <div className="flex flex-wrap gap-2">
-                <Link to={"./profile"}>
-                  {" "}
+                <Link to={"/profile"}>
                   <Avatar
                     img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                     rounded={true}

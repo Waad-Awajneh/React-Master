@@ -9,13 +9,17 @@ import Card from "./components/Card";
 import { BrowserRouter, Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Profile from "./views/Profile";
-
+import Home from "./components/Home";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Routes>
       <Route exact path="/" element=<App /> />
+
       <Route exact path="/profile" element=<Profile /> />
+
+      <Route exact path="/Home" element={<App route={"home"} />}></Route>
+      <Route exact path="/follow" element={<App route={"follow"} />}></Route>
     </Routes>
   </BrowserRouter>
 );

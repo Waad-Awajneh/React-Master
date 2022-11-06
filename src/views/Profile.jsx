@@ -110,7 +110,7 @@ export default function Profile() {
                 <div className="mt-10 py-10 border-t border-gray-300 text-center">
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4 overflow-hidden">
-                      {<CardInfo open={"me"} />}
+                      {<CardInfo open={"profile"} />}
                       {/* <a
                         href="#pablo"
                         className="font-normal text-pink-500"

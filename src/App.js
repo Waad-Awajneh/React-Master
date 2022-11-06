@@ -10,15 +10,12 @@ import {
 import CardInfo from "./components/CardInfo";
 import Home from "./components/Home";
 
-function App() {
+function App(props) {
   return (
     <>
       <Header />
       <TabsRender />
-      <Routes>
-        <Route exact path="/" element={<Home openTap={1} />}></Route>
-        <Route exact path="/follow" element={<Home openTap={2} />}></Route>
-      </Routes>
+      {props.route == "follow" ? <Home openTap={2} /> : <Home openTap={1} />}
     </>
   );
 }
