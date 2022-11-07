@@ -16,7 +16,7 @@ export default function Navbar(props) {
           " flex flex-wrap items-center justify-between px-2 py-3 "
         }
       >
-        <div className="h-full w-full max-w-7xl mx-auto flex items-center justify-between">
+        <div className="h-full w-full max-w-7xl  mx-auto flex items-center justify-between">
           <div>
             <img
               src={require("./e.jpg")}

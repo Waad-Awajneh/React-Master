@@ -10,18 +10,21 @@ import { BrowserRouter, Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Profile from "./views/Profile";
 import Home from "./components/Home";
+import SinglePost from "./components/singlePost";
+import AddPost from "./components/addPost";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route exact path="/" element=<App /> />
+  <SinglePost />
+  // <BrowserRouter>
+  //   <Routes>
+  //     <Route exact path="/" element=<App /> />
 
-      <Route exact path="/profile" element=<Profile /> />
+  //     <Route exact path="/profile" element=<Profile /> />
 
-      <Route exact path="/Home" element={<App route={"home"} />}></Route>
-      <Route exact path="/follow" element={<App route={"follow"} />}></Route>
-    </Routes>
-  </BrowserRouter>
+  //     <Route exact path="/Home" element={<App route={"home"} />}></Route>
+  //     <Route exact path="/follow" element={<App route={"follow"} />}></Route>
+  //   </Routes>
+  // </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function  <HomeGallery />

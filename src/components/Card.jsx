@@ -29,7 +29,7 @@ function Card(cards) {
 
         <div className="p-4 flex flex-wrap">
           <img
-            class="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+            className="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
             src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
             alt=""
           />
