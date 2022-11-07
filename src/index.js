@@ -14,7 +14,7 @@ import SinglePost from "./components/singlePost";
 import AddPost from "./components/addPost";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <SinglePost />
+  <AddPost />
   // <BrowserRouter>
   //   <Routes>
   //     <Route exact path="/" element=<App /> />
