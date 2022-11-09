@@ -9,14 +9,21 @@ import Card from "./components/Card";
 import { BrowserRouter, Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Profile from "./views/Profile";
+import Landing from "./views/landing";
 import Home from "./components/Home";
 import SinglePost from "./components/singlePost";
 import AddPost from "./components/addPost";
 import Login from "./components/login";
 import SignUp from "./components/signUp";
+import Contact from "./views/contact";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <SignUp />
+  <>
+    <Contact />
+  </>
   // <BrowserRouter>
   //   <Routes>
   //     <Route exact path="/" element=<App /> />

@@ -108,28 +108,6 @@ function SignUp() {
                 </div>
               </div>
             </div>
-            {
-              // <div className="flex flex-wrap mt-6">
-              //     <div className="w-1/2">
-              //       <a
-              //         href="#pablo"
-              //         onClick={(e) => e.preventDefault()}
-              //         className="text-gray-300"
-              //       >
-              //         <small>Forgot password?</small>
-              //       </a>
-              //     </div>
-              //     <div className="w-1/2 text-right">
-              //       <a
-              //         href="#pablo"
-              //         onClick={(e) => e.preventDefault()}
-              //         className="text-gray-300"
-              //       >
-              //         <small>Create new account</small>
-              //       </a>
-              //     </div>
-              //   </div>
-            }
           </div>
         </div>
       </div>
