@@ -1,11 +1,11 @@
 import React from "react";
 
 import { FaFacebookSquare } from "react-icons/fa";
-
 import InputFiled from "./inputFiled";
 import { BsGoogle } from "react-icons/bs";
 import Checkbox from "./checkBox";
-function Login() {
+
+function SignUp() {
   return (
     <section className="absolute w-full h-full">
       <div
@@ -16,6 +16,7 @@ function Login() {
           backgroundRepeat: "no-repeat",
         }}
       ></div>
+
       <div className="container mx-auto px-4 h-full ">
         <div className="flex content-center items-center justify-end h-full ">
           <div className="w-full lg:w-4/12 px-4">
@@ -52,6 +53,11 @@ function Login() {
                 </div>
                 <form>
                   <InputFiled
+                    placeholder={"First Name "}
+                    type={"text"}
+                    icon={"MdFace"}
+                  />
+                  <InputFiled
                     placeholder={"Email "}
                     type={"email"}
                     icon={"AiTwotoneMail"}
@@ -61,15 +67,22 @@ function Login() {
                     type={"password"}
                     icon={"RiLockPasswordFill"}
                   />
-
-                  <Checkbox data="Remember me" />
+                  <InputFiled
+                    placeholder={"Confirm Password "}
+                    type={"password"}
+                    icon={"RiLockPasswordFill"}
+                  />
+                  <Checkbox
+                    data="I agree to the terms and conditions.
+"
+                  />
                   <div className="text-center mt-6">
                     <button
                       className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
                       type="button"
                       style={{ transition: "all .15s ease" }}
                     >
-                      Sign In
+                      SignUp
                     </button>
                   </div>
                 </form>
@@ -95,6 +108,28 @@ function Login() {
                 </div>
               </div>
             </div>
+            {
+              // <div className="flex flex-wrap mt-6">
+              //     <div className="w-1/2">
+              //       <a
+              //         href="#pablo"
+              //         onClick={(e) => e.preventDefault()}
+              //         className="text-gray-300"
+              //       >
+              //         <small>Forgot password?</small>
+              //       </a>
+              //     </div>
+              //     <div className="w-1/2 text-right">
+              //       <a
+              //         href="#pablo"
+              //         onClick={(e) => e.preventDefault()}
+              //         className="text-gray-300"
+              //       >
+              //         <small>Create new account</small>
+              //       </a>
+              //     </div>
+              //   </div>
+            }
           </div>
         </div>
       </div>
@@ -102,4 +137,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;

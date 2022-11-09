@@ -13,9 +13,10 @@ import Home from "./components/Home";
 import SinglePost from "./components/singlePost";
 import AddPost from "./components/addPost";
 import Login from "./components/login";
+import SignUp from "./components/signUp";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Login />
+  <SignUp />
   // <BrowserRouter>
   //   <Routes>
   //     <Route exact path="/" element=<App /> />
