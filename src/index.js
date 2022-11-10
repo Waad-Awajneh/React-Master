@@ -18,6 +18,8 @@ import SignUp from "./components/signUp";
 import Contact from "./views/contact";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Carousel from "./components/carousel";
+import About from "./views/about";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
