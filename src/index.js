@@ -21,19 +21,20 @@ import Footer from "./components/Footer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <>
-    <Contact />
-  </>
-  // <BrowserRouter>
-  //   <Routes>
-  //     <Route exact path="/" element=<App /> />
+  <Landing />
 
-  //     <Route exact path="/profile" element=<Profile /> />
-
-  //     <Route exact path="/Home" element={<App route={"home"} />}></Route>
-  //     <Route exact path="/follow" element={<App route={"follow"} />}></Route>
-  //   </Routes>
-  // </BrowserRouter>
+  // <>
+  //   <BrowserRouter>
+  //     <Routes>
+  //       <Route exact path="/" element={<App />} />
+  //       <Route exact path="/profile" element={<Profile />} />
+  //       <Route exact path="/Home" element={<App route={"home"} />} />
+  //       <Route exact path="/follow" element={<App route={"follow"} />} />
+  //       <Route exact path="/contact" element={<Contact />} />
+  //       <Route exact path="/login" element={<Login />} />
+  //     </Routes>
+  //   </BrowserRouter>
+  // </>
 );
 
 // If you want to start measuring performance in your app, pass a function  <HomeGallery />
