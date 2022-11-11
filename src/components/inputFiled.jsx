@@ -8,7 +8,7 @@ import { BsGoogle } from "react-icons/bs";
 function InputFiled(props) {
   return (
     <div className="relative w-full mb-3">
-      <span className=" w-full p-1.5 rounded-lg bg-white hover:bg-black flex items-center justify-center  duration-200 group">
+      <span className=" w-full p-1 rounded-lg bg-white hover:bg-lnav flex items-center justify-center  duration-200 group">
         {props.icon == "RiLockPasswordFill" ? (
           <RiLockPasswordFill className="text-2xl group-hover:text-white m-2" />
         ) : props.icon == "AiTwotoneMail" ? (

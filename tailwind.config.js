@@ -7,9 +7,12 @@ module.exports = withMT({
     "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    // colors: {
-    //   nav: "#D9AD90",
-    // },
+    colors: {
+      lnav: "#D9AD90",
+      lb: "#DFCDC1",
+      pcol: "#CA895E",
+    },
+
     extend: {},
   },
   plugins: [[require("flowbite/plugin")]],

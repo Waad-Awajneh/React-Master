@@ -1,10 +1,10 @@
 import InputFiled from "../components/inputFiled";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import FooterComponent from "../components/Footer";
 function Contact() {
   return (
     <>
-      <Header />
+      {<Navbar />}
       <div className="container  px-6 mx-auto">
         <section className="mb-32 text-gray-800">
           <div
@@ -35,7 +35,7 @@ function Contact() {
                       <InputFiled type={"email"} placeholder={"Email"} />
                     </div>
                     <div className="form-group mb-6">
-                      <span className=" w-full p-1.5 rounded-lg bg-white hover:bg-black flex items-center justify-center  duration-200 group">
+                      <span className=" w-full p-1 rounded-lg bg-white hover:bg-lnav flex items-center justify-center  duration-200 group">
                         <textarea
                           className="
                 form-control
@@ -67,7 +67,7 @@ function Contact() {
               w-full
               px-6
               py-2.5
-               bg-black
+               bg-lnav
               text-white
               font-medium
               text-xs
@@ -75,9 +75,9 @@ function Contact() {
               uppercase
               rounded
               shadow-md
-              hover:bg-gray-700 hover:shadow-lg
-              focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0
-              active:bg-gray-800 active:shadow-lg
+              hover:bg-pcol hover:shadow-lg
+              focus:bg-pcol focus:shadow-lg focus:outline-none focus:ring-0
+              active:bg-pcol active:shadow-lg
               transition
               duration-150
               ease-in-out"
@@ -91,7 +91,7 @@ function Contact() {
                     <div className="mb-12 grow-0 shrink-0 basis-auto w-full md:w-6/12 px-3 lg:px-6">
                       <div className="flex items-start">
                         <div className="shrink-0">
-                          <div className="p-4 bg-black rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+                          <div className="p-4 bg-lnav rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                             <svg
                               aria-hidden="true"
                               focusable="false"
@@ -119,7 +119,7 @@ function Contact() {
                     <div className="mb-12 grow-0 shrink-0 basis-auto w-full md:w-6/12 px-3 lg:px-6">
                       <div className="flex items-start">
                         <div className="shrink-0">
-                          <div className="p-4 bg-black rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+                          <div className="p-4 bg-lnav rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                             <svg
                               aria-hidden="true"
                               focusable="false"
@@ -147,7 +147,7 @@ function Contact() {
                     <div className="mb-12 md:mb-0 grow-0 shrink-0 basis-auto w-full md:w-6/12 px-3 lg:px-6">
                       <div className="flex align-start">
                         <div className="shrink-0">
-                          <div className="p-4 bg-black rounded-md  shadow-md w-14 h-14 flex items-center justify-center">
+                          <div className="p-4 bg-lnav rounded-md  shadow-md w-14 h-14 flex items-center justify-center">
                             <svg
                               aria-hidden="true"
                               focusable="false"
@@ -166,16 +166,16 @@ function Contact() {
                           </div>
                         </div>
                         <div className="grow ml-6">
-                          <p className="font-bold mb-1">Press</p>
-                          <p className="text-gray-500">press@example.com</p>
-                          <p className="text-gray-500">+1 234-567-89</p>
+                          <p className="font-bold mb-1">WED</p>
+                          <p className="text-gray-500">WED@example.com</p>
+                          <p className="text-gray-500">+962777888888</p>
                         </div>
                       </div>
                     </div>
                     <div className="grow-0 shrink-0 basis-auto w-full md:w-6/12 px-3 lg:px-6">
                       <div className="flex align-start">
                         <div className="shrink-0">
-                          <div className="p-4  bg-black rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+                          <div className="p-4  bg-lnav rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                             <svg
                               aria-hidden="true"
                               focusable="false"
@@ -207,7 +207,7 @@ function Contact() {
           </div>
         </section>
       </div>
-      <Footer />
+      <FooterComponent />
     </>
   );
 }

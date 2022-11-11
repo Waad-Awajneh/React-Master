@@ -1,37 +1,39 @@
-import Hero1 from "../components/Hero1";
-import Hero2 from "../components/Hero2";
+import Hero from "../components/Hero";
+import HeroTow from "../components/HeroTow";
+import Team from "../components/Team";
 import React from "react";
-import { ScrollToTopOnMount, SectionsContainer, Section } from "react-fullpage";
+import {
+  ScrollToTopOnMount,
+  SectionsContainer,
+  Section,
+  Header,
+} from "react-fullpage";
 import Carousel from "../components/carousel";
-import Newsletter from "../components/newsletter";
+import Newsletter from "../components/Newsl";
+import Navbar from "./../components/Navbar";
 
 // <link rel="stylesheet" href="./test.css" />;
 function Landing() {
   let options = {
     sectionClassName: "section",
-    anchors: ["sectionOne", "sectionTwo", "sectionThree"],
+    anchors: ["sectionOne", "sectionTwo", "sectionThree", "sectionFour"],
     scrollBar: false,
     navigation: true,
     verticalAlign: false,
-    sectionPaddingTop: "50px",
+    sectionPaddingTop: "0px",
     sectionPaddingBottom: "50px",
     arrowNavigation: true,
+    ScrollToTopOnMount: true,
   };
   return (
     <>
+      <Header>{<Navbar />}</Header>
       <ScrollToTopOnMount />
       <SectionsContainer {...options}>
-        <Section>
-          teeeeeeeeeeeeeeeeeeeeeeeeeeeeeesy
-          <Hero2 />
-        </Section>
-        <Section>
-          <Hero1 />
-        </Section>
-
-        <Section>
-          <Newsletter />
-        </Section>
+        <Section>{<HeroTow />}</Section>
+        <Section>{<Hero />}</Section>
+        <Section>{<Team />}</Section>
+        <Section>{<Newsletter />}</Section>
       </SectionsContainer>
     </>
   );

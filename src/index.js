@@ -23,20 +23,23 @@ import About from "./views/about";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Landing />
-
-  // <>
-  //   <BrowserRouter>
-  //     <Routes>
-  //       <Route exact path="/" element={<App />} />
-  //       <Route exact path="/profile" element={<Profile />} />
-  //       <Route exact path="/Home" element={<App route={"home"} />} />
-  //       <Route exact path="/follow" element={<App route={"follow"} />} />
-  //       <Route exact path="/contact" element={<Contact />} />
-  //       <Route exact path="/login" element={<Login />} />
-  //     </Routes>
-  //   </BrowserRouter>
-  // </>
+  <>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<App />} />
+        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/Home" element={<App route={"home"} />} />
+        <Route exact path="/follow" element={<App route={"follow"} />} />
+        <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/Landing" element={<Landing />} />
+        <Route exact path="/AddPost" element={<AddPost />} />
+        <Route exact path="/SinglePost" element={<SinglePost />} />
+        <Route exact path="/SignUp" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function  <HomeGallery />

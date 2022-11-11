@@ -1,7 +1,7 @@
 import React from "react";
 
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import FooterComponent from "../components/Footer";
 import CardInfo from "../components/CardInfo";
 export default function Profile() {
   return (
@@ -126,7 +126,7 @@ export default function Profile() {
           </div>
         </section>
       </main>
-      <Footer />
+      <FooterComponent />
     </>
   );
 }
