@@ -54,22 +54,21 @@ const About = () => {
               Our Story
             </h2>
             <p className="font-normal text-base leading-6 text-gray-600 mt-4">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum.In the first place we have granted to
-              God, and by this our present charter confirmed for us and our
-              heirs forever that the English Church shall be free, and shall
-              have her rights entire, and her liberties inviolate; and we will
-              that it be thus observed; which is apparent from
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              varius hendrerit ipsum, sit amet bibendum dui congue sed. Praesent
+              ac dapibus massa, sit amet lobortis augue. Morbi tincidunt commodo
+              porta. Morbi eu lacus vel leo fringilla dictum. Cras euismod sem
+              maximus tortor finibus ultricies. Maecenas eu nunc vel nisl congue
+              suscipit quis a tortor. Etiam tristique varius urna, vitae viverra
+              tellus consequat ac.
             </p>
             <p className="font-normal text-base leading-6 text-gray-600 mt-6">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum.In the first place we have granted to
-              God, and by this our present charter confirmed for us and our
-              heirs forever that the English Church shall be free, and shall
-              have her rights entire, and her liberties inviolate; and we will
-              that it be thus observed; which is apparent from
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              varius hendrerit ipsum, sit amet bibendum dui congue sed. Praesent
+              ac dapibus massa, sit amet lobortis augue. Morbi tincidunt commodo
+              porta. Morbi eu lacus vel leo fringilla dictum. Cras euismod sem
+              maximus tortor finibus ultricies. Maecenas eu nunc vel nisl congue
+              suscipit quis a tortor.
             </p>
           </div>
           <div className="lg:flex items-center w-full lg:w-1/2 ">

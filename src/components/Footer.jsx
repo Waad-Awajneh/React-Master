@@ -1,18 +1,18 @@
 import { Footer } from "flowbite-react";
 import { Link } from "react-router-dom";
 
-function FooterCompone() {
+function FooterComponent() {
   return (
-    <Footer container={true}>
-      <div>
+    <div className="flex flex-warp pt-3 items-center justify-evenly">
+      <div className="flex ">
         <img
           src={require("./../assests/img/logo.png")}
-          className="h-16 w-16 ml-3"
+          className="h-16 w-16"
           alt=" Logo"
         />
       </div>
 
-      <ul className="px-10 text-lnav flex">
+      <ul className="px-15 text-lnav flex">
         <li className="px-5">
           <Link to="/landing">Home</Link>
         </li>
@@ -26,8 +26,8 @@ function FooterCompone() {
       <span className="text-lnav ">
         <Footer.Copyright href="/landing" by="WED" year={2022} />
       </span>
-    </Footer>
+    </div>
   );
 }
 
-export default FooterCompone;
+export default FooterComponent;

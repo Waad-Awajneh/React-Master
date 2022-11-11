@@ -2,7 +2,7 @@ import { Card } from "flowbite-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CardInfo from "./CardInfo";
-
+import FooterComponent from "./Footer";
 export default function Home(openTap) {
   console.log(openTap);
   const openTabs = openTap.openTap;
@@ -19,6 +19,7 @@ export default function Home(openTap) {
             </div>
           </div>
         </div>
+        <FooterComponent />
       </div>
     </>
   );

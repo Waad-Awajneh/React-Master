@@ -18,8 +18,8 @@ const Tabs = ({ color }) => {
                 className={
                   "  w-40 h-30 mr-3 ml-3 inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active" +
                   (openTab === 1
-                    ? "text-white bg-" + color + "-600"
-                    : "text-" + color + "-600 bg-white")
+                    ? "text-white bg-" + color + " "
+                    : "text-" + color + " bg-white")
                 }
                 onClick={(e) => {
                   // e.preventDefault();
@@ -37,8 +37,8 @@ const Tabs = ({ color }) => {
                 className={
                   " w-40 h-30 mr-3 ml-3 flex items-center text-gray-500 hover:text-gray-600  hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active" +
                   (openTab === 2
-                    ? "text-white bg-" + color + "-600"
-                    : "text-" + color + "-600 bg-white")
+                    ? "text-white bg-" + color + ""
+                    : "text-" + color + " bg-white")
                 }
                 onClick={(e) => {
                   // e.preventDefault();
@@ -75,7 +75,7 @@ const Tabs = ({ color }) => {
 export default function TabsRender() {
   return (
     <>
-      <Tabs color="red" />
+      <Tabs color="lb" />
     </>
   );
 }

@@ -42,7 +42,7 @@ const Hero = () => {
                       <BsPerson />
                       <input
                         aria-label="Wedding Planner name"
-                        className=" w-48  text-gray-800 ml-2.5 placeholder-lnav"
+                        className=" w-96  text-gray-800 ml-2.5 placeholder-lnav"
                         placeholder="Wedding Planner Name"
                       />
                     </div>
@@ -59,7 +59,7 @@ const Hero = () => {
                     />
                     <input
                       aria-label="search"
-                      className="sm:hidden border-b border-gray-300 w-full bg-transparent pr-6"
+                      className="sm:hidden w-full bg-transparent pr-6"
                     />
                   </button>
                 </div>
