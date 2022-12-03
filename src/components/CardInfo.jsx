@@ -6,7 +6,7 @@ import HomeGallery from "./HomeGallery";
 
 function CardInfo(open) {
   const [data, setData] = useState([]);
-  // console.log(open);
+  console.log(open);
   const openData = open.open;
   useEffect(() => {
     if (openData == "follow") {

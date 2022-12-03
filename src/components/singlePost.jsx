@@ -10,13 +10,18 @@ function SinglePost() {
   return (
     <>
       {<Navbar page={"profile"} />}
-      <div className=" flex flex-wrap justify-evenly md:m-10">
+      <div
+        className=" flex flex-wrap justify-evenly md:m-10"
+        style={{ width: "100vw", height: "75vh" }}
+      >
         <div className="max-w-3xl flex flex-wrap">
-          <div className="flex flex-wrap lg:flex-nowrap md:flex-nowrap bg-white  w-full dark:bg-[#18191c] shadow-xl hover:shadow rounded-xl hover:scale-105 duration-300">
+          <div className="flex flex-wrap max-[480px]:sm:hover:scale-100 lg:flex-nowrap  md:flex-nowrap bg-white  w-full dark:bg-[#18191c] shadow-xl hover:shadow rounded-xl ">
+            {/**hover:scale-105 duration-300 */}
             <div className="relative flex flex-warp w-75 scale-100">
               <img
                 className="rounded-xl ms:shrink-0"
                 src={YourImage}
+                style={{ width: "100vw" }}
                 alt="card image"
               />
               <div className="absolute bottom-3 left-4 flex items-center space-x-2">

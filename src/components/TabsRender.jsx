@@ -2,9 +2,12 @@ import { Card } from "flowbite-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CardInfo from "./CardInfo";
+import { useLocation } from "react-router-dom";
 
 const Tabs = ({ color }) => {
-  const [openTab, setOpenTab] = useState(1);
+  const location = useLocation();
+  // console.log(location.pathname);
+
   return (
     <>
       <div className="flex flex-wrap  mx-auto">
@@ -17,14 +20,10 @@ const Tabs = ({ color }) => {
               <Link
                 className={
                   "  w-40 h-30 mr-3 ml-3 inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active" +
-                  (openTab === 1
+                  (location.pathname == "/Home" || location.pathname == "/"
                     ? "text-white bg-" + color + " "
                     : "text-" + color + " bg-white")
                 }
-                onClick={(e) => {
-                  // e.preventDefault();
-                  setOpenTab(1);
-                }}
                 data-toggle="tab"
                 to="/Home"
                 role="tablist"
@@ -36,14 +35,10 @@ const Tabs = ({ color }) => {
               <Link
                 className={
                   " w-40 h-30 mr-3 ml-3 flex items-center text-gray-500 hover:text-gray-600  hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active" +
-                  (openTab === 2
+                  (location.pathname === "/follow"
                     ? "text-white bg-" + color + ""
                     : "text-" + color + " bg-white")
                 }
-                onClick={(e) => {
-                  // e.preventDefault();
-                  setOpenTab(2);
-                }}
                 data-toggle="tab"
                 to="/follow"
                 role="tablist"

@@ -6,6 +6,7 @@ import {
   Routes,
   Route,
   NavLink,
+  Outlet,
 } from "react-router-dom";
 import CardInfo from "./components/CardInfo";
 import Home from "./components/Home";
@@ -15,7 +16,8 @@ function App(props) {
     <>
       <Header />
       <TabsRender />
-      {props.route == "follow" ? <Home openTap={2} /> : <Home openTap={1} />}
+      <Outlet />
+      {/*props.route == "follow" ? <Home openTap={2} /> : <Home openTap={1} />*/}
     </>
   );
 }

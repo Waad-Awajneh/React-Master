@@ -26,10 +26,13 @@ root.render(
   <>
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<App />} />
+        <Route exact path="/" element={<App />}>
+          <Route exact index element={<Home openTap={1} />} />
+          <Route exact path="Home" element={<Home openTap={1} />} />
+          <Route exact path="follow" element={<Home openTap={2} />} />
+        </Route>
+
         <Route exact path="/profile" element={<Profile />} />
-        <Route exact path="/Home" element={<App route={"home"} />} />
-        <Route exact path="/follow" element={<App route={"follow"} />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/about" element={<About />} />
@@ -46,3 +49,7 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+/*
+   <Route exact path="Home" element={<App route={"home"} />} />
+          <Route exact path="follow" element={<App route={"follow"} />} />
+*/
