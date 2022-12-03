@@ -14,48 +14,26 @@ import { Email_REGEX, PWD_REGEX } from "../validation/regex";
 import Swal from "sweetalert2";
 
 function Login() {
-  // CommonJS
-  // const Swal = require("sweetalert2");
-  // const [pwd, setPwd] = useState("");
   const [validPwd, setValidPwd] = useState(false);
-  // const [pwdFocus, setPwdFocus] = useState(false);
-  // const [email, setEmail] = useState("");
+
   const [validEmail, setValidEmail] = useState(false);
-  // const [emailFocus, setEmailFocus] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
   const [loginUser, setLoginUser] = useState({ password: "", email: "" });
   const Navigate = useNavigate();
-  useEffect(() => {
-    setErrMsg("");
-  }, [loginUser]);
-
-  useEffect(() => {
-    setValidPwd(PWD_REGEX.test(loginUser.password));
-  }, [loginUser]);
 
   useEffect(() => {
     setValidEmail(Email_REGEX.test(loginUser.email));
+    setValidPwd(PWD_REGEX.test(loginUser.password));
+    setErrMsg("");
   }, [loginUser]);
 
   const onChange = (e) => {
     loginUser = setLoginUser({ ...loginUser, [e.target.name]: e.target.value });
   };
 
-  //   if (e.target.name == "password") {
-  //     setPwd(e.target.value);
-  //   }
-
-  //   if (e.target.name == "email") {
-  //     setEmail(e.target.value);
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // let data = new FormData();
-    // data.append("email", email);
-    // data.append("password", pwd);
 
     await axios({ ...LoginPostConfig, data: loginUser })
       .then(function (response) {
@@ -70,14 +48,11 @@ function Login() {
           width: 500,
           showConfirmButton: true,
           confirmButtonColor: "black",
-          // showCancelButton: true,
-          // buttonsStyling: ["OK", "Cancel"],
+
           showCloseButton: true,
           closeButtonAriaLabel: "Close",
-
-          // cancelButtonColor: "#000",
         });
-        console.log(error);
+        console.log(error.response.data.message);
       });
   };
 
