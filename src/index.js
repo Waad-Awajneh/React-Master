@@ -20,28 +20,24 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Carousel from "./components/carousel";
 import About from "./views/about";
+import { AuthProvider } from "react-auth-kit";
+import { AllRoutes } from "./routes/routes";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
-    <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<App />}>
-          <Route exact index element={<Home openTap={1} />} />
-          <Route exact path="Home" element={<Home openTap={1} />} />
-          <Route exact path="follow" element={<Home openTap={2} />} />
-        </Route>
-
-        <Route exact path="/profile" element={<Profile />} />
-        <Route exact path="/contact" element={<Contact />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/about" element={<About />} />
-        <Route exact path="/Landing" element={<Landing />} />
-        <Route exact path="/AddPost" element={<AddPost />} />
-        <Route exact path="/SinglePost" element={<SinglePost />} />
-        <Route exact path="/SignUp" element={<SignUp />} />
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider
+      authType={"cookie"}
+      authName={"_auth"}
+      cookieDomain={window.location.hostname}
+      cookieSecure={window.location.protocol === "https:"}
+    >
+      <Provider store={store}>
+        <AllRoutes />
+      </Provider>
+    </AuthProvider>
   </>
 );
 

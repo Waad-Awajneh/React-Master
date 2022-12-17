@@ -5,8 +5,10 @@ import { RiMessage3Fill } from "react-icons/ri";
 import YourImage from "./../assests/img/20.jpg";
 import FooterComponent from "./Footer";
 import Navbar from "./Navbar";
+import { useParams } from "react-router-dom";
 
 function SinglePost() {
+  const { id } = useParams();
   return (
     <>
       {<Navbar page={"profile"} />}

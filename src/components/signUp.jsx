@@ -15,8 +15,10 @@ import Navbar from "./Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import { MdFace } from "react-icons/md";
 import { SignUpPostConfig } from "../api/axios";
+import { useSignIn } from "react-auth-kit";
 
 function SignUp() {
+  const signIn = useSignIn();
   const userRef = useRef();
   const errRef = useRef();
   const Navigate = useNavigate();
@@ -59,27 +61,42 @@ function SignUp() {
       ...signUpUser,
       [e.target.name]: e.target.value,
     });
+    console.log(e.target.value);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (validEmail || validPwd) {
+    if (!validEmail || !validPwd) {
       setErrMsg("Invalid email or password ");
       return;
     }
-    if (validPhone) {
+    if (!validPhone) {
       setErrMsg("Invalid Phone number");
       return;
     }
-    if (validMatch) {
+    if (!validMatch) {
       setErrMsg("Unmatched password");
       return;
     }
 
     await axios({ ...SignUpPostConfig, data: signUpUser })
       .then(function (response) {
+        if (
+          signIn({
+            token: response.data.token,
+            expiresIn: 1000,
+            tokenType: "Bearer",
+            authState: {
+              user: response.data.data.user,
+              token: response.data.data.access_token,
+              role: response.data.data.user.role,
+            },
+          })
+        ) {
+          setSuccess(true);
+          return Navigate("/");
+        }
         console.log(response.data);
-        setSuccess(true);
       })
       .catch(function (error) {
         console.log(error);

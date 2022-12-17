@@ -10,10 +10,13 @@ import { BsGoogle } from "react-icons/bs";
 import Checkbox from "./checkBox";
 import { useEffect, useState } from "react";
 import { Email_REGEX, PWD_REGEX } from "../validation/regex";
+import { useSignIn } from "react-auth-kit";
+
 // ES6 Modules or TypeScript
 import Swal from "sweetalert2";
 
 function Login() {
+  const signIn = useSignIn();
   const [validPwd, setValidPwd] = useState(false);
 
   const [validEmail, setValidEmail] = useState(false);
@@ -29,7 +32,7 @@ function Login() {
   }, [loginUser]);
 
   const onChange = (e) => {
-    loginUser = setLoginUser({ ...loginUser, [e.target.name]: e.target.value });
+    setLoginUser({ ...loginUser, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -37,8 +40,22 @@ function Login() {
 
     await axios({ ...LoginPostConfig, data: loginUser })
       .then(function (response) {
+        if (
+          signIn({
+            token: response.data.token,
+            expiresIn: 1000,
+            tokenType: "Bearer",
+            authState: {
+              user: response.data.data.user,
+              token: response.data.data.token,
+              role: response.data.data.user.role,
+            },
+          })
+        ) {
+          setSuccess(true);
+          return Navigate("/");
+        }
         console.log(response.data);
-        setSuccess(true);
       })
       .catch(function (error) {
         Swal.fire({
@@ -113,8 +130,6 @@ function Login() {
                         validName={validEmail}
                         name="email"
                         onChange={onChange}
-                        // onFocus={setEmailFocus}
-                        // onBlur={setEmailFocus}
                       />
                       <InputFiled
                         placeholder={"Password "}
@@ -123,8 +138,6 @@ function Login() {
                         validName={validPwd}
                         name="password"
                         onChange={onChange}
-                        // onFocus={setPwdFocus}
-                        // onBlur={setPwdFocus}
                       />
 
                       <Checkbox data="Remember me" />

@@ -7,7 +7,6 @@ import Header from "./Header";
 import TabsRender from "./TabsRender";
 
 export default function Home(openTap) {
-  console.log("teeeeeeeeeest");
   const openTabs = openTap.openTap;
   return (
     <>
