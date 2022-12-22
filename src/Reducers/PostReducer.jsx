@@ -5,11 +5,11 @@ import { useAuthUser } from "react-auth-kit";
 //get all Articles
 
 const allPosts = "http://localhost:8000/api/allPosts";
-const allFollowing = "http://localhost:8000/api/following/";
+const allFollowing = "http://localhost:8000/api/following";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
   const response = await axios.get(allPosts);
-  console.log(response);
+
   return response.data.data.sort(
     (dateA, dateB) => new Date(dateB.date) - new Date(dateA.date)
   );
@@ -24,10 +24,19 @@ export const getFollowing = createAsyncThunk(
     );
   }
 );
+export const getProfileData = createAsyncThunk(
+  "posts/getProfileData",
+  async (config) => {
+    const response = await axios(config);
+
+    return response.data.data;
+  }
+);
 
 const initialState = {
   postsData: [],
   followingPostData: [],
+  profileData: [],
   status: "",
 };
 
@@ -60,6 +69,15 @@ export const postReducer = createSlice({
     },
 
     [getFollowing.rejected]: (state) => {
+      state.status = "Rejected";
+    },
+    [getProfileData.fulfilled]: (state, action) => {
+      console.log(action.payload);
+      state.status = "Fulfilled";
+      state.profileData = action.payload;
+    },
+
+    [getProfileData.rejected]: (state) => {
       state.status = "Rejected";
     },
   },

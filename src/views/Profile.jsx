@@ -4,14 +4,37 @@ import Navbar from "../components/Navbar";
 import FooterComponent from "../components/Footer";
 import CardInfo from "../components/CardInfo";
 import Button from "../components/button";
+import { useEffect } from "react";
+import { getProfileData } from "../Reducers/PostReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuthUser } from "react-auth-kit";
+import HomeGallery from "../components/HomeGallery";
 export default function Profile() {
+  const auth = useAuthUser();
+  const { profileData } = useSelector((state) => state.PostsData);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const config = {
+      method: "get",
+      url: "http://127.0.0.1:8000/api/profile",
+      headers: {
+        Accept: "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
+        Authorization: `Bearer ${auth().token}`,
+      },
+    };
+
+    dispatch(getProfileData(config));
+  }, []);
+  console.log(profileData);
   return (
     <>
       {<Navbar page={"profile"} />}
       <main className="profile-page">
         <section className="relative block" style={{ height: "500px" }}>
           <img
-            src={require("./../assests/img/1.jpg")}
+            src={require("./../assests/img/1.jpg")} //cover_Img
             className="absolute top-0 w-full h-full bg-center bg-cover"
             alt=" Logo"
           />
@@ -45,7 +68,7 @@ export default function Profile() {
                     <div className="relative">
                       <img
                         alt="..."
-                        src={require("../assests/img/pro.jpg")}
+                        src={require("../assests/img/pro.jpg")} //profile_Img
                         className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                         style={{ maxWidth: "150px" }}
                       />
@@ -61,19 +84,21 @@ export default function Profile() {
                     <div className="flex justify-center py-4 lg:pt-4 pt-8">
                       <div className="mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
-                          22
+                          {profileData.follower_count}
                         </span>
-                        <span className="text-sm text-gray-500">Friends</span>
+                        <span className="text-sm text-gray-500">followers</span>
                       </div>
                       <div className="mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
-                          10
+                          {profileData.posts?.length}
                         </span>
-                        <span className="text-sm text-gray-500">Photos</span>
+                        <span className="text-sm text-gray-500">Posts</span>
                       </div>
                       <div className="lg:mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
-                          89
+                          {profileData.Comments == null
+                            ? 0
+                            : profileData.Comments.length}
                         </span>
                         <span className="text-sm text-gray-500">Comments</span>
                       </div>
@@ -82,25 +107,26 @@ export default function Profile() {
                 </div>
                 <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal text-gray-800 mb-2">
-                    KAWA Weddings & Events
+                    {profileData.full_name}
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
-                    Wedding Planner
+                    {profileData.major}
                   </div>
                   <div className="mb-2 text-gray-700 mt-10">
                     <i className="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
-                    Services: Consultancy, Styling, Planning, and Coordination
+                    {profileData.bio}
                   </div>
                   <div className="mb-2 text-gray-700">
                     <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
-                    University of Computer Science
+                    {profileData.address}
                   </div>
                 </div>
                 <div className="mt-10 py-10 border-t border-gray-300 text-center">
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4 overflow-hidden">
-                      {<CardInfo open={"profile"} />}
+                      <HomeGallery data={profileData} profile={"profile"} />
+                      {/*<CardInfo open={"profile"} />*/}
                       {/* <a
                         href="#pablo"
                         className="font-normal text-pink-500"

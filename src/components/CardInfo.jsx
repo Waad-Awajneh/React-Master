@@ -6,24 +6,35 @@ import HomeGallery from "./HomeGallery";
 import {
   DataReducer,
   getFollowingData,
-  getProfileData,
+  // getProfileData,
   getRandData,
 } from "../Reducers/dataReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { getFollowing, getPosts } from "../Reducers/PostReducer";
+import {
+  getFollowing,
+  getPosts,
+  getProfileData,
+} from "../Reducers/PostReducer";
 import { useAuthUser } from "react-auth-kit";
+import { useLocation } from "react-router-dom";
+import Profile from "../views/Profile";
 
-function CardInfo(open) {
+function CardInfo({ open }) {
+  const location = useLocation();
+
   // const [data, setData] = useState([]);
   const auth = useAuthUser();
+
   console.log(open);
-  const openData = open.open;
+  // const openData = open.open;
   const dispatch = useDispatch();
   // const data = useSelector((state) => state.Data.data);
-  const data1 = useSelector((state) => state.PostsData.postsData);
-  console.log(data1);
+  const { followingPostData, postsData } = useSelector(
+    (state) => state.PostsData
+  );
+  // console.log(profileData);
   useEffect(() => {
-    if (openData == "follow") {
+    if (open == "follow") {
       const config = {
         method: "get",
         url: `http://localhost:8000/api/following/${auth().user.user_id}`,
@@ -37,8 +48,9 @@ function CardInfo(open) {
       dispatch(getFollowing(config));
 
       // setData(data);
-    } else if (openData == "rand") {
+    } else if (open == "rand") {
       // axios
+
       //   .get("info.json")
       //   .then((res) => {
       //     // setData(res.data);
@@ -48,7 +60,17 @@ function CardInfo(open) {
       //   });
       dispatch(getPosts());
     }
-    //  else if (openData == "profile") {
+    //  else if (open == "profile") {
+    //   console.log(open);
+    //   const config = {
+    //     method: "get",
+    //     url: "http://127.0.0.1:8000/api/profile",
+    //     headers: {
+    //       Accept: "application/vnd.api+json",
+    //       "Content-Type": "application/vnd.api+json",
+    //       Authorization: `Bearer ${auth().token}`,
+    //     },
+    //   };
     //   // axios
     //   //   .get("me.json")
     //   //   .then((res) => {
@@ -57,11 +79,30 @@ function CardInfo(open) {
     //   //   .catch(() => {
     //   //     alert("There was an error while retrieving the data");
     //   //   });
-    //   dispatch(getProfileData());
+    //   dispatch(getProfileData(config));
     // }
   }, []);
-  if (data1.length == 0) return "loading ....";
-  return <>{<HomeGallery data={data1} profile={openData} />}</>;
+  // if (
+  //   postsData.length == 0
+  //   //  &&
+  //   // profileData.length == 0 &&
+  //   // followingPostData.length == 0
+  // )
+  //   return "loading ....";
+  return (
+    <>
+      {
+        location.pathname == "/Home" || location.pathname == "/" ? (
+          <HomeGallery data={postsData} profile={open} />
+        ) : (
+          <HomeGallery data={followingPostData} profile={open} />
+        )
+        // : (location.pathname == "/follow" ?
+        //   <HomeGallery data={profileData} profile={open} />
+        // )
+      }
+    </>
+  );
 }
 
 export default CardInfo;

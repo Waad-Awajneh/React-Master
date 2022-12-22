@@ -40,14 +40,15 @@ function Login() {
 
     await axios({ ...LoginPostConfig, data: loginUser })
       .then(function (response) {
+        console.log(response);
         if (
           signIn({
-            token: response.data.token,
+            token: response.data.access_token,
             expiresIn: 1000,
             tokenType: "Bearer",
             authState: {
               user: response.data.data.user,
-              token: response.data.data.token,
+              token: response.data.data.access_token,
               role: response.data.data.user.role,
             },
           })
