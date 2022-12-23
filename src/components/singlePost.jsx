@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, getSinglePost } from "../Reducers/PostReducer";
 import { useAuthUser } from "react-auth-kit";
+import Header from "./Header";
 
 function SinglePost() {
   const { id } = useParams();
@@ -31,9 +32,10 @@ function SinglePost() {
 
   return (
     <>
-      {<Navbar page={"profile"} />}
+      {/*<Navbar page={"profile"} />*/}
+      <Header />
       <div
-        className=" flex flex-wrap justify-evenly md:m-10"
+        className=" flex flex-wrap justify-evenly md:m-10 mt-6"
         style={{ width: "100vw", height: "75vh" }}
       >
         <div className="max-w-3xl flex flex-wrap">

@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MdOutlineLogout } from "react-icons/md";
 import { useSignOut } from "react-auth-kit";
-import ModalAddPost from "./Modal/ModalAddPost";
+import ModalAddPost from "../Modal/ModalAddPost";
 import { useState } from "react";
-import { openModal } from "../Reducers/modalReducer";
+import { openModal } from "../../Reducers/modalReducer";
 
-export default function Header() {
+export default function GeneralHeader(props) {
   const signOut = useSignOut();
   const navigate = useNavigate();
 
-  const { isOpen } = useSelector((state) => state.ModalReducer);
+  //   const { isOpen } = useSelector((state) => state.ModalReducer);
   const dispatch = useDispatch();
 
   return (
@@ -22,11 +22,11 @@ export default function Header() {
           "top-0 absolute z-50 w-full   bg-white shadow-lg flex flex-wrap items-center justify-between px-2 text-lnav "
         }
       >
-        <div className="h-full w-full max-w-7xl mx-auto flex items-center justify-between">
+        <div className="h-full w-full max-w-7xl  mx-auto flex items-center justify-between text-lnav">
           <div>
             <Link to={"/"}>
               <img
-                src={require("./../assests/img/logo.png")}
+                src={require("../../assests/img/logoW.png")}
                 className="h-12 w-12 ml-3"
                 alt=" Logo"
               />
@@ -38,7 +38,6 @@ export default function Header() {
                 type="text"
                 className="rounded bg-gray-100 p-1.5 text-sm pl-8 w-96"
                 placeholder="Search"
-                // onChange={handelSearch}
               />
               <div className="absolute top-2 left-2 text-lnav">
                 <svg
@@ -88,7 +87,7 @@ export default function Header() {
             </Link>
             <button
               onClick={() => {
-                dispatch(openModal(1));
+                dispatch(openModal());
               }}
             >
               <svg
@@ -159,7 +158,6 @@ export default function Header() {
           </div>
         </div>
       </nav>
-      // <ModalAddPost />;
     </>
   );
 }

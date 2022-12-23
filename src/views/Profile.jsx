@@ -9,6 +9,8 @@ import { getProfileData } from "../Reducers/PostReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuthUser } from "react-auth-kit";
 import HomeGallery from "../components/HomeGallery";
+import Header from "../components/Header";
+import GeneralHeader from "../components/generalComponent/GeneralHeader";
 export default function Profile() {
   const auth = useAuthUser();
   const { profileData } = useSelector((state) => state.PostsData);
@@ -30,7 +32,9 @@ export default function Profile() {
   console.log(profileData);
   return (
     <>
-      {<Navbar page={"profile"} />}
+      <Header />
+      {/* <Navbar page={"profile"} />*/}
+      {/*      <GeneralHeader />  */}
       <main className="profile-page">
         <section className="relative block" style={{ height: "500px" }}>
           <img

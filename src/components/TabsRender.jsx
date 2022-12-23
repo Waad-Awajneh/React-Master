@@ -10,7 +10,7 @@ const Tabs = ({ color }) => {
 
   return (
     <>
-      <div className="flex flex-wrap  mx-auto">
+      <div className="flex flex-wrap  mx-auto  mt-6">
         <div className=" border-b   border-gray-200 dark:border-gray-700 mb-4">
           <ul
             className="flex  list-none flex-wrap pt-3 pb-4 flex-row -mb-px"

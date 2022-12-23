@@ -3,6 +3,7 @@ import App from "../App";
 import AddPost from "../components/addPost";
 import Home from "../components/Home";
 import Login from "../components/login";
+import ModalAddPost from "../components/Modal/ModalAddPost";
 import SignUp from "../components/signUp";
 import SinglePost from "../components/singlePost";
 import About from "../views/about";
@@ -13,13 +14,13 @@ import Profile from "../views/Profile";
 export const AllRoutes = (params) => {
   return (
     <BrowserRouter>
+      {/**<ModalAddPost /> */}
       <Routes>
         <Route exact path="/" element={<App />}>
           <Route exact index element={<Home openTap={1} />} />
           <Route exact path="Home" element={<Home openTap={1} />} />
           <Route exact path="follow" element={<Home openTap={2} />} />
         </Route>
-
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/login" element={<Login />} />

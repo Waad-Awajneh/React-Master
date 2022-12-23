@@ -24,6 +24,7 @@ import { AuthProvider } from "react-auth-kit";
 import { AllRoutes } from "./routes/routes";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import ModalAddPost from "./components/Modal/ModalAddPost";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -45,7 +46,7 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-/*
+/* 
    <Route exact path="Home" element={<App route={"home"} />} />
           <Route exact path="follow" element={<App route={"follow"} />} />
 */
