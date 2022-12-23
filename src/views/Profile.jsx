@@ -72,7 +72,16 @@ export default function Profile() {
                     <div className="relative">
                       <img
                         alt="..."
-                        src={require("../assests/img/pro.jpg")} //profile_Img
+                        // src={require("../assests/img/pro.jpg")} //profile_Img
+                        src={
+                          auth().user.profile_Img != null
+                            ? `data:image/jpeg;base64,${
+                                auth().user.profile_Img
+                              }`
+                            : auth().user.gender == "Female"
+                            ? "https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666545148?k=6&m=666545148&s=170667a&w=0&h=ycJvJHz6ZMWsErum0XpjVabgZsP8dib2feSIJ5dIWYk="
+                            : "https://th.bing.com/th/id/OIP.P07J6hJbgyuIm-DlaSAlLQAAAA?pid=ImgDet&rs=1"
+                        }
                         className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                         style={{ maxWidth: "150px" }}
                       />

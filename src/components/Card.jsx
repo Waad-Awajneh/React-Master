@@ -15,6 +15,7 @@ function Card(cards) {
           <div className="relative w-full h-72 rounded-xl">
             <img
               className="rounded-xl hover:scale-105 w-full duration-300 h-full"
+              // src={`data:image/jpeg;base64,${cardInfo.images[0].image}`}
               src={
                 cardInfo.images.length != 0
                   ? cardInfo.images[0].image

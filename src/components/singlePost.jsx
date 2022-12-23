@@ -10,10 +10,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPosts, getSinglePost } from "../Reducers/PostReducer";
 import { useAuthUser } from "react-auth-kit";
 import Header from "./Header";
+import { useState } from "react";
+import axios from "axios";
 
 function SinglePost() {
   const { id } = useParams();
   const auth = useAuthUser();
+
+  const [comment, setComment] = useState({
+    comment: "",
+    post_id: id,
+  });
 
   const dispatch = useDispatch();
 
@@ -27,6 +34,33 @@ function SinglePost() {
   useEffect(() => {
     if (postsData.length != 0) dispatch(getSinglePost(id));
   }, [postsData]);
+
+  const commentConfig = {
+    method: "post",
+    url: "http://127.0.0.1:8000/api/addComment",
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      Authorization: `Bearer ${auth().token}`,
+    },
+    data: comment,
+  };
+  const handleComment = () => {
+    if (comment.comment === "") return null;
+    axios(commentConfig)
+      .then(function (res) {
+        console.log(res.data);
+        // dispatch(fetchUserData(profileConfig));
+        // setLoading(!loading);
+        setComment((pervs) => ({
+          ...pervs,
+          comment: "",
+        }));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   if (singlePost.length == 0) return console.log(singlePost);
 
@@ -95,6 +129,7 @@ function SinglePost() {
                 <button
                   className="absolute top-0 right-0 flex m-4 mx-4 pl-[17px] rounded-lg text-sm items-center w-14
                     text-center h-7 text-white bg-lnav text-[0.6rem] duration-300 hover:-translate-y-0.5"
+                  onClick={handleComment}
                 >
                   Save
                 </button>
@@ -103,6 +138,12 @@ function SinglePost() {
                   id="label"
                   className="rounded-xl w-[15rem] md:w-[25rem] bg-gray-200 outline-none py-3 px-4 text-xs"
                   type="text"
+                  onChange={(e) => {
+                    setComment((pervs) => ({
+                      ...pervs,
+                      comment: e.target.value,
+                    }));
+                  }}
                 />
               </div>
             </div>

@@ -16,7 +16,7 @@ function App(props) {
   return (
     <>
       <Header />
-      {/* <GeneralHeader />*/}
+      {/* <GeneralHeader /> */}
 
       <TabsRender />
       <Outlet />
