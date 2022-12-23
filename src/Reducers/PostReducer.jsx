@@ -9,7 +9,7 @@ const allFollowing = "http://localhost:8000/api/following";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
   const response = await axios.get(allPosts);
-
+  console.log(allPosts);
   return response.data.data.sort(
     (dateA, dateB) => new Date(dateB.date) - new Date(dateA.date)
   );
@@ -37,6 +37,7 @@ const initialState = {
   postsData: [],
   followingPostData: [],
   profileData: [],
+  singlePost: [],
   status: "",
 };
 
@@ -44,46 +45,50 @@ export const postReducer = createSlice({
   name: "postsData",
   initialState,
   reducers: {
-    getFollowingPosts: (state) => {
-      state.approvedPostData = state.postsData.filter((ele) => {
-        return ele.status == "approved";
-      });
+    // getFollowingPosts: (state) => {
+    //   state.approvedPostData = state.postsData.filter((ele) => {
+    //     return ele.status == "approved";
+    //   });
+    // },
+    getSinglePost: (state, action) => {
+      state.singlePost = state.postsData.find(
+        (ele) => ele.post_id == action.payload
+      );
     },
   },
-  extraReducers: {
-    [getPosts.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(getPosts.pending, (state) => {
       state.status = "Pending";
-    },
-
-    [getPosts.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getPosts.fulfilled, (state, action) => {
       state.status = "Fulfilled";
       state.postsData = action.payload;
-    },
+    });
 
-    [getPosts.rejected]: (state) => {
+    builder.addCase(getPosts.rejected, (state) => {
       state.status = "Rejected";
-    },
-    [getFollowing.fulfilled]: (state, action) => {
+    });
+
+    builder.addCase(getFollowing.fulfilled, (state, action) => {
       state.status = "Fulfilled";
       state.followingPostData = action.payload;
-    },
+    });
 
-    [getFollowing.rejected]: (state) => {
+    builder.addCase(getFollowing.rejected, (state) => {
       state.status = "Rejected";
-    },
-    [getProfileData.fulfilled]: (state, action) => {
-      console.log(action.payload);
+    });
+
+    builder.addCase(getProfileData.fulfilled, (state, action) => {
       state.status = "Fulfilled";
       state.profileData = action.payload;
-    },
-
-    [getProfileData.rejected]: (state) => {
+    });
+    builder.addCase(getProfileData.rejected, (state) => {
       state.status = "Rejected";
-    },
+    });
   },
 });
 
 // Action creators are generated for each case reducer function
-// export const { getApprovedPosts } = postReducer.actions;
+export const { getSinglePost } = postReducer.actions;
 
 export default postReducer.reducer;

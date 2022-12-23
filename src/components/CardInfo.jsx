@@ -22,13 +22,10 @@ import Profile from "../views/Profile";
 function CardInfo({ open }) {
   const location = useLocation();
 
-  // const [data, setData] = useState([]);
   const auth = useAuthUser();
 
-  console.log(open);
-  // const openData = open.open;
   const dispatch = useDispatch();
-  // const data = useSelector((state) => state.Data.data);
+
   const { followingPostData, postsData } = useSelector(
     (state) => state.PostsData
   );
