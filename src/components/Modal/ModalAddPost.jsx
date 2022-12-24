@@ -8,16 +8,10 @@ import { AiOutlineClose } from "react-icons/ai";
 import AddPost from "../addPost";
 
 export default function ModalAddPost({ open }) {
-  //   let [isOpen, setIsOpen] = useState(open);
   const { isOpen } = useSelector((state) => state.ModalReducer);
   const dispatch = useDispatch();
-  //   function closeModal() {
-  //     setIsOpen(false);
-  //   }
-  console.log(isOpen);
-  //   function openModal() {
-  //     setIsOpen(true);
-  //   }
+
+  // console.log(isOpen);
 
   return (
     <>

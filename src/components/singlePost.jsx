@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { BsHeartFill } from "react-icons/bs";
+import { BsHeartFill, BsTrashFill } from "react-icons/bs";
 import { RiMessage3Fill } from "react-icons/ri";
 import YourImage from "./../assests/img/20.jpg";
 import FooterComponent from "./Footer";
@@ -12,28 +12,50 @@ import { useAuthUser } from "react-auth-kit";
 import Header from "./Header";
 import { useState } from "react";
 import axios from "axios";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { getAllComments, getPostComments } from "../Reducers/commentReducer";
+import {
+  Popover,
+  PopoverHandler,
+  PopoverContent,
+  Button,
+  IconButton,
+} from "@material-tailwind/react";
+import { AiFillEdit } from "react-icons/ai";
+import { handelOpenModelToEditComment } from "../Reducers/modalReducer";
+import EditComment from "./Modal/EditComment";
 
 function SinglePost() {
   const { id } = useParams();
   const auth = useAuthUser();
-
+  const [count, setCount] = useState(1);
+  const [loadingComment, setLoadingComment] = useState(true);
   const [comment, setComment] = useState({
     comment: "",
     post_id: id,
   });
-
+  const { update } = useSelector((state) => state.ModalReducer);
   const dispatch = useDispatch();
 
   const { singlePost, postsData } = useSelector((state) => state.PostsData);
-  console.log();
+  const { allCommentData, postComments } = useSelector(
+    (state) => state.CommentsData
+  );
 
   useEffect(() => {
     dispatch(getPosts());
   }, []);
+  useEffect(() => {
+    dispatch(getAllComments());
+  }, [comment, loadingComment, update]);
 
   useEffect(() => {
     if (postsData.length != 0) dispatch(getSinglePost(id));
   }, [postsData]);
+
+  useEffect(() => {
+    if (allCommentData?.length != 0) dispatch(getPostComments(id));
+  }, [allCommentData, comment]);
 
   const commentConfig = {
     method: "post",
@@ -56,10 +78,31 @@ function SinglePost() {
           ...pervs,
           comment: "",
         }));
+
+        const text = document.getElementById("commentArea");
+
+        text.value = "";
       })
       .catch(function (error) {
         console.log(error);
       });
+  };
+
+  const handleDelete = (id, action) => {
+    const config = {
+      method: "delete",
+      url: `http://127.0.0.1:8000/api/deleteComment/${id}`,
+      headers: {
+        Accept: "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
+        Authorization: `Bearer ${auth().token}`,
+      },
+    };
+    axios(config).then((resp) => {
+      console.log(resp);
+
+      setLoadingComment(!loadingComment);
+    });
   };
 
   if (singlePost.length == 0) return console.log(singlePost);
@@ -113,29 +156,157 @@ function SinglePost() {
                 <div class="flex-grow border-t h-px mr-3"></div>
               </div>
 
-              <small className="text-xs font-light text-primary dark:text-gray-400">
+              <small className="text-sm font-light text-primary dark:text-gray-400">
                 {singlePost.post_content}
               </small>
               <div>
-                <h1 className="font=xl font-medium my-4 mx-2 ">Comments</h1>
+                <div>
+                  <h1 className=" text-lg  font-semibold mt-4 mx-2 ">
+                    Comments
+                  </h1>
+                </div>
+                {postComments.length > 0 ? (
+                  <div
+                    id="scrollableDiv"
+                    className="relative mt-8 flex flex-wrap flex-col h-48 bg-white  rounded-xl overflow-y-scroll scroll-my-0.5 scroll-smooth hover:scroll-auto scrollbar"
+                  >
+                    <div className=" flex-wrap flex-col top-0 left-0 right-0 flex items-start justify-between bg-white py-4 px-6">
+                      <InfiniteScroll
+                        dataLength={count}
+                        next={() => setCount(3 + count)}
+                        hasMore={count}
+                        loader={<h4>Loading...</h4>}
+                        scrollableTarget="scrollableDiv"
+                        endMessage={
+                          <p style={{ textAlign: "center" }}>
+                            <b>Yay! You have seen it all</b>
+                          </p>
+                        }
+                      >
+                        {postComments.length > count ? (
+                          <p
+                            className=" justify-end mb-2 flex "
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              setCount(3 + count);
+                            }}
+                          >
+                            View More Comments
+                          </p>
+                        ) : null}
+                        {console.log(postComments)}
+                        {postComments.length != 0
+                          ? postComments
+                              .slice(-count)
+                              .reverse()
+                              .map((comment) => {
+                                return (
+                                  <div className="p-4 flex flex-wrap">
+                                    <img
+                                      className="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 overflow-visible"
+                                      src={comment.user_info.profile_image}
+                                      alt=""
+                                    />
+                                    <span className="">
+                                      <h5 className="text-primary dark:text-white font-medium text-l">
+                                        {comment.user_info.name}
+                                      </h5>
+                                      <p className=" font-thin mb-0 text-xs ">
+                                        {comment.updated_at.split("T")[0]} at{" "}
+                                        {comment.updated_at
+                                          .split("T")[1]
+                                          .slice(0, 5)}
+                                      </p>
+                                    </span>
+                                    <span>
+                                      {" "}
+                                      {comment.user_info.id ==
+                                      auth().user.user_id ? (
+                                        <div className="flex">
+                                          <Popover
+                                            color="red"
+                                            animate={{
+                                              mount: { scale: 1, y: 0 },
+                                              unmount: { scale: 0, y: 25 },
+                                            }}
+                                          >
+                                            <PopoverHandler>
+                                              <IconButton
+                                                variant="text"
+                                                color="gray"
+                                              >
+                                                <BsTrashFill color="red" />
+                                              </IconButton>
+                                            </PopoverHandler>
+                                            <PopoverContent>
+                                              <h6>Are you sure?</h6>
+                                              <p>
+                                                You won't be able to revert
+                                                this!
+                                              </p>
+                                              <Button
+                                                size="sm"
+                                                color="red"
+                                                name="delete"
+                                                onClick={() => {
+                                                  handleDelete(
+                                                    comment.comment_id,
+                                                    "comment"
+                                                  );
+                                                }}
+                                              >
+                                                delete
+                                              </Button>
+                                            </PopoverContent>
+                                          </Popover>
+                                          <IconButton
+                                            variant="text"
+                                            color="gray"
+                                          >
+                                            <AiFillEdit
+                                              className="mx-3"
+                                              style={{
+                                                fontSize: 18,
+                                                cursor: "pointer",
+                                              }}
+                                              onClick={() =>
+                                                dispatch(
+                                                  handelOpenModelToEditComment()
+                                                )
+                                              }
+                                            />
+                                          </IconButton>
+                                          <EditComment comment={comment} />
+                                        </div>
+                                      ) : (
+                                        <div></div>
+                                      )}
+                                    </span>
+
+                                    <small className="w-full block p-2 text-xs font-light text-primary dark:text-gray-400">
+                                      {comment.comment_content}
+                                    </small>
+                                  </div>
+                                );
+                              })
+                          : null}
+                      </InfiniteScroll>
+                    </div>
+                  </div>
+                ) : null}
+
+                {/************************************ */}
               </div>
-              <div className="relative group">
+              <div className="relative group my-7">
                 <label
-                  className="absolute top-0 left-0 w-full h-full flex items-center pl-[10px] duration-200 text-sm group-focus-within:text-xs group-focus-within:h-1/2 group-focus-within:-translate-y-full group-focus-within:pl-0"
+                  className="absolute top-0 left-0  flex items-center pl-[10px] duration-100 text-sm group-focus-within:text-xs group-focus-within:h-1/6 group-focus-within:-translate-y-full group-focus-within:pl-0"
                   htmlFor="label"
                 >
                   Add Comments
                 </label>
-                <button
-                  className="absolute top-0 right-0 flex m-4 mx-4 pl-[17px] rounded-lg text-sm items-center w-14
-                    text-center h-7 text-white bg-lnav text-[0.6rem] duration-300 hover:-translate-y-0.5"
-                  onClick={handleComment}
-                >
-                  Save
-                </button>
 
                 <textarea
-                  id="label"
+                  id="commentArea"
                   className="rounded-xl w-[15rem] md:w-[25rem] bg-gray-200 outline-none py-3 px-4 text-xs"
                   type="text"
                   onChange={(e) => {
@@ -145,6 +316,39 @@ function SinglePost() {
                     }));
                   }}
                 />
+
+                <div className=" px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                  <button
+                    type="button"
+                    className=" inline-flex justify-center rounded-md
+                   border border-transparent shadow-sm px-4 py-2 bg-lnav
+                    text-base font-medium text-white hover:bg-pcol
+                    focus:outline-none focus:ring-2 focus:ring-offset-2
+                     focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                    onClick={handleComment}
+                  >
+                    Done
+                  </button>
+                  {comment.comment != "" ? (
+                    <Button
+                      variant="text"
+                      color="red"
+                      onClick={() => {
+                        setComment((pervs) => ({
+                          ...pervs,
+                          comment: "",
+                        }));
+
+                        const text = document.getElementById("commentArea");
+
+                        text.value = "";
+                      }}
+                      className="mr-1"
+                    >
+                      <span>Cancel</span>
+                    </Button>
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>

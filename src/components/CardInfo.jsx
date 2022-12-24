@@ -18,6 +18,7 @@ import {
 import { useAuthUser } from "react-auth-kit";
 import { useLocation } from "react-router-dom";
 import Profile from "../views/Profile";
+import { getFavorite, getFavoritePostsId } from "../Reducers/UserReducer";
 
 function CardInfo({ open }) {
   const location = useLocation();
@@ -29,6 +30,29 @@ function CardInfo({ open }) {
   const { followingPostData, postsData } = useSelector(
     (state) => state.PostsData
   );
+  const { favoritePostsId, favoritePostsData } = useSelector(
+    (state) => state.UserData
+  );
+
+  // console.log(favoritePostsId);
+  useEffect(() => {
+    const config = {
+      method: "get",
+      url: "http://localhost:8000/api/getFavorite",
+      headers: {
+        Accept: "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
+        Authorization: `Bearer ${auth().token}`,
+      },
+    };
+
+    dispatch(getFavorite(config));
+  }, []);
+
+  useEffect(() => {
+    if (favoritePostsData.length != 0) dispatch(getFavoritePostsId());
+  }, [favoritePostsData]);
+
   // console.log(profileData);
   useEffect(() => {
     if (open == "follow") {

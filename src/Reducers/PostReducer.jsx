@@ -38,6 +38,7 @@ const initialState = {
   followingPostData: [],
   profileData: [],
   singlePost: [],
+  favoritePosts: [],
   status: "",
 };
 
@@ -45,11 +46,12 @@ export const postReducer = createSlice({
   name: "postsData",
   initialState,
   reducers: {
-    // getFollowingPosts: (state) => {
-    //   state.approvedPostData = state.postsData.filter((ele) => {
-    //     return ele.status == "approved";
-    //   });
-    // },
+    getFavoritePosts: (state, action) => {
+      state.favoritePosts = state.postsData.filter((ele) => {
+        console.log(action.payload);
+        return action.payload.includes(ele.post_id);
+      });
+    },
     getSinglePost: (state, action) => {
       state.singlePost = state.postsData.find(
         (ele) => ele.post_id == action.payload
@@ -62,6 +64,7 @@ export const postReducer = createSlice({
     });
     builder.addCase(getPosts.fulfilled, (state, action) => {
       state.status = "Fulfilled";
+      console.log(action.payload);
       state.postsData = action.payload;
     });
 
@@ -89,6 +92,6 @@ export const postReducer = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getSinglePost } = postReducer.actions;
+export const { getSinglePost, getFavoritePosts } = postReducer.actions;
 
 export default postReducer.reducer;
