@@ -12,10 +12,29 @@ export const getFavorite = createAsyncThunk(
     return response.data.data;
   }
 );
+export const getFollowers = createAsyncThunk(
+  "users/getFollowers",
+  async (config) => {
+    const response = await axios(config);
+    // console.log(response.data.data);
+    return response.data.data;
+  }
+);
+export const getUserProfileData = createAsyncThunk(
+  "userInfo/getUserProfileData",
+  async (config) => {
+    const response = await axios(config);
+
+    return response.data.data;
+  }
+);
 
 const initialState = {
   favoritePostsData: [],
+  followersData: [],
   favoritePostsId: [],
+  followersId: [],
+  userProfileData: [],
   status: "",
 };
 
@@ -26,6 +45,12 @@ export const UserReducer = createSlice({
     getFavoritePostsId: (state, action) => {
       state.favoritePostsId = state.favoritePostsData.map((ele) => {
         return ele.id;
+      });
+    },
+    getFollowersId: (state, action) => {
+      state.followersId = state.followersData.map((ele) => {
+        // console.log(ele);
+        return ele.user_id;
       });
     },
   },
@@ -41,9 +66,24 @@ export const UserReducer = createSlice({
     builder.addCase(getFavorite.rejected, (state) => {
       state.status = "Rejected";
     });
+    builder.addCase(getUserProfileData.fulfilled, (state, action) => {
+      state.status = "Fulfilled";
+      state.userProfileData = action.payload;
+    });
+    builder.addCase(getUserProfileData.rejected, (state) => {
+      state.status = "Rejected";
+    });
+    builder.addCase(getFollowers.fulfilled, (state, action) => {
+      console.log(action.payload);
+      state.status = "Fulfilled";
+      state.followersData = action.payload;
+    });
+    builder.addCase(getFollowers.rejected, (state) => {
+      state.status = "Rejected";
+    });
   },
 });
 
-export const { getFavoritePostsId } = UserReducer.actions;
+export const { getFavoritePostsId, getFollowersId } = UserReducer.actions;
 
 export default UserReducer.reducer;

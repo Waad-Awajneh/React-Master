@@ -60,7 +60,7 @@ function Favorite(props) {
           auth().user.full_name.slice(1)}{" "}
         Favorite
       </h1>
-      <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
         {favoritePosts?.map((cardinfo) => (
           <Card key={cardinfo.id} cards={cardinfo} />
         ))}

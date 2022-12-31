@@ -11,6 +11,7 @@ import Contact from "../views/contact";
 import Favorite from "../views/Favorite";
 import Landing from "../views/landing";
 import Profile from "../views/Profile";
+import UserProfile from "../views/UserProfile";
 
 export const AllRoutes = (params) => {
   return (
@@ -23,6 +24,7 @@ export const AllRoutes = (params) => {
           <Route exact path="follow" element={<Home openTap={2} />} />{" "}
         </Route>
         <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/profile/:id" element={<UserProfile />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/about" element={<About />} />

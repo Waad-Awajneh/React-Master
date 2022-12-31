@@ -121,8 +121,8 @@ function SinglePost() {
             <div className="relative flex flex-warp w-75 scale-100">
               <img
                 className="rounded-xl ms:shrink-0"
-                src={singlePost.images[0]?.image}
-                // src={`data:image/jpeg;base64,${singlePost.images[0]?.image}`}
+                // src={singlePost.images[0]?.image}
+                src={`data:image/jpeg;base64,${singlePost.images[0]?.image}`}
                 style={{ width: "100vw" }}
                 alt="card image"
               />
@@ -138,16 +138,16 @@ function SinglePost() {
                 <div className="flex my-5 justify-evenly items-center">
                   <img
                     class="w-10 h-10 rounded-full"
-                    src={singlePost.post_owner.profile_image}
+                    src={`data:image/jpeg;base64,${singlePost.post_owner.profile_image}`}
                     alt="Rounded avatar"
                   />
                   <h2 className="m-3 font-semibold">
                     {singlePost.post_owner.name}
                   </h2>
                 </div>
-                <button className="py-1 px-3 my-5 rounded-lg w-24 text-white bg-lnav text-[0.6rem] duration-300 hover:-translate-y-0.5">
+                {/* <button className="py-1 px-3 my-5 rounded-lg w-24 text-white bg-lnav text-[0.6rem] duration-300 hover:-translate-y-0.5">
                   Save
-                </button>
+  </button>*/}
               </div>
               <h1 className="  dark:text-white  font-normal text-lg mt-7">
                 {singlePost.title}

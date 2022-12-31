@@ -14,6 +14,10 @@ module.exports = withMT({
     },
 
     extend: {},
+    screens: {
+      cover: { max: "500px" },
+      card: { min: "500px" },
+    },
   },
   plugins: [[require("flowbite/plugin")]],
 });

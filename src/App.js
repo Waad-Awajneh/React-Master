@@ -11,13 +11,16 @@ import {
 import CardInfo from "./components/CardInfo";
 import Home from "./components/Home";
 import GeneralHeader from "./components/generalComponent/GeneralHeader";
+import { useIsAuthenticated } from "react-auth-kit";
+import Navbar from "./components/Navbar";
 
 function App(props) {
+  const isAuthenticated = useIsAuthenticated();
+
   return (
     <>
-      <Header />
+      {isAuthenticated() ? <Header /> : <Navbar />}
       {/* <GeneralHeader /> */}
-
       <TabsRender />
       <Outlet />
       {/*props.route == "follow" ? <Home openTap={2} /> : <Home openTap={1} />*/}

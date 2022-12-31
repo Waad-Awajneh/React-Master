@@ -9,7 +9,7 @@ const allFollowing = "http://localhost:8000/api/following";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
   const response = await axios.get(allPosts);
-  console.log(allPosts);
+  // console.log(allPosts, "okppppppppppppppppp");
   return response.data.data.sort(
     (dateA, dateB) => new Date(dateB.date) - new Date(dateA.date)
   );
@@ -40,6 +40,7 @@ const initialState = {
   singlePost: [],
   favoritePosts: [],
   status: "",
+  update: false,
 };
 
 export const postReducer = createSlice({
@@ -56,6 +57,9 @@ export const postReducer = createSlice({
       state.singlePost = state.postsData.find(
         (ele) => ele.post_id == action.payload
       );
+    },
+    setUpdate: (state) => {
+      state.update = !state.update;
     },
   },
   extraReducers: (builder) => {
@@ -92,6 +96,7 @@ export const postReducer = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getSinglePost, getFavoritePosts } = postReducer.actions;
+export const { getSinglePost, getFavoritePosts, setUpdate } =
+  postReducer.actions;
 
 export default postReducer.reducer;

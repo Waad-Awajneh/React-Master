@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
-import { useAuthUser } from "react-auth-kit";
+import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
 
 import { BsHeartFill } from "react-icons/bs";
 import { RiMessage3Fill } from "react-icons/ri";
@@ -15,6 +15,8 @@ import { ReadMore } from "./generalComponent/ReadMore";
 function Card(cards) {
   const cardInfo = cards.cards;
   const auth = useAuthUser();
+  const isAuthenticated = useIsAuthenticated();
+
   const { favoritePostsId } = useSelector((state) => state.UserData);
 
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ function Card(cards) {
 
     axios(config)
       .then(function (res) {
-        console.log(res.data);
+        // console.log(res.data);
         const Toast = Swal.mixin({
           toast: true,
           position: "top-right",
@@ -79,23 +81,8 @@ function Card(cards) {
     };
     axios(config)
       .then(function (res) {
-        console.log(res.data);
-        // const Toast = Swal.mixin({
-        //   toast: true,
-        //   position: "top-right",
-        //   iconColor: "green",
-        //   customClass: {
-        //     popup: "colored-toast",
-        //   },
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        //   timerProgressBar: true,
-        // });
-        // Toast.fire({
-        //   icon: "success",
-        //   color: "black",
-        //   title: res.data,
-        // });
+        // console.log(res.data);
+
         const config = {
           method: "get",
           url: "http://localhost:8000/api/getFavorite",
@@ -115,16 +102,16 @@ function Card(cards) {
   return (
     <>
       <div className="my-5 bg-white dark:bg-[#18191c] shadow-xl hover:shadow duration-200 rounded-xl">
-        <div className="relative w-full h-72 rounded-xl">
+        <div className="relative w-full h-72 cover:h-[20rem] rounded-xl">
           <Link to={`/SinglePost/${cardInfo.post_id}`}>
             <img
               className="rounded-xl hover:scale-105 w-full duration-300 h-full"
-              // src={`data:image/jpeg;base64,${cardInfo.images[0].image}`}
-              src={
-                cardInfo.images.length != 0
-                  ? cardInfo.images[0].image
-                  : "https://i.pinimg.com/564x/4f/5e/58/4f5e58105db88213e0b0c7cfe169467b.jpg"
-              }
+              src={`data:image/jpeg;base64,${cardInfo.images[0].image}`}
+              // src={
+              //   cardInfo.images.length != 0
+              //     ? cardInfo.images[0].image
+              //     : "https://i.pinimg.com/564x/4f/5e/58/4f5e58105db88213e0b0c7cfe169467b.jpg"
+              // }
               alt={cardInfo.post_id}
             />
           </Link>
@@ -164,12 +151,24 @@ function Card(cards) {
         <div className="p-4 flex flex-wrap">
           <img
             className="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-            src={cardInfo.post_owner.profile_image}
+            src={`data:image/jpeg;base64,${cardInfo.post_owner.profile_image}`}
             alt=""
           />
-          <h5 className="text-primary dark:text-white font-medium text-l">
-            {cardInfo.post_owner.name}
-          </h5>
+          {isAuthenticated() &&
+          cardInfo.post_owner.id == auth().user.user_id ? (
+            <Link to={`/profile`}>
+              <h5 className="text-primary dark:text-white font-medium text-l">
+                {cardInfo.post_owner.name}
+              </h5>
+            </Link>
+          ) : (
+            <Link to={`/profile/${cardInfo.post_owner.id}`}>
+              <h5 className="text-primary dark:text-white font-medium text-l">
+                {cardInfo.post_owner.name}
+              </h5>
+            </Link>
+          )}
+
           <small className=" p-2 text-xs font-light text-primary dark:text-gray-400">
             <ReadMore>{cardInfo.post_content}</ReadMore>
           </small>

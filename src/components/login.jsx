@@ -40,11 +40,11 @@ function Login() {
 
     await axios({ ...LoginPostConfig, data: loginUser })
       .then(function (response) {
-        console.log(response);
+        console.log(response.data.data.user);
         if (
           signIn({
             token: response.data.access_token,
-            expiresIn: 1000,
+            expiresIn: 5000,
             tokenType: "Bearer",
             authState: {
               user: response.data.data.user,
