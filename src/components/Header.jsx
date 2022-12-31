@@ -161,7 +161,13 @@ export default function Header() {
             <div className="flex flex-wrap gap-2">
               <Link to={"/profile"}>
                 <Avatar
-                  img={`data:image/jpeg;base64,${profileData.profile_Img}`}
+                  img={
+                    profileData.profile_Img != null
+                      ? `data:image/jpeg;base64,${profileData.profile_Img}`
+                      : profileData.gender == "Female"
+                      ? "https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666545148?k=6&m=666545148&s=170667a&w=0&h=ycJvJHz6ZMWsErum0XpjVabgZsP8dib2feSIJ5dIWYk="
+                      : "https://th.bing.com/th/id/OIP.P07J6hJbgyuIm-DlaSAlLQAAAA?pid=ImgDet&rs=1"
+                  }
                   rounded={true}
                 />
               </Link>

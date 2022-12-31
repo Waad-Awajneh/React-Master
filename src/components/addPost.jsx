@@ -13,7 +13,7 @@ import YourImage from "./e.jpg";
 import Navbar from "./Navbar";
 function AddPost() {
   const auth = useAuthUser();
-  console.log(auth().user.profile_Img);
+
   const [newPost, setNewPost] = useState({
     content: "",
     title: "",
@@ -21,19 +21,32 @@ function AddPost() {
   });
   const dispatch = useDispatch();
 
-  const config = {
-    method: "post",
-    url: `http://127.0.0.1:8000/api/addPost`,
-    headers: {
-      Accept: "application/vnd.api+json",
-      "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${auth().token}`,
-    },
-    data: newPost,
-  };
   const handleAddNewPost = () => {
     if (newPost.content === "") return null;
-    console.log(newPost);
+    let type = newPost.image.type.split("/");
+
+    // var FormData = require("form-data");
+    // var data1 = new FormData(); // var fs = require("fs");
+    // data1.append("image", newPost.image);
+    // data1.append("content", newPost.content);
+    // data1.append("title", newPost.title);
+    // if (type == "image") {
+    const config = {
+      method: "post",
+      url:
+        type[0] == "image"
+          ? `http://127.0.0.1:8000/api/addPost`
+          : "http://localhost:8000/api/addVideo",
+      headers: {
+        Accept: "application/vnd.api+json",
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${auth().token}`,
+      },
+
+      // data: type[0] == "image" ? newPost : data1,
+      data: newPost,
+    };
+    console.log(config.data);
     axios(config)
       .then(function (res) {
         console.log(res.data);

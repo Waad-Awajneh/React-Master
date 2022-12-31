@@ -138,7 +138,13 @@ function SinglePost() {
                 <div className="flex my-5 justify-evenly items-center">
                   <img
                     class="w-10 h-10 rounded-full"
-                    src={`data:image/jpeg;base64,${singlePost.post_owner.profile_image}`}
+                    src={
+                      singlePost.post_owner.profile_image != null
+                        ? `data:image/jpeg;base64,${singlePost.post_owner.profile_image}`
+                        : singlePost.post_owner.gender == "Female"
+                        ? "https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666545148?k=6&m=666545148&s=170667a&w=0&h=ycJvJHz6ZMWsErum0XpjVabgZsP8dib2feSIJ5dIWYk="
+                        : "https://th.bing.com/th/id/OIP.P07J6hJbgyuIm-DlaSAlLQAAAA?pid=ImgDet&rs=1"
+                    }
                     alt="Rounded avatar"
                   />
                   <h2 className="m-3 font-semibold">
