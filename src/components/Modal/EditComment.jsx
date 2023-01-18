@@ -71,7 +71,8 @@ export default function EditComment({ comment }) {
   return (
     <Fragment>
       <Dialog
-        open={openEditComment}
+className={"min-w-[30%]"}
+open={openEditComment}
         handler={() => dispatch(handelOpenModelToEditComment())}
         animate={{
           mount: { scale: 1, y: 0 },
@@ -80,12 +81,15 @@ export default function EditComment({ comment }) {
       >
         <DialogHeader>Edit Comment</DialogHeader>
         <DialogBody divider>
-          <div className="d-flex flex-start w-100">
+          <div className="d-flex flex-start w-full">
             <span className="flex">
-              {" "}
+              {     console.log(auth().user.profile_Img)}
               <img
-                className="rounded-circle shadow-lg  mx-3"
-                src={auth().user.profile_Image}
+                className="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 overflow-visible"
+          
+                src={`data:image/jpeg;base64,${auth().user.profile_Img}`}
+                                   
+     
                 alt="avatar"
                 width="45"
                 height="45"
@@ -98,16 +102,17 @@ export default function EditComment({ comment }) {
             <textarea
               id="textAreaExample"
               label="Write your Post"
-              className="rounded-xl w-[15rem] md:w-[25rem] bg-gray-200 outline-none py-3 px-4 text-xs"
+              className="rounded-xl w-full bg-gray-200 outline-none py-3 px-4 text-xs my-5"
               onChange={(e) => {
                 setCommentContent((pervs) => ({
                   ...pervs,
                   content: e.target.value,
                 }));
               }}
-            >
-              {comment.comment_content}
-            </textarea>
+              value= {comment.comment_content}
+            />
+             
+           
           </div>
         </DialogBody>
         <DialogFooter>

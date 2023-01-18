@@ -115,8 +115,8 @@ function SinglePost() {
         className=" flex flex-wrap justify-evenly md:m-10 mt-6"
         style={{ width: "100vw", height: "75vh" }}
       >
-        <div className="max-w-3xl flex flex-wrap">
-          <div className="flex flex-wrap max-[480px]:sm:hover:scale-100 lg:flex-nowrap  md:flex-nowrap bg-white  w-full dark:bg-[#18191c] shadow-xl hover:shadow rounded-xl ">
+        <div className="max-w-3xl flex flex-wrap p-1">
+          <div className="flex flex-wrap max-[480px]:sm:hover:scale-100  bg-white  w-full dark:bg-[#18191c] shadow-xl hover:shadow rounded-xl ">
             {/**hover:scale-105 duration-300 */}
             <div className="relative flex flex-warp w-75 scale-100">
               <img
@@ -135,9 +135,9 @@ function SinglePost() {
 
             <div className="p-4 relative w-full ">
               <div className="flex  justify-between">
-                <div className="flex my-5 justify-evenly items-center">
+                <div className="flex justify-evenly items-center">
                   <img
-                    class="w-10 h-10 rounded-full"
+                    className="w-10 h-10 rounded-full"
                     src={
                       singlePost.post_owner.profile_image != null
                         ? `data:image/jpeg;base64,${singlePost.post_owner.profile_image}`
@@ -158,14 +158,14 @@ function SinglePost() {
               <h1 className="  dark:text-white  font-normal text-lg mt-7">
                 {singlePost.title}
               </h1>
-              <div class="flex my-2 text-sm font-semibold items-center text-gray-800">
-                <div class="flex-grow border-t h-px mr-3"></div>
+              <div className="flex my-2 text-sm font-semibold items-center text-gray-800">
+                <div className="flex-grow border-t h-px mr-3"></div>
               </div>
 
               <small className="text-sm font-light text-primary dark:text-gray-400">
                 {singlePost.post_content}
               </small>
-              <div>
+              <div className="">
                 <div>
                   <h1 className=" text-lg  font-semibold mt-4 mx-2 ">
                     Comments
@@ -174,10 +174,11 @@ function SinglePost() {
                 {postComments.length > 0 ? (
                   <div
                     id="scrollableDiv"
-                    className="relative mt-8 flex flex-wrap flex-col h-48 bg-white  rounded-xl overflow-y-scroll scroll-my-0.5 scroll-smooth hover:scroll-auto scrollbar"
+                    className="w-[99%] relative mt-8 flex flex-wrap flex-col h-48 bg-white  rounded-xl overflow-y-scroll scroll-my-0.5 scroll-smooth hover:scroll-auto scrollbar"
                   >
-                    <div className=" flex-wrap flex-col top-0 left-0 right-0 flex items-start justify-between bg-white py-4 px-6">
+                    <div className="w-[99%] flex-wrap flex-col top-0 left-0 right-0 flex items-start justify-between bg-white py-4 ">
                       <InfiniteScroll
+                      className="w-[99%] mt-0  "
                         dataLength={count}
                         next={() => setCount(3 + count)}
                         hasMore={count}
@@ -191,7 +192,7 @@ function SinglePost() {
                       >
                         {postComments.length > count ? (
                           <p
-                            className=" justify-end mb-2 flex "
+                            className=" justify-end mb-2 flex w-full absolute right-0  top-[-21px] text-[13px] font-bold"
                             style={{ cursor: "pointer" }}
                             onClick={() => {
                               setCount(3 + count);
@@ -200,20 +201,22 @@ function SinglePost() {
                             View More Comments
                           </p>
                         ) : null}
-                        {console.log(postComments)}
+              
                         {postComments.length != 0
                           ? postComments
                               .slice(-count)
                               .reverse()
-                              .map((comment) => {
+                              .map((comment,i) => {
                                 return (
-                                  <div className="p-4 flex flex-wrap">
+                                  <div className="bg-[#dcdcdc33] rounded-[20px] mb-2 w-[99%]} relative ">
+                                  <div key={i} className="p-4 flex rounded-xl flex-wrap w-[99%]">
                                     <img
                                       className="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 overflow-visible"
-                                      src={comment.user_info.profile_image}
+                                      src={`data:image/jpeg;base64,${comment.user_info.profile_image}`}
+                                   
                                       alt=""
                                     />
-                                    <span className="">
+                                    <span>
                                       <h5 className="text-primary dark:text-white font-medium text-l">
                                         {comment.user_info.name}
                                       </h5>
@@ -224,8 +227,8 @@ function SinglePost() {
                                           .slice(0, 5)}
                                       </p>
                                     </span>
-                                    <span>
-                                      {" "}
+                                    <span className=" absolute right-0">
+                                    
                                       {comment.user_info.id ==
                                       auth().user.user_id ? (
                                         <div className="flex">
@@ -292,10 +295,11 @@ function SinglePost() {
                                     <small className="w-full block p-2 text-xs font-light text-primary dark:text-gray-400">
                                       {comment.comment_content}
                                     </small>
-                                  </div>
+                                  </div></div>
                                 );
                               })
                           : null}
+             
                       </InfiniteScroll>
                     </div>
                   </div>
@@ -313,7 +317,7 @@ function SinglePost() {
 
                 <textarea
                   id="commentArea"
-                  className="rounded-xl w-[15rem] md:w-[25rem] bg-gray-200 outline-none py-3 px-4 text-xs"
+                  className="rounded-xl w-full h-[117px] bg-gray-200 outline-none py-3 px-4 text-xs"
                   type="text"
                   onChange={(e) => {
                     setComment((pervs) => ({
@@ -326,7 +330,7 @@ function SinglePost() {
                 <div className=" px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                   <button
                     type="button"
-                    className=" inline-flex justify-center rounded-md
+                    className=" inline-flex justify-center rounded-md 
                    border border-transparent shadow-sm px-4 py-2 bg-lnav
                     text-base font-medium text-white hover:bg-pcol
                     focus:outline-none focus:ring-2 focus:ring-offset-2
