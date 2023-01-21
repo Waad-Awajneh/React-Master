@@ -21,7 +21,7 @@ import {
 import { AiFillEdit } from "react-icons/ai";
 import { handelOpenModelToEditComment } from "../Reducers/modalReducer";
 import EditComment from "./Modal/EditComment";
-import MyComponent from "./test/GetVideo";
+import MyComponent from "./VideoPost/GetVideo";
 
 function SinglePost() {
   const { id } = useParams();

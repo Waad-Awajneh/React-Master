@@ -14,7 +14,6 @@ function Search() {
  const { userSearchData, postSearchData,search } = useSelector((state) => state.SearchData);
  const dispatch = useDispatch();
 
-  //  const [search, setSearch] = useState();
  useEffect(()=>{
   console.log(search);
    dispatch(getSearchData());

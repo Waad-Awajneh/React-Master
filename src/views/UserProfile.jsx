@@ -1,16 +1,16 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
+
 import FooterComponent from "../components/Footer";
-import CardInfo from "../components/CardInfo";
+
 import Button from "../components/button";
 import { useEffect } from "react";
-import { getProfileData } from "../Reducers/PostReducer";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
 import HomeGallery from "../components/HomeGallery";
 import Header from "../components/Header";
-import GeneralHeader from "../components/generalComponent/GeneralHeader";
+
 import { useNavigate, useParams } from "react-router";
 import {
   getFollowers,
@@ -93,18 +93,7 @@ export default function UserProfile() {
           color: "black",
           title: res.data,
         });
-        //  useEffect(() => {
-        // const config = {
-        //   method: "get",
-        //   url: "http://localhost:8000/api/getFavorite",
-        //   headers: {
-        //     Accept: "application/vnd.api+json",
-        //     "Content-Type": "application/vnd.api+json",
-        //     Authorization: `Bearer ${auth().token}`,
-        //   }
-        // };
-
-        // dispatch(getFollowers(config));
+     
         setRefresh(!refresh);
       })
       .catch(function (error) {
@@ -113,7 +102,7 @@ export default function UserProfile() {
   };
   /************************************************************************************************ */
   const HandelRemoveFollow = (id) => {
-    // console.log(id, "remove from");
+
     const config = {
       method: "delete",
       url: `http://localhost:8000/api/unFollow/${id}`,
@@ -127,17 +116,7 @@ export default function UserProfile() {
       .then(function (res) {
         console.log(res.data);
 
-        // const config = {
-        //   method: "get",
-        //   url: "http://localhost:8000/api/getFavorite",
-        //   headers: {
-        //     Accept: "application/vnd.api+json",
-        //     "Content-Type": "application/vnd.api+json",
-        //     Authorization: `Bearer ${auth().token}`,
-        //   },
-        // };
-
-        // dispatch(getFavorite(config));
+        
         setRefresh(!refresh);
       })
       .catch(function (error) {
@@ -153,8 +132,7 @@ export default function UserProfile() {
   return (
     <>
       <Header />
-      {/* <Navbar page={"profile"} />*/}
-      {/*      <GeneralHeader />  */}
+   
       <main className="profile-page">
         <section className="relative block" style={{ height: "500px" }}>
           <img
@@ -281,7 +259,7 @@ export default function UserProfile() {
                         data={userProfileData.posts}
                         profile={"profile"}
                       />
-                      {/*<CardInfo open={"profile"} />*/}
+              
                     </div>
                   </div>
                 </div>

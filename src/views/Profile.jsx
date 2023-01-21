@@ -1,8 +1,8 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
+
 import FooterComponent from "../components/Footer";
-import CardInfo from "../components/CardInfo";
+
 import Button from "../components/button";
 import { useEffect } from "react";
 import { getProfileData, setUpdate } from "../Reducers/PostReducer";
@@ -10,13 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuthUser } from "react-auth-kit";
 import HomeGallery from "../components/HomeGallery";
 import Header from "../components/Header";
-import GeneralHeader from "../components/generalComponent/GeneralHeader";
+
 import { RiImageEditFill } from "react-icons/ri";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useState } from "react";
-// const fs = require("fs");
-// import * as fs from "fs";
+
 export default function Profile() {
   const auth = useAuthUser();
   const { profileData, update } = useSelector((state) => state.PostsData);
@@ -26,24 +25,10 @@ export default function Profile() {
   const [profilePic, setProfilePic] = useState({
     profile_Img: undefined,
   });
-  // const [update, setUpdate] = useState(false);
-  // console.log(profilePic);
-
-  // const config = {
-  //   method: "post",
-  //   url: `http://127.0.0.1:8000/api/editProfilePic`,
-  //   headers: {
-  //     "Content-Type": "multipart/form-data",
-  //     Accept: "application/vnd.api+json",
-
-  //     Authorization:
-  //   },
-  //   data: fs.createReadStream( profile_Img: profilePic.profile_Img ),
-  // };
 
   useEffect(() => {
     if (profilePic.profile_Img != undefined) {
-      // console.log(profilePic);
+
       handleEdit();
     }
   }, [profilePic]);
@@ -67,7 +52,7 @@ export default function Profile() {
 
     axios(config)
       .then(function (response) {
-        // console.log(response.data);
+
         const Toast = Swal.mixin({
           toast: true,
           position: "top-right",
@@ -84,10 +69,9 @@ export default function Profile() {
           title: response.data.message,
         });
 
-        // setUpdate(!update);
+
         dispatch(setUpdate());
 
-        // toggleShow();
       })
       .catch(function (error) {
         console.log(error);
@@ -110,23 +94,12 @@ export default function Profile() {
     dispatch(getProfileData(config));
   }, [update]);
 
-  // useEffect(() => {
-  //   if (profileData) {
-  //     const authUpdate = {
-  //       user: profileData,
-  //       token: auth().token,
-  //       role: auth().role,
-  //     };
-  //     localStorage.setItem("_auth_state", authUpdate);
-  //   }
-  // }, [profileData]);
 
   if (profileData.length == 0) return "loading ....";
   return (
     <>
       <Header />
-      {/* <Navbar page={"profile"} />*/}
-      {/*      <GeneralHeader />  */}
+
       <main className="profile-page">
         <section className="relative block h-[500px] cover:h-[400px]">
           <img
@@ -137,7 +110,7 @@ export default function Profile() {
 
           <div
             className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-            // style={{ height: "70px" }}
+
           >
             <svg
               className="absolute bottom-0 overflow-hidden"
@@ -252,7 +225,7 @@ export default function Profile() {
                         data={profileData.posts}
                         profile={"profile"}
                       />
-                      {/*<CardInfo open={"profile"} />*/}
+
                     </div>
                   </div>
                 </div>

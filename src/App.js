@@ -20,10 +20,9 @@ function App(props) {
   return (
     <>
       {isAuthenticated() ? <Header /> : <Navbar />}
-      {/* <GeneralHeader /> */}
+
       <TabsRender />
       <Outlet />
-      {/*props.route == "follow" ? <Home openTap={2} /> : <Home openTap={1} />*/}
     </>
   );
 }

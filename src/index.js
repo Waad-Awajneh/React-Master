@@ -19,9 +19,7 @@ root.render(
       cookieSecure={window.location.protocol === "https:"}
     >
       <Provider store={store}>
-        {/* <MyComponent /> */}
         <AllRoutes />
-        {/* <Search /> */}
       </Provider>
     </AuthProvider>
   </>
@@ -31,7 +29,3 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-/* 
-   <Route exact path="Home" element={<App route={"home"} />} />
-          <Route exact path="follow" element={<App route={"follow"} />} />
-*/

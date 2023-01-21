@@ -11,20 +11,20 @@ import {
   handelOpenModelToEditComment,
   handelUpdate,
 } from "../../Reducers/modalReducer";
-import { useEffect } from "react";
+
 import { useAuthUser } from "react-auth-kit";
 import Swal from "sweetalert2";
 import axios from "axios";
 const qs = require("qs");
 export default function EditComment({ comment }) {
-  //   const [open, setOpen] = useState(false);
+
   const [commentContent, setCommentContent] = useState({
     content: comment.comment_content,
   });
   const dispatch = useDispatch();
   const auth = useAuthUser();
   const { openEditComment } = useSelector((state) => state.ModalReducer);
-  //   const handelOpenModelToEditComment = () => setOpen(!openEditComment);
+
   console.log(openEditComment);
   const config = {
     method: "put",
@@ -60,9 +60,7 @@ export default function EditComment({ comment }) {
         });
 
         dispatch(handelUpdate());
-        // dispatch(fetchUserData(profileConfig));
 
-        // toggleShow();
       })
       .catch(function (error) {
         console.log(error);

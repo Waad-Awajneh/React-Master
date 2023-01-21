@@ -5,8 +5,7 @@ import { AiOutlineYoutube } from "react-icons/ai";
 import { AiFillLinkedin } from "react-icons/ai";
 import { useAuthUser, useSignOut } from "react-auth-kit";
 import { useIsAuthenticated } from "react-auth-kit";
-// import "mdb-react-ui-kit/dist/css/mdb.min.css";
-// import "@fortawesome/fontawesome-free/css/all.min.css";
+
 export default function GeneralHeader(props) {
   const isAuth = useIsAuthenticated();
   const auth = useAuthUser();
@@ -15,8 +14,7 @@ export default function GeneralHeader(props) {
 
   return (
     <>
-      {/*start header and nav bar ======================================*/}
-      {/* <div className="offcanvas-menu-overlay" /> */}
+
       <div className="offcanvas-menu-wrapper">
         <div className="canvas-close">
           <i className="fa fa-close" />
@@ -197,9 +195,7 @@ export default function GeneralHeader(props) {
                       ""
                     )}
                   </ul>
-                  {/* <div className="nm-right search-switch">
-                                        <i className="fa fa-search" />
-                                    </div> */}
+
                 </div>
               </div>
             </div>

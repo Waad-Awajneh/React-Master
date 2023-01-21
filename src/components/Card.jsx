@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import { getFavorite } from "../Reducers/UserReducer";
 
 import { ReadMore } from "./generalComponent/ReadMore";
-import GetVideo from "./test/GetVideo";
+import GetVideo from "./VideoPost/GetVideo";
 
 
 function Card(cards) {
