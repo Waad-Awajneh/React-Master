@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 
 import { BsHeartFill, BsTrashFill } from "react-icons/bs";
-
-import { useParams } from "react-router-dom";
+import { RiMessage3Fill } from "react-icons/ri";
+import YourImage from "./../assests/img/20.jpg";
+import FooterComponent from "./Footer";
+import Navbar from "./Navbar";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, getSinglePost } from "../Reducers/PostReducer";
 import { useAuthUser } from "react-auth-kit";
@@ -21,7 +24,6 @@ import {
 import { AiFillEdit } from "react-icons/ai";
 import { handelOpenModelToEditComment } from "../Reducers/modalReducer";
 import EditComment from "./Modal/EditComment";
-import MyComponent from "./VideoPost/GetVideo";
 
 function SinglePost() {
   const { id } = useParams();
@@ -69,7 +71,9 @@ function SinglePost() {
     if (comment.comment === "") return null;
     axios(commentConfig)
       .then(function (res) {
-
+        console.log(res.data);
+        // dispatch(fetchUserData(profileConfig));
+        // setLoading(!loading);
         setComment((pervs) => ({
           ...pervs,
           comment: "",
@@ -105,54 +109,23 @@ function SinglePost() {
 
   return (
     <>
-
+      {/*<Navbar page={"profile"} />*/}
       <Header />
       <div
         className=" flex flex-wrap justify-evenly md:m-10 mt-6"
         style={{ width: "100vw", height: "75vh" }}
       >
         <div className="max-w-3xl flex flex-wrap p-1">
-          <div className="flex flex-wrap max-[480px]:sm:hover:scale-100  bg-white  w-full dark:bg-[#18191c] shadow-xl hover:shadow rounded-xl ">
-     
-            <div className="relative flex flex-warp  scale-100">
-        
-
-
-
-
-  {singlePost.images.length != 0 ? (
+          <div className="flex flex-wrap max-[480px]:sm:hover:scale-100  bg-white  w-full dark:bg-[#18191c] shadow-black hover:shadow rounded-xl ">
+            {/**hover:scale-105 duration-300 */}
+            <div className="relative flex flex-warp w-75 scale-100">
               <img
-                className="rounded-xl hover:scale-105 w-full duration-300 h-full "
-                src={`data:image/jpeg;base64,${singlePost.images[0].image}`}
-                // src={
-                //   cardInfo.images.length != 0
-                //     ? "http://localhost:8000/storage/app/" +
-                //       cardInfo.images[0].image
-                //     : "https://i.pinimg.com/564x/4f/5e/58/4f5e58105db88213e0b0c7cfe169467b.jpg"
-                // }
-                alt={singlePost.post_id}
+                className="rounded-xl ms:shrink-0"
+                // src={singlePost.images[0]?.image}
+                src={`data:image/jpeg;base64,${singlePost.images[0]?.image}`}
+                style={{ width: "100vw" }}
+                alt="card image"
               />
-            ) : (
-              <MyComponent id={singlePost.videos[0]?.video_id} />)}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
               <div className="absolute bottom-3 left-4 flex items-center space-x-2">
                 <span className="p-1.5 rounded-lg bg-white hover:bg-red-500 flex items-center justify-center w-fit group duration-200">
                   <BsHeartFill className="text-sm text-red-500 group-hover:text-white" />
@@ -162,6 +135,7 @@ function SinglePost() {
 
             <div className="p-4 relative w-full ">
               <div className="flex  justify-between">
+              <Link to={`/profile/${singlePost.post_owner.id}`}>
                 <div className="flex justify-evenly items-center">
                   <img
                     className="w-10 h-10 rounded-full"
@@ -177,7 +151,7 @@ function SinglePost() {
                   <h2 className="m-3 font-semibold">
                     {singlePost.post_owner.name}
                   </h2>
-                </div>
+                </div></Link>
                 {/* <button className="py-1 px-3 my-5 rounded-lg w-24 text-white bg-lnav text-[0.6rem] duration-300 hover:-translate-y-0.5">
                   Save
   </button>*/}
@@ -335,7 +309,7 @@ function SinglePost() {
                 {/************************************ */}
               </div>
               <div className="relative group my-7">
-                <label
+             <label
                   className="absolute top-0 left-0  flex items-center pl-[10px] duration-100 text-sm group-focus-within:text-xs group-focus-within:h-1/6 group-focus-within:-translate-y-full group-focus-within:pl-0"
                   htmlFor="label"
                 >
@@ -344,7 +318,7 @@ function SinglePost() {
 
                 <textarea
                   id="commentArea"
-                  className="rounded-xl w-full h-[117px] bg-gray-200 outline-none py-3 px-4 text-xs"
+                  className="rounded-xl w-full h-[117px] cover:h-[66px] bg-gray-200 outline-none py-3 px-4 text-xs"
                   type="text"
                   onChange={(e) => {
                     setComment((pervs) => ({
@@ -365,7 +339,7 @@ function SinglePost() {
                     onClick={handleComment}
                   >
                     Done
-                  </button>
+                  </button>       
                   {comment.comment != "" ? (
                     <Button
                       variant="text"
@@ -386,6 +360,7 @@ function SinglePost() {
                     </Button>
                   ) : null}
                 </div>
+           
               </div>
             </div>
           </div>
@@ -396,3 +371,5 @@ function SinglePost() {
 }
 
 export default SinglePost;
+
+
