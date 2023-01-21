@@ -23,10 +23,32 @@ code {
    }
  }
 
+ @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+   img[loading='lazy'] {
+     clip-path: inset(0.6px);
+   }
+ }
+
+ .infinite-scroll-component__outerdiv {
+   width: 99% !important;
+   position: relative !important;
+ }
+
+ .infinite-scroll-component {
+   overflow: hidden !important;
+   height: 21rem !important;
+ }
+
  @layer utilities {
    .scrollbar::-webkit-scrollbar {
      width: 10px;
      height: 10px;
+     -ms-overflow-style: none;
+     /* IE and Edge */
+     scrollbar-width: none;
+     /* Firefox */
+     display: none;
+
    }
 
    .scrollbar::-webkit-scrollbar-track {
@@ -43,4 +65,5 @@ code {
    .scrollbar::-webkit-scrollbar-thumb:hover {
      background: #CA895E;
    }
+
  }
