@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "./button";
+import Button from "./../button";
 
-export default function Team() {
+export default function SectionThree() {
   return (
     <div>
       <div className="container lg:mx-auto">
@@ -33,7 +33,7 @@ export default function Team() {
               role="img"
               aria-label="people smiling"
               className="mx-auto rounded-lg h-auto"
-              src={require("./../assests/img/10.jpg")}
+              src={require("./../../assests/img/10.jpg")}
               alt="people smiling"
             />
           </div>

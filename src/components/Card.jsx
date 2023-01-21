@@ -9,19 +9,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getFavorite } from "../Reducers/UserReducer";
-import YourImage from "./e.jpg";
+
 import { ReadMore } from "./generalComponent/ReadMore";
-import MyComponent from "./test/MyComponent";
+import GetVideo from "./test/GetVideo";
+
 
 function Card(cards) {
   const cardInfo = cards.cards;
   const auth = useAuthUser();
   const isAuthenticated = useIsAuthenticated();
-  // const [videoUrl, setVideoUrl] = useState(null);
+
   const { favoritePostsId } = useSelector((state) => state.UserData);
   let test = "https://youtu.be/_0qsO_fVSwY";
   const dispatch = useDispatch();
-  // console.log(cardInfo);
+
   const HandelAddToFavorite = (id) => {
     const config = {
       method: "post",
@@ -35,7 +36,7 @@ function Card(cards) {
 
     axios(config)
       .then(function (res) {
-        // console.log(res.data);
+
         const Toast = Swal.mixin({
           toast: true,
           position: "top-right",
@@ -52,7 +53,7 @@ function Card(cards) {
           color: "black",
           title: res.data,
         });
-        //  useEffect(() => {
+       
         const config = {
           method: "get",
           url: "http://localhost:8000/api/getFavorite",
@@ -70,7 +71,7 @@ function Card(cards) {
       });
   };
   const HandelRemoveFromFavorite = (id) => {
-    // console.log(id, "remove from");
+    
     const config = {
       method: "delete",
       url: `http://localhost:8000/api/deleteFavorite/${id}`,
@@ -82,7 +83,7 @@ function Card(cards) {
     };
     axios(config)
       .then(function (res) {
-        // console.log(res.data);
+       
 
         const config = {
           method: "get",
@@ -100,10 +101,7 @@ function Card(cards) {
         console.log(error);
       });
   };
-  // {
-  //   if (cardInfo.images.length != 0)
-  //     // console.log("http://localhost:8000/" + cardInfo.images[0].image);
-  // }
+
   return (
     <>
       <div className="  xss:cover:mx-[30px] my-5 bg-white dark:bg-[#18191c] shadow-xl h-fit  hover:shadow duration-200 rounded-xl">
@@ -122,23 +120,8 @@ function Card(cards) {
                 alt={cardInfo.post_id}
               />
             ) : (
-              <MyComponent isSingle={true} id={cardInfo.videos[0]?.video_id} />
-              // <video
-              //   src={cardInfo.videos[0]?.videoPath}
-              //   // src={
-              //   //   "C:/Users/user/Desktop/React Master_new/Laravel-master/storage/appvideos/7PvFAIRqT9BP9Ny4IJ3DTJ9Q4qcIXdVtLbz3Nts1.mp4"
-              //   // }
-              //   controls
-              // />
-              // <video
-              //   // src={URL.createObjectURL(cardInfo.videos[0].videoPath.blob())}
-              //   src={URL.createObjectURL(cardInfo.videos[0]?.video.blob())}
-              //   controls
-              // />
-
-
-
-
+              <GetVideo isSingle={true} id={cardInfo.videos[0]?.video_id} />
+    
 
             )}
           </Link>
@@ -203,12 +186,12 @@ function Card(cards) {
           )}
 
           <small className=" p-2 text-xs block w-full font-light text-primary dark:text-gray-400">
-            {/* {cardInfo.post_content.length < 50 ? (*/}
+
             {cardInfo.title.length < 50 ? (
-              // cardInfo.post_content
+
               cardInfo.title
             ) : (
-              // <ReadMore>{cardInfo.post_content}</ReadMore>
+  
               <ReadMore>{cardInfo.title}</ReadMore>
             )}
           </small>
@@ -219,60 +202,3 @@ function Card(cards) {
 }
 
 export default Card;
-
-/**
- * import React from "react";
-
-import { BsHeartFill } from "react-icons/bs";
-import { RiMessage3Fill } from "react-icons/ri";
-import { Link } from "react-router-dom";
-import YourImage from "./e.jpg";
-
-function Card(cards) {
-  // console.log(cards.cards);
-  const cardInfo = cards.cards;
-  return (
-    <>
-      <Link to={`/SinglePost/${cardInfo.id}`}>
-        <div className="my-5 bg-white dark:bg-[#18191c] shadow-xl hover:shadow duration-200 rounded-xl">
-          <div className="relative w-full h-72 rounded-xl">
-            <img
-              className="rounded-xl hover:scale-105 w-full duration-300 h-full"
-              src={cardInfo.image}
-              alt={cardInfo.id}
-            />
-            <div className="absolute bottom-3 left-4 flex items-center space-x-2">
-              <span className="p-1.5 rounded-lg bg-white hover:bg-red-500 flex items-center justify-center w-fit duration-200 group">
-                <BsHeartFill className="text-sm text-red-500 group-hover:text-white" />
-              </span>
-              <span className="p-1.5 rounded-lg bg-white hover:bg-blue-500 flex items-center justify-center w-fit duration-200 space-x-1 group">
-                <RiMessage3Fill className="text-sm text-blue-500 group-hover:text-white" />
-                <small className="text-blue-500 group-hover:text-white">
-                  12
-                </small>
-              </span>
-            </div>
-          </div>
-
-          <div className="p-4 flex flex-wrap">
-            <img
-              className="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              alt=""
-            />
-            <h5 className="text-primary dark:text-white font-medium text-l">
-              {cardInfo.name}
-            </h5>
-            <small className=" p-2 text-xs font-light text-primary dark:text-gray-400">
-              {cardInfo.info}
-            </small>
-          </div>
-        </div>
-      </Link>
-    </>
-  );
-}
-
-export default Card;
-
- */

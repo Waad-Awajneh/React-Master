@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "./button";
+import Button from "./../button";
 import { Link } from "react-router-dom";
-function Newsletter() {
+function SectionFour() {
   return (
     <div className="xl:flex xl:justify-end pt-10">
       <div className="container lg:mx-auto">
@@ -24,7 +24,7 @@ function Newsletter() {
                 role="img"
                 aria-label="people smiling"
                 className="mx-auto  w-full overflow-hidden object-cover relative z-10 xl:-ml-56 lg:-ml-32 sm:-ml-20 -ml-12 md:-ml-20 rounded"
-                src={require("./../assests/img/5.jpg")}
+                src={require("./../../assests/img/5.jpg")}
                 alt="people smiling"
               />
             </div>
@@ -35,4 +35,4 @@ function Newsletter() {
   );
 }
 
-export default Newsletter;
+export default SectionFour;

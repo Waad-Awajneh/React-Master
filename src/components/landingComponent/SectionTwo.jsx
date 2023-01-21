@@ -1,17 +1,13 @@
-import react, { useState } from "react";
 
 import { BsPerson } from "react-icons/bs";
 
-const Hero = () => {
+const SectionTwo = () => {
   return (
     <>
       <div>
         <section>
           <div className="w-full relative pb-10 px-6 xl:px-0">
-            {/*<img
-              className="absolute w-full inset-0 h-full object-cover object-center"
-              src="https://cdn.tuk.dev/assets/templates/weCare/hero2-bg.png"
-            />*/}
+    
 
             <div className="pt-32 lg:flex items-center relative z-10 container lg:mx-auto">
               <div className="w-full lg:w-1/2  lg:pr-10 xl:pr-0 ">
@@ -20,7 +16,7 @@ const Hero = () => {
                   role="img"
                   aria-label="people smiling"
                   className="mx-auto rounded-lg h-auto"
-                  src={require("./../assests/img/12.jpg")}
+                  src={require("./../../assests/img/12.jpg")}
                   alt="people smiling"
                 />
               </div>
@@ -71,4 +67,4 @@ const Hero = () => {
     </>
   );
 };
-export default Hero;
+export default SectionTwo;

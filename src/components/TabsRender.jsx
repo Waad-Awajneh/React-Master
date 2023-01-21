@@ -1,13 +1,13 @@
-import { Card } from "flowbite-react";
-import React, { useState } from "react";
+
+import React from "react";
 import { Link } from "react-router-dom";
-import CardInfo from "./CardInfo";
+
 import { useLocation } from "react-router-dom";
 import { useIsAuthenticated } from "react-auth-kit";
 
 const Tabs = ({ color }) => {
   const location = useLocation();
-  // console.log(location.pathname);
+
   const isAuthenticated = useIsAuthenticated();
 
   return (

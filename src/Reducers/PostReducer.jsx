@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useAuthUser } from "react-auth-kit";
-//get all Articles
+
 
 const allPosts = "http://localhost:8000/api/allPosts";
-const allFollowing = "http://localhost:8000/api/following";
+
 
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
   const response = await axios.get(allPosts);
-  // console.log(allPosts, "okppppppppppppppppp");
+
   return response.data.data.sort(
     (dateA, dateB) => new Date(dateB.date) - new Date(dateA.date)
   );
@@ -95,7 +94,7 @@ export const postReducer = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
+
 export const { getSinglePost, getFavoritePosts, setUpdate } =
   postReducer.actions;
 

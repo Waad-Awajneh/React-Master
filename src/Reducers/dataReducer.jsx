@@ -37,26 +37,7 @@ export const DataReducer = createSlice({
   name: "DataReducer",
   initialState,
   reducers: {
-    // getArticle: (state, action) => {
-    //   state.articleDetail = state.articlesData.filter((ele) => {
-    //     return ele.article_id == action.payload;
-    //   });
-    // },
-    // getRecentArticles: (state, action) => {
-    //   state.recentArticles = state.articlesData.filter((ele) => {
-    //     return ele.article_id != action.payload;
-    //   });
-    // },
-    // getRandomArticles: (state, action) => {
-    //   for (let i = 0; i < 3; i++) {
-    //     // console.log(state.articlesData);
-    //     let random = Math.round(Math.random() * 100);
-    //     if (state.randomArticles.indexOf(state.articlesData[random]) !== -1) {
-    //       continue;
-    //     }
-    //     state.randomArticles.push(state.articlesData[random]);
-    //   }
-    // },
+
   },
   extraReducers: (builder) => {
     builder.addCase(getFollowingData.pending, (state) => {
@@ -90,8 +71,5 @@ export const DataReducer = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
-// export const { getArticle, getRecentArticles, getRandomArticles } =
-//   DataReducer.actions;
 
 export default DataReducer.reducer;

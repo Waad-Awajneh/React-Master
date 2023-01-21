@@ -5,7 +5,7 @@ import Card from "./Card";
 
 function HomeGallery(props) {
   const [items, setItems] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
+
   const [page, setPage] = useState(3);
 
   useEffect(() => {

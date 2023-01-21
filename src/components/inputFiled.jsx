@@ -5,10 +5,9 @@ import { HiLocationMarker } from "react-icons/hi";
 import { MdPhoneIphone } from "react-icons/md";
 
 import { AiTwotoneMail } from "react-icons/ai";
-import { FaFacebookSquare } from "react-icons/fa";
-import { BsGoogle } from "react-icons/bs";
+
 function InputFiled(props) {
-  // console.log(props.validName);
+
   return (
     <div className="relative w-full mb-3">
       <span className=" w-full p-1 rounded-lg bg-white hover:bg-lnav flex items-center justify-center  duration-200 group">
@@ -39,8 +38,7 @@ function InputFiled(props) {
           style={{ transition: "all .15s ease" }}
           name={props.name}
           onChange={(e) => props.onChange(e)}
-          // onFocus={() => props.onFocus(true)}
-          // onBlur={() => props.onBlur(false)}
+ 
         />
       </span>
     </div>

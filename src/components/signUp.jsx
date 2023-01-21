@@ -79,16 +79,7 @@ function SignUp() {
       setErrMsg("Unmatched password");
       return;
     }
-    // let fs = require("fs");
-    // let data = new FormData();
-    // data.append(
-    //   "image",
-    //   fs.createReadStream("/C:/Users/user/Desktop/first_mon/OIP.jfif")
-    // );
-    // setSignUpUser({
-    //   ...signUpUser,
-    //   profile_image: "/C:/Users/user/Desktop/first_mon/OIP.jfif",
-    // });
+
     await axios({ ...SignUpPostConfig, data: signUpUser })
       .then(function (response) {
         if (

@@ -1,14 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useAuthUser } from "react-auth-kit";
-//get all Articles
+
 
 export const getFavorite = createAsyncThunk(
   "posts/getFavorite",
   async (config) => {
     const response = await axios(config);
-    // console.log(response.data.data);
+
     return response.data.data;
   }
 );
@@ -16,7 +15,7 @@ export const getFollowers = createAsyncThunk(
   "users/getFollowers",
   async (config) => {
     const response = await axios(config);
-    // console.log(response.data.data);
+
     return response.data.data;
   }
 );
@@ -49,7 +48,7 @@ export const UserReducer = createSlice({
     },
     getFollowersId: (state, action) => {
       state.followersId = state.followersData.map((ele) => {
-        // console.log(ele);
+
         return ele.user_id;
       });
     },

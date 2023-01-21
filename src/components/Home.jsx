@@ -1,10 +1,9 @@
-import { Card } from "flowbite-react";
-import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+
+import React from "react";
+
 import CardInfo from "./CardInfo";
 import FooterComponent from "./Footer";
-import Header from "./Header";
-import TabsRender from "./TabsRender";
+
 
 export default function Home(openTap) {
   const openTabs = openTap.openTap;

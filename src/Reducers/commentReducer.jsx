@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useAuthUser } from "react-auth-kit";
+
 
 const allComments = "http://localhost:8000/api/comments";
-// const commentsByPostID = "";
+
 export const getAllComments = createAsyncThunk(
   "comment/getComments",
   async () => {

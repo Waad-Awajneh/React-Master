@@ -1,6 +1,4 @@
-import Hero from "../components/Hero";
-import HeroTow from "../components/HeroTow";
-import Team from "../components/Team";
+
 import React from "react";
 import {
   ScrollToTopOnMount,
@@ -9,12 +7,15 @@ import {
   Header,
   Footer,
 } from "react-fullpage";
-import Carousel from "../components/carousel";
-import Newsletter from "../components/Newsl";
+
 import Navbar from "./../components/Navbar";
 import FooterComponent from "../components/Footer";
+import SectionOne from "../components/landingComponent/SectionOne";
+import SectionTwo from "../components/landingComponent/SectionTwo";
+import SectionThree from "../components/landingComponent/SectionThree";
+import SectionFour from "../components/landingComponent/SectionFour";
 
-// <link rel="stylesheet" href="./test.css" />;
+
 function Landing() {
   let options = {
     sectionClassName: "section",
@@ -32,10 +33,10 @@ function Landing() {
       <Header>{<Navbar />}</Header>
       <ScrollToTopOnMount />
       <SectionsContainer {...options}>
-        <Section>{<HeroTow />}</Section>
-        <Section>{<Hero />}</Section>
-        <Section>{<Team />}</Section>
-        <Section>{<Newsletter />}</Section>
+        <Section>{<SectionOne />}</Section>
+        <Section>{<SectionTwo />}</Section>
+        <Section>{<SectionThree />}</Section>
+        <Section>{<SectionFour />}</Section>
       </SectionsContainer>
       {<FooterComponent />}
     </>

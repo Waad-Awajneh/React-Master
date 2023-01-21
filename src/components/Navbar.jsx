@@ -2,10 +2,10 @@ import React from "react";
 import { Avatar } from "flowbite-react";
 import Button from "./button";
 import { Link, NavLink } from "react-router-dom";
-import Profile from "../views/Profile";
+;
 
 export default function Navbar(props) {
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
+
   return (
     <>
       <nav

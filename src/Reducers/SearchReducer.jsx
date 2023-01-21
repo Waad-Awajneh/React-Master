@@ -11,10 +11,7 @@ export const getSearchData = createAsyncThunk(
   async () => {
    const response = await axios.get(searchURL);
    return response.data;
-// console.log(response);
-//     return response.data.data.sort(
-//       (dateA, dateB) => new Date(dateB.date) - new Date(dateA.date)
-//     );
+
   }
 );
 
@@ -63,20 +60,12 @@ export const SearchReducer = createSlice({
       state.status = "Rejected";
     });
 
-    // builder.addCase(getFollowing.fulfilled, (state, action) => {
-    //   state.status = "Fulfilled";
-    //   state.followingPostData = action.payload;
-    // });
-
-    // builder.addCase(getFollowing.rejected, (state) => {
-    //   state.status = "Rejected";
-    // });
 
    
   },
 });
 
-// Action creators are generated for each case reducer function
+
 export const { getPostSearchData ,getUserSearchData,setSearch } = SearchReducer.actions;
 
 export default SearchReducer.reducer;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function MyComponent({id,isSingle=false}) {
+function GetVideo({id,isSingle=false}) {
   const [videoUrl, setVideoUrl] = useState(null);
 
   useEffect(() => {
@@ -14,4 +14,4 @@ function MyComponent({id,isSingle=false}) {
   return <>{videoUrl && <video   className={isSingle?  "rounded-xl hover:scale-105 w-full duration-300 h-full":"rounded-xl hover:scale-105  duration-300 w-auto " } src={videoUrl} controls muted autoPlay  />}</>;
 }
 
-export default MyComponent;
+export default GetVideo;

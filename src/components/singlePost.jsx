@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 
 import { BsHeartFill, BsTrashFill } from "react-icons/bs";
-import { RiMessage3Fill } from "react-icons/ri";
-import YourImage from "./../assests/img/20.jpg";
-import FooterComponent from "./Footer";
-import Navbar from "./Navbar";
+
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, getSinglePost } from "../Reducers/PostReducer";
@@ -24,7 +21,7 @@ import {
 import { AiFillEdit } from "react-icons/ai";
 import { handelOpenModelToEditComment } from "../Reducers/modalReducer";
 import EditComment from "./Modal/EditComment";
-import MyComponent from "./test/MyComponent";
+import MyComponent from "./test/GetVideo";
 
 function SinglePost() {
   const { id } = useParams();
@@ -72,9 +69,7 @@ function SinglePost() {
     if (comment.comment === "") return null;
     axios(commentConfig)
       .then(function (res) {
-        console.log(res.data);
-        // dispatch(fetchUserData(profileConfig));
-        // setLoading(!loading);
+
         setComment((pervs) => ({
           ...pervs,
           comment: "",
@@ -110,7 +105,7 @@ function SinglePost() {
 
   return (
     <>
-      {/*<Navbar page={"profile"} />*/}
+
       <Header />
       <div
         className=" flex flex-wrap justify-evenly md:m-10 mt-6"
@@ -118,16 +113,9 @@ function SinglePost() {
       >
         <div className="max-w-3xl flex flex-wrap p-1">
           <div className="flex flex-wrap max-[480px]:sm:hover:scale-100  bg-white  w-full dark:bg-[#18191c] shadow-xl hover:shadow rounded-xl ">
-            {/**hover:scale-105 duration-300 */}
+     
             <div className="relative flex flex-warp  scale-100">
-              {/* <img
-                className="rounded-xl ms:shrink-0"
-                // src={singlePost.images[0]?.image}
-                src={`data:image/jpeg;base64,${singlePost.images[0]?.image}`}
-                style={{ width: "100vw" }}
-                alt="card image"
-              /> */}
-
+        
 
 
 
