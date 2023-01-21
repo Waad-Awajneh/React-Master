@@ -54,12 +54,13 @@ function Favorite(props) {
   return (
     <>
       <Header />
-      <h1 className="m-16 font-serif flex  font-medium text-center text-black px-5 w-fit text-4xl">
+      <h1 className="mt-16 font-serif flex  font-medium text-center text-black px-5 w-fit text-4xl">
         <BsHeartFill className="mx-2 text-red-600" />{" "}
         {auth().user.full_name.charAt(0).toUpperCase() +
           auth().user.full_name.slice(1)}{" "}
         Favorite
       </h1>
+      <h3 className="mb-16 ml-16">Keep all of your wedding favorites here! Click the  to save your favorite vendors, engagement rings, dresses, Real Weddings, articles, and forums discussions.</h3>
       <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
         {favoritePosts?.map((cardinfo) => (
           <Card key={cardinfo.id} cards={cardinfo} />

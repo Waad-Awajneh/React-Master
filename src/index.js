@@ -26,6 +26,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import ModalAddPost from "./components/Modal/ModalAddPost";
 import MyComponent from "./components/test/MyComponent";
+import Search from "./views/Search";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -37,8 +38,9 @@ root.render(
       cookieSecure={window.location.protocol === "https:"}
     >
       <Provider store={store}>
-        {/*   <MyComponent />  */}
+        {/* <MyComponent /> */}
         <AllRoutes />
+        {/* <Search /> */}
       </Provider>
     </AuthProvider>
   </>

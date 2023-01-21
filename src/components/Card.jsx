@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import { getFavorite } from "../Reducers/UserReducer";
 import YourImage from "./e.jpg";
 import { ReadMore } from "./generalComponent/ReadMore";
+import MyComponent from "./test/MyComponent";
 
 function Card(cards) {
   const cardInfo = cards.cards;
@@ -18,9 +19,9 @@ function Card(cards) {
   const isAuthenticated = useIsAuthenticated();
   // const [videoUrl, setVideoUrl] = useState(null);
   const { favoritePostsId } = useSelector((state) => state.UserData);
-
+  let test = "https://youtu.be/_0qsO_fVSwY";
   const dispatch = useDispatch();
-  console.log(cardInfo);
+  // console.log(cardInfo);
   const HandelAddToFavorite = (id) => {
     const config = {
       method: "post",
@@ -105,33 +106,40 @@ function Card(cards) {
   // }
   return (
     <>
-      <div className="my-5 bg-white dark:bg-[#18191c] shadow-xl h-fit  hover:shadow duration-200 rounded-xl">
+      <div className="  xss:cover:mx-[30px] my-5 bg-white dark:bg-[#18191c] shadow-xl h-fit  hover:shadow duration-200 rounded-xl">
         <div className="relative w-full h-72 cover:h-[20rem] rounded-xl">
           <Link to={`/SinglePost/${cardInfo.post_id}`}>
             {cardInfo.images.length != 0 ? (
               <img
-                className="rounded-xl hover:scale-105 w-full duration-300 h-full"
+                className="rounded-xl hover:scale-105 w-full duration-300 h-full "
                 src={`data:image/jpeg;base64,${cardInfo.images[0].image}`}
                 // src={
                 //   cardInfo.images.length != 0
-                //     ? "http://localhost:8000/ReactMaster_new/Laravel-master/storage/app/" +
+                //     ? "http://localhost:8000/storage/app/" +
                 //       cardInfo.images[0].image
                 //     : "https://i.pinimg.com/564x/4f/5e/58/4f5e58105db88213e0b0c7cfe169467b.jpg"
                 // }
                 alt={cardInfo.post_id}
               />
             ) : (
+              <MyComponent isSingle={true} id={cardInfo.videos[0]?.video_id} />
               // <video
-              //   // src={"http://localhost:8000/" + cardInfo.videos[0]?.videoPath}
-              //   src={
-              //     "C:/Users/user/Desktop/React Master_new/Laravel-master/storage/appvideos/7PvFAIRqT9BP9Ny4IJ3DTJ9Q4qcIXdVtLbz3Nts1.mp4"
-              //   }
+              //   src={cardInfo.videos[0]?.videoPath}
+              //   // src={
+              //   //   "C:/Users/user/Desktop/React Master_new/Laravel-master/storage/appvideos/7PvFAIRqT9BP9Ny4IJ3DTJ9Q4qcIXdVtLbz3Nts1.mp4"
+              //   // }
               //   controls
               // />
-              <video
-                src={URL.createObjectURL(cardInfo.videos[0]?.videoPath.blob())}
-                controls
-              />
+              // <video
+              //   // src={URL.createObjectURL(cardInfo.videos[0].videoPath.blob())}
+              //   src={URL.createObjectURL(cardInfo.videos[0]?.video.blob())}
+              //   controls
+              // />
+
+
+
+
+
             )}
           </Link>
           <div className="absolute bottom-3 left-4 flex items-center space-x-2">

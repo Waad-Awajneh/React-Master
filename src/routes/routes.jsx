@@ -11,6 +11,7 @@ import Contact from "../views/contact";
 import Favorite from "../views/Favorite";
 import Landing from "../views/landing";
 import Profile from "../views/Profile";
+import Search from "../views/Search";
 import UserProfile from "../views/UserProfile";
 
 export const AllRoutes = (params) => {
@@ -31,6 +32,7 @@ export const AllRoutes = (params) => {
         <Route exact path="/Landing" element={<Landing />} />
         <Route exact path="/AddPost" element={<AddPost />} />
         <Route exact path="/Favorite" element={<Favorite />} />
+        <Route exact path="search/:q" element={<Search />} />
 
         {/*   <Route
           path="/SinglePost/:id"

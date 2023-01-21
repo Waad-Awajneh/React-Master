@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Avatar } from "flowbite-react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import { MdOutlineLogout } from "react-icons/md";
 import { useAuthUser, useIsAuthenticated, useSignOut } from "react-auth-kit";
 import ModalAddPost from "./Modal/ModalAddPost";
@@ -9,16 +9,22 @@ import { useState } from "react";
 import { openModal } from "../Reducers/modalReducer";
 import { getProfileData } from "../Reducers/PostReducer";
 import { useEffect } from "react";
+import {  getPostSearchData,getUserSearchData, getSearchData, setSearch } from "../Reducers/SearchReducer";
+
 
 export default function Header() {
   const signOut = useSignOut();
   const navigate = useNavigate();
   const isAuthenticated = useIsAuthenticated();
   const auth = useAuthUser();
+  const [searchResults, setSearchResults] = useState([]);
+  // const [search, setSearch] = useState("");
+ const { search } = useSelector((state) => state.SearchData);
+
 
   const { isOpen } = useSelector((state) => state.ModalReducer);
   const { profileData, update } = useSelector((state) => state.PostsData);
-
+  const [searchParam, setSearchParam] = useSearchParams();
   const dispatch = useDispatch();
   useEffect(() => {
     const config = {
@@ -33,7 +39,18 @@ export default function Header() {
 
     dispatch(getProfileData(config));
   }, [update]);
-  console.log(profileData);
+// console.log(postSearchData,userSearchData);
+// useEffect(()=>{
+//   console.log(search);
+//    dispatch(getSearchData());
+//    dispatch(getUserSearchData(search));
+//    dispatch(getPostSearchData(search));
+// },[search])
+ const handelSearch = (e) => {
+
+   dispatch( setSearch(e.target.value ));
+        navigate(`search/q=${e.target.value}`);
+  };
   return (
     <>
       <nav
@@ -57,7 +74,18 @@ export default function Header() {
                 type="text"
                 className="rounded bg-gray-100 p-1.5 text-sm pl-8 w-96"
                 placeholder="Search"
-                // onChange={handelSearch}
+                // onChange={(e)=>handelSearch(e)}
+                      onChange={(e) => {
+                      setSearchParam({ search: e.target.value });
+                      console.log(e.target.value.length);
+                       dispatch( setSearch(e.target.value ));
+                      if (e.target.value.length == 0) {
+                   
+                        navigate("/");
+                      }
+                      navigate(`/search/${e.target.value}`);
+                    }}
+              value={searchParam.get("search")}
               />
               <div className="absolute top-2 left-2 text-lnav">
                 <svg

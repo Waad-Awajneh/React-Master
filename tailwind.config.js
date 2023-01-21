@@ -16,6 +16,8 @@ module.exports = withMT({
     extend: {},
     screens: {
       cover: { max: "500px" },
+      xss: { min: "320px" },
+      xsm: { max: "321px" },
       card: { min: "500px" },
     },
   },

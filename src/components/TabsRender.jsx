@@ -13,18 +13,18 @@ const Tabs = ({ color }) => {
   return (
     <>
       <div className="flex flex-wrap  mx-auto  mt-6">
-        <div className=" border-b   border-gray-200 dark:border-gray-700 mb-4">
+        <div className="border-b border-gray-200 dark:border-gray-700 mb-4">
           <ul
-            className="flex  list-none flex-wrap pt-3 pb-4 flex-row -mb-px"
+            className="flex  list-none flex-wrap xss:cover:flex-nowrap pt-3 pb-4 flex-row -mb-px"
             role="tablist"
           >
-            <li className=" w-40 h-30 mx-5  last:mr-0 last:ml-0 text-center">
+            <li className=" w-40 h-30 mx-5  last:mr-0 last:ml-0 text-center  xss:cover:w-[116px] ">
               <Link
                 className={
-                  "  w-40 h-30 mr-3 ml-3 inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active" +
+                  "  w-40 h-30 mr-3 ml-3 inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active xss:cover:w-[116px]" +
                   (location.pathname == "/Home" || location.pathname == "/"
-                    ? "text-white bg-" + color + " "
-                    : "text-" + color + " bg-white")
+                    ? " text-white bg-" + color + " "
+                    : " text-" + color + " bg-white")
                 }
                 data-toggle="tab"
                 to="/Home"
@@ -34,13 +34,13 @@ const Tabs = ({ color }) => {
               </Link>
             </li>
             {isAuthenticated() ? (
-              <li className="  w-40 h-30 mx-5 last:mr-0 last:ml-0  text-center">
+              <li className="  w-40 h-30 mx-5 last:mr-0 last:ml-0  text-center  xss:cover:w-[116px] ">
                 <Link
                   className={
-                    " w-40 h-30 mr-3 ml-3 flex items-center text-gray-500 hover:text-gray-600  hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active" +
+                    " w-40 h-30 mr-3 ml-3 flex items-center text-gray-500 hover:text-gray-600  hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active xss:cover:w-[116px]" +
                     (location.pathname === "/follow"
-                      ? "text-white bg-" + color + ""
-                      : "text-" + color + " bg-white")
+                      ? " text-white bg-" + color + ""
+                      : " text-" + color + " bg-white")
                   }
                   data-toggle="tab"
                   to="/follow"

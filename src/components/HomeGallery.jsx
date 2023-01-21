@@ -68,8 +68,10 @@ function HomeGallery(props) {
           )}
         </>
       ) : (
-        <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 cover:gap-3  cover:grid-cols-2 cover:m-1 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          {props.data.map((cardinfo) => (
+        // <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 cover:gap-3  cover:grid-cols-2 cover:m-1 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+           <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 cover:gap-4  cover:grid-cols-1 cover:m-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+        {props.data.map((cardinfo) => (
             <Card key={cardinfo.id} cards={cardinfo} />
           ))}
         </div>
