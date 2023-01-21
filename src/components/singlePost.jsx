@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 
 import { BsHeartFill, BsTrashFill } from "react-icons/bs";
-import { RiMessage3Fill } from "react-icons/ri";
-import YourImage from "./../assests/img/20.jpg";
-import FooterComponent from "./Footer";
-import Navbar from "./Navbar";
+
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, getSinglePost } from "../Reducers/PostReducer";
@@ -24,6 +21,7 @@ import {
 import { AiFillEdit } from "react-icons/ai";
 import { handelOpenModelToEditComment } from "../Reducers/modalReducer";
 import EditComment from "./Modal/EditComment";
+import GetVideo from "./VideoPost/GetVideo";
 
 function SinglePost() {
   const { id } = useParams();
@@ -72,8 +70,7 @@ function SinglePost() {
     axios(commentConfig)
       .then(function (res) {
         console.log(res.data);
-        // dispatch(fetchUserData(profileConfig));
-        // setLoading(!loading);
+
         setComment((pervs) => ({
           ...pervs,
           comment: "",
@@ -109,7 +106,7 @@ function SinglePost() {
 
   return (
     <>
-      {/*<Navbar page={"profile"} />*/}
+ 
       <Header />
       <div
         className=" flex flex-wrap justify-evenly md:m-10 mt-6"
@@ -117,15 +114,35 @@ function SinglePost() {
       >
         <div className="max-w-3xl flex flex-wrap p-1">
           <div className="flex flex-wrap max-[480px]:sm:hover:scale-100  bg-white  w-full dark:bg-[#18191c] shadow-black hover:shadow rounded-xl ">
-            {/**hover:scale-105 duration-300 */}
+
             <div className="relative flex flex-warp w-75 scale-100">
-              <img
+              {/* <img
                 className="rounded-xl ms:shrink-0"
-                // src={singlePost.images[0]?.image}
+
                 src={`data:image/jpeg;base64,${singlePost.images[0]?.image}`}
-                style={{ width: "100vw" }}
+             
                 alt="card image"
+              /> */}
+              
+  {singlePost.images.length != 0 ? (
+              <img   style={{ width: "100vw" }}
+            className="rounded-xl ms:shrink-0"
+                src={`data:image/jpeg;base64,${singlePost.images[0].image}`}
+                // src={
+                //   cardInfo.images.length != 0
+                //     ? "http://localhost:8000/storage/app/" +
+                //       cardInfo.images[0].image
+                //     : "https://i.pinimg.com/564x/4f/5e/58/4f5e58105db88213e0b0c7cfe169467b.jpg"
+                // }
+                alt={singlePost.post_id}
               />
+            ) : (
+              <GetVideo id={singlePost.videos[0]?.video_id} />)}
+
+
+
+              
+              
               <div className="absolute bottom-3 left-4 flex items-center space-x-2">
                 <span className="p-1.5 rounded-lg bg-white hover:bg-red-500 flex items-center justify-center w-fit group duration-200">
                   <BsHeartFill className="text-sm text-red-500 group-hover:text-white" />
@@ -306,7 +323,7 @@ function SinglePost() {
                   </div>
                 ) : null}
 
-                {/************************************ */}
+
               </div>
               <div className="relative group my-7">
              <label

@@ -11,7 +11,7 @@ function GetVideo({id,isSingle=false}) {
   }, []);
 
   // Render the video in the component
-  return <>{videoUrl && <video   className={isSingle?  "rounded-xl hover:scale-105 w-full duration-300 h-full":"rounded-xl hover:scale-105  duration-300 w-auto " } src={videoUrl} controls muted autoPlay  />}</>;
+  return <>{videoUrl && <video style={{ width: "100vw" }}  className={isSingle?  "rounded-xl hover:scale-105 w-full duration-300 h-full":"rounded-xl hover:scale-105  duration-300 w-auto " } src={videoUrl} controls muted autoPlay  />}</>;
 }
 
 export default GetVideo;

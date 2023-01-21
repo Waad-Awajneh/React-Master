@@ -36,7 +36,7 @@ code {
 
  .infinite-scroll-component {
    overflow: hidden !important;
-   height: 21rem !important;
+   /* height: 21rem !important; */
  }
 
  @layer utilities {

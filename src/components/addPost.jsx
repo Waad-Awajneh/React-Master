@@ -3,14 +3,12 @@ import React from "react";
 import { useState } from "react";
 import { useAuthUser } from "react-auth-kit";
 
-import { BsHeartFill } from "react-icons/bs";
-import { RiMessage3Fill } from "react-icons/ri";
+
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { closeModal } from "../Reducers/modalReducer";
 import { getPosts } from "../Reducers/PostReducer";
-import YourImage from "./e.jpg";
-import Navbar from "./Navbar";
+
 function AddPost() {
   const auth = useAuthUser();
 
@@ -25,12 +23,7 @@ function AddPost() {
     if (newPost.content === "") return null;
     let type = newPost.image.type.split("/");
 
-    // var FormData = require("form-data");
-    // var data1 = new FormData(); // var fs = require("fs");
-    // data1.append("image", newPost.image);
-    // data1.append("content", newPost.content);
-    // data1.append("title", newPost.title);
-    // if (type == "image") {
+
     const config = {
       method: "post",
       url:
@@ -84,10 +77,7 @@ function AddPost() {
   };
   return (
     <>
-      {/*<Navbar page={"profile"} />*/}
-
-      {/* <div className=" flex flex-wrap justify-evenly md:m-10 h-full"><div className="max-w-3xl max-h-fit flex flex-wrap">*/}
-
+    
       <div className="flex flex-wrap lg:flex-nowrap md:flex-nowrap bg-white  w-full dark:bg-[#18191c] ">
         <div class="flex justify-center items-center m-7  w-full">
           <label
@@ -203,7 +193,7 @@ function AddPost() {
                      focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0
                       sm:ml-3 sm:w-auto sm:text-sm"
                 onClick={() => dispatch(closeModal())}
-                // ref={cancelButtonRef}
+
               >
                 Cancel
               </button>
@@ -212,7 +202,7 @@ function AddPost() {
         </div>
       </div>
 
-      {/*     </div></div>*/}
+
     </>
   );
 }
