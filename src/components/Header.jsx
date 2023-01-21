@@ -68,11 +68,17 @@ export default function Header() {
               />
             </Link>
           </div>
+
+
+
+
+
+
           <div className="hidden md:block">
             <div className="relative">
               <input
                 type="text"
-                className="rounded bg-gray-100 p-1.5 text-sm pl-8 w-96"
+              className="rounded-[30px] bg-gray-100 p-1.5 text-sm pl-8 h-12 w-[35rem] "
                 placeholder="Search"
                 // onChange={(e)=>handelSearch(e)}
                       onChange={(e) => {
