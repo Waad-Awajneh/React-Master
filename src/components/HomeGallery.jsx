@@ -1,27 +1,31 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 
-function HomeGallery(props) {
+function HomeGallery({data,profile}) {
+const profileData=[...data].reverse()
   const [items, setItems] = useState([]);
 
+  const { update } = useSelector((state) => state.PostsData);
   const [page, setPage] = useState(3);
 
   useEffect(() => {
     fetchData(page);
-  }, [page]);
+  
+  }, [page,update]);
 
   const fetchData = (page) => {
     const newItems = [];
 
-    if (page <= props.data.length) {
+    if (page <= profileData.length) {
       for (let i = 0; i < page; i++) {
-        newItems.push(props.data[i]);
+        newItems.push(profileData[i]);
       }
     } else {
-      for (let i = 0; i < props.data.length; i++) {
-        newItems.push(props.data[i]);
+      for (let i = 0; i < profileData.length; i++) {
+        newItems.push(profileData[i]);
       }
     }
 
@@ -38,20 +42,20 @@ function HomeGallery(props) {
   useEffect(() => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [items]);
+  }, [items,update]);
 
-  if (items.length == 0 && props.data.length == 0) return "loading";
+  if (items.length == 0 && data.length == 0) return "loading";
 
   return (
     <>
-      {props.profile == "profile" ? (
+      {profile == "profile" ? (
         <>
           <div className="m-5 grid grid-flow-row overflow-scroll scroll-my-0.5 scroll-smooth hover:scroll-auto scrollbar max-[480px]:gap-2 gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
             {items.slice(-page).map((cardinfo) => (
               <Card key={cardinfo.id} cards={cardinfo} />
             ))}
           </div>
-          {page <= props.data.length ? (
+          {page <= data.length ? (
             <Link
               className="font-normal text-lnav shadow-lg hover:text-pcol p-2"
               onClick={() => setPage(page + 3)}
@@ -69,9 +73,9 @@ function HomeGallery(props) {
         </>
       ) : (
         // <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 cover:gap-3  cover:grid-cols-2 cover:m-1 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-           <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 cover:gap-4  cover:grid-cols-1 cover:m-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+           <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 cover:gap-4  cover:grid-cols-1 cover:m-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
 
-        {props.data.map((cardinfo) => (
+        {data.map((cardinfo) => (
             <Card key={cardinfo.id} cards={cardinfo} />
           ))}
         </div>

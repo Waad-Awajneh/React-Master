@@ -4,6 +4,8 @@ const initialState = {
   isOpen: false,
   openEditComment: false,
   update: false,
+  openFormModal:false,
+  openFormPriceModal:false
 };
 
 export const modalReducer = createSlice({
@@ -19,12 +21,27 @@ export const modalReducer = createSlice({
       state.isOpen = false;
     },
     handelOpenModelToEditComment: (state) => {
-      console.log(state.openEditComment);
+   
       state.openEditComment = !state.openEditComment;
     },
     handelUpdate: (state) => {
-
       state.update = !state.update;
+    },
+    // openFormModal: (state) => {
+
+    //   state.isOpen = true;
+
+    // },
+    // closeFormModal: (state) => {
+    //   state.isOpen = false;
+    // },
+    handelOpenFormModel: (state) => {
+
+      state.openFormModal = !state.openFormModal;
+    },
+    handelOpenPriceModel: (state) => {
+
+      state.openFormPriceModal = !state.openFormPriceModal;
     },
   },
 });
@@ -34,7 +51,8 @@ export const {
   closeModal,
   openModal,
   handelOpenModelToEditComment,
-  handelUpdate,
+  handelUpdate,handelOpenFormModel
+  ,handelOpenPriceModel
 } = modalReducer.actions;
 
 export default modalReducer.reducer;

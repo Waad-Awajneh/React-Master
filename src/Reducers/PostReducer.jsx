@@ -69,6 +69,7 @@ export const postReducer = createSlice({
       state.status = "Fulfilled";
       console.log(action.payload);
       state.postsData = action.payload;
+      state.update = !state.update;
     });
 
     builder.addCase(getPosts.rejected, (state) => {

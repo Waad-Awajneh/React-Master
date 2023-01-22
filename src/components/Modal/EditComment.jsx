@@ -25,7 +25,7 @@ export default function EditComment({ comment }) {
   const auth = useAuthUser();
   const { openEditComment } = useSelector((state) => state.ModalReducer);
 
-  console.log(openEditComment);
+
   const config = {
     method: "put",
     url: `http://127.0.0.1:8000/api/editComment/${comment.comment_id}`,
@@ -81,7 +81,7 @@ open={openEditComment}
         <DialogBody divider>
           <div className="d-flex flex-start w-full">
             <span className="flex">
-              {     console.log(auth().user.profile_Img)}
+      
               <img
                 className="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 overflow-visible"
           

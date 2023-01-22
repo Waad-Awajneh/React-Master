@@ -4,10 +4,10 @@ import { useState } from "react";
 import { useAuthUser } from "react-auth-kit";
 
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { closeModal } from "../Reducers/modalReducer";
-import { getPosts } from "../Reducers/PostReducer";
+import { getPosts, setUpdate } from "../Reducers/PostReducer";
 
 function AddPost() {
   const auth = useAuthUser();
@@ -40,14 +40,7 @@ function AddPost() {
       data: newPost,
     }
     
-
-
-
-
-
-
-
-    
+  
     console.log(config.data);
     axios(config)
       .then(function (res) {
@@ -68,6 +61,7 @@ function AddPost() {
           title: "your post published successfully",
         });
         dispatch(getPosts());
+        dispatch(setUpdate());
         setNewPost((pervs) => ({ ...pervs, content: "" }));
         dispatch(closeModal());
       })

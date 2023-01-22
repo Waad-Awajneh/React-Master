@@ -15,6 +15,7 @@ import { RiImageEditFill } from "react-icons/ri";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { handelOpenFormModel, handelOpenPriceModel } from "../Reducers/modalReducer";
 
 export default function Profile() {
   const auth = useAuthUser();
@@ -31,7 +32,7 @@ export default function Profile() {
 
       handleEdit();
     }
-  }, [profilePic]);
+  }, [profilePic,update]);
   const handleEdit = () => {
     if (profilePic.profile_Img == "") return null;
 
@@ -147,7 +148,7 @@ export default function Profile() {
                             : "https://th.bing.com/th/id/OIP.P07J6hJbgyuIm-DlaSAlLQAAAA?pid=ImgDet&rs=1"
                         }
                         className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
-                        style={{ maxWidth: "150px" }}
+                        style={{ maxWidth: "160px" ,height:"160px"}}
                       />
                       <label
                         for="dropzone-file2"
@@ -171,8 +172,14 @@ export default function Profile() {
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                     <div className="py-6 px-3 mt-32 sm:mt-0">
-                      <Button page={"profile"} name={"Connect"} />
-                      <Button page={"profile"} name={"ASK Price"} />
+                      {/* <Button isClick={true} page={"profile"} name={"Connect"} /> */}
+                      <button type="button" 
+                               className="text-white bg-lnav w-28 h-10 hover:bg-lb focus:outline-none focus:ring-4 focus:ring-pcol font-medium rounded-full text-sm px-2 py-2.5 text-center mr-2 m-4 dark:bg-pcol dark:hover:bg-blue-700 dark:focus:ring-pcol"
+                               onClick={() => dispatch(handelOpenFormModel())}>Connect</button>
+                      <button type="button" 
+                               className="text-white bg-lnav w-28 h-10 hover:bg-lb focus:outline-none focus:ring-4 focus:ring-pcol font-medium rounded-full text-sm px-2 py-2.5 text-center mr-2 m-4 dark:bg-pcol dark:hover:bg-blue-700 dark:focus:ring-pcol"
+                               onClick={() => dispatch(handelOpenPriceModel())}>Ask Price </button>
+                      {/* <Button page={"profile"} name={"ASK Price"} /> */}
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-1">

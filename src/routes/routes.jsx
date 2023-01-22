@@ -3,6 +3,9 @@ import App from "../App";
 import AddPost from "../components/addPost";
 import Home from "../components/Home";
 import Login from "../components/login";
+import FormAskPriceModal from "../components/Modal/FormAskPriceModal";
+import FormConnectModal from "../components/Modal/FormConnectModal";
+import FormModal from "../components/Modal/FormConnectModal";
 import ModalAddPost from "../components/Modal/ModalAddPost";
 import SignUp from "../components/signUp";
 import SinglePost from "../components/singlePost";
@@ -17,7 +20,8 @@ import UserProfile from "../views/UserProfile";
 export const AllRoutes = (params) => {
   return (
     <BrowserRouter>
-      {/**<ModalAddPost /> */}
+    <FormConnectModal />
+    <FormAskPriceModal/>
       <Routes>
         <Route exact path="/" element={<App />}>
           <Route exact index element={<Home openTap={1} />} />
