@@ -185,7 +185,7 @@ function Card(cards) {
             </Link>
           )}
 
-          <small className=" p-2 text-xs block w-full font-light text-primary dark:text-gray-400">
+          <small className=" p-2 text-left text-xs block w-full font-light text-primary dark:text-gray-400">
 
             {cardInfo.title.length < 50 ? (
 
