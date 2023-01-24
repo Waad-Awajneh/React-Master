@@ -72,11 +72,11 @@ function AddPost() {
   return (
     <>
     
-      <div className="flex flex-wrap lg:flex-nowrap md:flex-nowrap bg-white  w-full dark:bg-[#18191c] ">
-        <div class="flex justify-center items-center m-7  w-full">
+      <div className="flex flex-wrap lg:flex-nowrap md:flex-nowrap bg-white   dark:bg-[#18191c] ">
+        <div className="flex justify-center items-center mr-7  w-[266px]  border-4 p-6 border-pcol text-center   ">
           <label
             for="dropzone-file"
-            class="flex flex-col justify-center items-center w-full h-96 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+            class="flex flex-col justify-center items-center w-full h-[21rem]  bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
           >
             <div class="flex flex-col justify-center items-center p-5">
               <svg
@@ -113,7 +113,7 @@ function AddPost() {
           </label>
         </div>
 
-        <div className="p-4 relative w-full h-full ">
+        <div className=" relative h-full ">
           <div class="relative z-0 mb-6 w-full group m-5">
             <input
               type="text"
@@ -149,7 +149,7 @@ function AddPost() {
             </div>
           </div>
 
-          <form className="relative group  ">
+          <form className="relative group">
             <label
               className="absolute top-10 left-0 items-center flex  pl-[10px] duration-200 text-sm group-focus-within:text-xs group-focus-within:h-1/2 group-focus-within:-translate-y-full group-focus-within:pl-0"
               htmlFor="label"
