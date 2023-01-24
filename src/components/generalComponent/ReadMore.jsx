@@ -8,7 +8,7 @@ export const ReadMore = ({ children }) => {
   };
   return (
     <p className="text">
-      {isReadMore ? text.slice(0, 50) : text}
+      {isReadMore ? text.slice(0, 30) : text}
       <span
         onClick={toggleReadMore}
         className="read-or-hide text-black  font-semibold  cursor-pointer"
