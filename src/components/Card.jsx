@@ -104,8 +104,8 @@ function Card(cards) {
 
   return (
     <>
-      <div className="  xss:cover:mx-[30px] my-5 bg-white dark:bg-[#18191c] shadow-xl h-fit  hover:shadow duration-200 rounded-xl">
-        <div className="relative w-full h-72 cover:h-[20rem] rounded-xl">
+      <div className="   my-5 bg-white dark:bg-[#18191c] shadow-xl h-fit sm:auto hover:shadow duration-200 rounded-xl">
+        <div className="relative w-full h-72 card:pm600:h-[42rem] xss:cover:h-[29rem] xsm:h-[25rem] pmi600:pm720:h-[33rem] pmi1400:h-[26rem] rounded-xl">
           <Link to={`/SinglePost/${cardInfo.post_id}`}>
             {cardInfo.images.length != 0 ? (
               <img
@@ -185,9 +185,9 @@ function Card(cards) {
             </Link>
           )}
 
-          <small className=" p-2 text-xs block w-full font-light text-primary dark:text-gray-400">
+          <small className=" p-2 text-left text-xs block w-full font-light text-primary dark:text-gray-400">
 
-            {cardInfo.title.length < 50 ? (
+            {cardInfo.title.length < 30 ? (
 
               cardInfo.title
             ) : (

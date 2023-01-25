@@ -20,6 +20,7 @@ export default function ModalAddPost({ open }) {
           as="div"
           className="relative z-10"
           onClose={() => dispatch(closeModal())}
+          
         >
           <Transition.Child
             as={Fragment}
@@ -30,7 +31,7 @@ export default function ModalAddPost({ open }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0 bg-[#00000099] backdrop-blur-sm " />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -44,12 +45,17 @@ export default function ModalAddPost({ open }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className=" p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                <Dialog.Panel  className=" flex flex-row-reverse p-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl rounded-2xl">
                   {
-                    <AiOutlineClose
-                      className="w-full inline-flex justify-end "
+                    // <div   className=" bg-pcol w-12 h-12 gard rounded-full  flex justify-center  items-center">
+                           <AiOutlineClose
+                    size={"30px"}
+                   className="items-center hover:text-red-700 "
                       onClick={() => dispatch(closeModal())}
+                      
                     />
+                    // </div>
+               
                   }
 
                   {<AddPost />}
