@@ -45,15 +45,16 @@ export default function ModalAddPost({ open }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel  className=" flex flex-row-reverse w-[65vw] h-[70vh] p-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl rounded-2xl">
+                <Dialog.Panel  className=" flex flex-row-reverse p-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl rounded-2xl">
                   {
-                    <div   className=" bg-pcol w-12 h-12 gard rounded-full  flex justify-center  items-center">
+                    // <div   className=" bg-pcol w-12 h-12 gard rounded-full  flex justify-center  items-center">
                            <AiOutlineClose
                     size={"30px"}
-                   className="items-center "
+                   className="items-center hover:text-red-700 "
                       onClick={() => dispatch(closeModal())}
                       
-                    /></div>
+                    />
+                    // </div>
                
                   }
 

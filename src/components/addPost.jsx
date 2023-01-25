@@ -72,16 +72,16 @@ function AddPost() {
   return (
     <>
     
-      <div className="flex flex-wrap lg:flex-nowrap md:flex-nowrap bg-white   dark:bg-[#18191c] ">
-        <div className="flex justify-center items-center mr-7  w-[266px]  border-4 p-6 border-pcol text-center   ">
+      <div className="flex flex-wrap lg:flex-nowrap md:flex-nowrap bg-white justify-center items-center  dark:bg-[#18191c] ">
+        <div className="flex justify-center items-center mr-20 border-2 p-6 border-gray-400 text-center w-[50%]  h-full  ">
           <label
             for="dropzone-file"
-            class="flex flex-col justify-center items-center w-full h-[21rem]  bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+            className="flex flex-col justify-center items-center bg-gray-100 rounded-lg border-4 border-gray-500 border-dashed cursor-pointer  hover:bg-gray-100"
           >
-            <div class="flex flex-col justify-center items-center p-5">
+            <div className="flex flex-col justify-center items-center p-5">
               <svg
                 aria-hidden="true"
-                class="mb-3 w-10 h-10 text-gray-400"
+                className="mb-3 w-10 h-10 text-gray-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -94,18 +94,18 @@ function AddPost() {
                   d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                 ></path>
               </svg>
-              <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                <span class="font-semibold">Click to upload</span> or drag and
+              <p className="mb-2 text-sm font-[Satisfy] text-gray-500">
+                <span className="font-semibold">Click to upload</span> or drag and
                 drop
               </p>
-              <p class="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-sm font-[Satisfy] text-gray-600">
                 SVG, PNG, JPG or GIF (MAX. 800x400px)
               </p>
             </div>
             <input
               id="dropzone-file"
               type="file"
-              class="hidden"
+              className="hidden"
               onChange={(e) => {
                 setNewPost((pervs) => ({ ...pervs, image: e.target.files[0] }));
               }}
@@ -113,12 +113,12 @@ function AddPost() {
           </label>
         </div>
 
-        <div className=" relative h-full ">
-          <div class="relative z-0 mb-6 w-full group m-5">
+        <div className=" relative  flex  flex-col ">
+          <div className="relative z-0 mb-6  group m-5 flex  flex-col  ">
             <input
               type="text"
               name="title"
-              class="block py-2.5 px-0 w-96 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 rounded-xl text-lg   text-gray-800 bg-transparent border-0 border-b-4 border-lb focus:border-pcol appearance-none focus:outline-none focus:ring-0 peer"
               placeholder=" "
               required
               onChange={(e) => {
@@ -127,15 +127,15 @@ function AddPost() {
             />
             <label
               for="title"
-              class="absolute text-lg  font-semibold text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              className="absolute text-xl font-[Satisfy] focus:text-lg font-semibold text-gray-800  duration-300 transform -translate-y-8 scale-75 top-6 left-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-800  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-100 peer-focus:-translate-y-7"
             >
               Add Your Title
             </label>
           </div>
-          <div className="flex  justify-between">
-            <div className="flex my-2  mb-10 justify-evenly items-center">
+          <div className="flex relative ">
+            <div className="flex  ml-9 mb-10 justify-evenly items-center">
               <img
-                class="w-10 h-10 rounded-full"
+                className="w-[60px] h-[60px] rounded-full"
                 src={
                   auth().user.profile_Img != null
                     ? `data:image/jpeg;base64,${auth().user.profile_Img}`
@@ -145,47 +145,53 @@ function AddPost() {
                 }
                 alt="Rounded avatar"
               />
-              <h2 className="m-3 font-semibold">{auth().user.full_name}</h2>
+              <h2 className="m-5  font-semibold text-gray-800 text-2xl font-[Satisfy]">    {auth().user.full_name.charAt(0).toUpperCase() +
+          auth().user.full_name.slice(1)}</h2>
             </div>
           </div>
 
           <form className="relative group">
+          {newPost.content == "" ? (
             <label
-              className="absolute top-10 left-0 items-center flex  pl-[10px] duration-200 text-sm group-focus-within:text-xs group-focus-within:h-1/2 group-focus-within:-translate-y-full group-focus-within:pl-0"
+              className="  font-[Satisfy] absolute  top-[6rem] left-0 items-center flex  pl-[10px] duration-200 text-2xl font-base text-gray-800 group-focus-within:text-2xl group-focus-within:h-[55%] group-focus-within:-translate-y-full group-focus-within:pl-0 "
+            
               htmlFor="label"
             >
               Tell everyone what your Post is about
             </label>
-
+          ):""}
             <textarea
               id="label"
-              className="rounded-xl w-[15rem] md:w-[25rem]  h-[5rem] md:h-[6rem] bg-gray-200 outline-none py-3 px-4 text-xs"
+              className={ (newPost.content == "" 
+                ? " "
+                : " border-t-4 ") +"peer rounded-xl font-[Satisfy] w-full  focus:border-pcol h-[87%] mt-11 bg-white border-0 border-b-4 focus:border-t-4 empty:b-t-4 border-lb outline-none py-3 px-4 text-2xl "}
               type="text"
               onChange={(e) => {
                 setNewPost((pervs) => ({ ...pervs, content: e.target.value }));
+              
               }}
             />
 
-            <div className=" px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+            <div className=" px-4 py-8 mt-5 sm:px-6 sm:flex sm:flex-row-reverse">
               <button
                 type="button"
-                className="w-full inline-flex justify-center rounded-md
-                   border border-transparent shadow-sm px-4 py-2 bg-lnav
-                    text-base font-medium text-white hover:bg-pcol
-                    focus:outline-none focus:ring-2 focus:ring-offset-2
-                     focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                className="w-[110px] h-[45px] inline-flex justify-center rounded-3xl
+                   border border-transparent shadow-lg  mx-4 bg-lb
+                    text-center  text-white hover:bg-pcol
+                    focus:outline-none focus:ring-2 focus:ring-offset-2  leading-[2.5rem]
+                     focus:ring-black font-[Satisfy] text-xl "
                 onClick={handleAddNewPost}
               >
                 Save
               </button>
               <button
                 type="button"
-                className="mt-3 w-full inline-flex justify-center
-                  rounded-md border border-gray-300 shadow-sm px-4 py-2
-                   bg-white text-base font-medium text-gray-700
-                    hover:bg-gray-50 focus:outline-none focus:ring-2
-                     focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0
-                      sm:ml-3 sm:w-auto sm:text-sm"
+                className=" w-[110px] h-[45px] inline-flex justify-center
+                  border-2 bg-white shadow-sm  border-pcol
+                   text-center font-medium text-gray-700 leading-[2.5rem]
+                    hover:bg-red-700 focus:outline-none focus:ring-2
+                     focus:ring-offset-2 focus:ring-black rounded-3xl font-[Satisfy]  text-xl
+                  "
                 onClick={() => dispatch(closeModal())}
 
               >
