@@ -73,7 +73,7 @@ function AddPost() {
     <>
     
       <div className="flex flex-wrap lg:flex-nowrap md:flex-nowrap bg-white justify-center items-center  dark:bg-[#18191c] ">
-        <div className="flex justify-center items-center mr-20 border-2 p-6 border-gray-400 text-center w-[50%]  h-full  ">
+        <div className=" shadow-lg flex justify-center items-center mr-20 border-2 p-6 border-gray-400 text-center w-[50%]  h-full  ">
           <label
             for="dropzone-file"
             className="flex flex-col justify-center items-center bg-gray-100 rounded-lg border-4 border-gray-500 border-dashed cursor-pointer  hover:bg-gray-100"
@@ -112,7 +112,7 @@ function AddPost() {
             />
           </label>
         </div>
-
+ 
         <div className=" relative  flex  flex-col ">
           <div className="relative z-0 mb-6  group m-5 flex  flex-col  ">
             <input
@@ -127,7 +127,7 @@ function AddPost() {
             />
             <label
               for="title"
-              className="absolute text-xl font-[Satisfy] focus:text-lg font-semibold text-gray-800  duration-300 transform -translate-y-8 scale-75 top-6 left-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-800  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-100 peer-focus:-translate-y-7"
+              className="absolute text-lg font-[Satisfy]  font-medium text-gray-800  duration-300 transform -translate-y-8 scale-75 top-6 left-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-800 focus:text-sm  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-100 peer-focus:-translate-y-7"
             >
               Add Your Title
             </label>
@@ -153,7 +153,7 @@ function AddPost() {
           <form className="relative group">
           {newPost.content == "" ? (
             <label
-              className="  font-[Satisfy] absolute  top-[6rem] left-0 items-center flex  pl-[10px] duration-200 text-2xl font-base text-gray-800 group-focus-within:text-2xl group-focus-within:h-[55%] group-focus-within:-translate-y-full group-focus-within:pl-0 "
+              className="  font-[Satisfy] absolute  top-[6rem] left-0 items-center flex  pl-[10px] duration-200 text-lg font-base text-gray-800 group-focus-within:text-sm group-focus-within:h-[55%] group-focus-within:-translate-y-full group-focus-within:pl-0 "
             
               htmlFor="label"
             >
@@ -175,22 +175,22 @@ function AddPost() {
             <div className=" px-4 py-8 mt-5 sm:px-6 sm:flex sm:flex-row-reverse">
               <button
                 type="button"
-                className="w-[110px] h-[45px] inline-flex justify-center rounded-3xl
+                className="w-[100px] h-[40px] inline-flex justify-center rounded-3xl
                    border border-transparent shadow-lg  mx-4 bg-lb
                     text-center  text-white hover:bg-pcol
                     focus:outline-none focus:ring-2 focus:ring-offset-2  leading-[2.5rem]
-                     focus:ring-black font-[Satisfy] text-xl "
+                     focus:ring-black font-[Satisfy] text-lg "
                 onClick={handleAddNewPost}
               >
                 Save
               </button>
               <button
                 type="button"
-                className=" w-[110px] h-[45px] inline-flex justify-center
+                className=" w-[100px] h-[40px] inline-flex justify-center
                   border-2 bg-white shadow-sm  border-pcol
                    text-center font-medium text-gray-700 leading-[2.5rem]
                     hover:bg-red-700 focus:outline-none focus:ring-2
-                     focus:ring-offset-2 focus:ring-black rounded-3xl font-[Satisfy]  text-xl
+                     focus:ring-offset-2 focus:ring-black rounded-3xl font-[Satisfy]  text-lg
                   "
                 onClick={() => dispatch(closeModal())}
 
