@@ -47,8 +47,8 @@ const [searchParams, setSearchParams]= useSearchParams();
 useEffect(()=>{
   console.log(searchTerm);
    dispatch(getSearchData());
-  //  dispatch(getUserSearchData(search));
-  //  dispatch(getPostSearchData(search));
+   dispatch(getUserSearchData(searchTerm));
+   dispatch(getPostSearchData(searchTerm));
 },[searchTerm])
 
 
@@ -58,21 +58,26 @@ useEffect(()=>{
   const handleSearch = event => {
     // console.log(event.target.value);
     setSearchTerm(event.target.value);
-    setSearchParams({search: event.target.value});
+    setSearchParams({search: event.target.value});  
+    dispatch( setSearch(event.target.value ));
   };
 
   const handleOptionSelect = event => {
     setSelectedOption(event.target.value);
     setSearchParams({selected: event.target.value});
+     dispatch(setSearch(event.target.value));
+    navigate(`/search`)
   };
 
-  // const filteredOptions1 = allSearchData?.filter(option =>
-  //   console.log(option)
-  //   // option?.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
-  // // const filteredOptions2 = postSearchData?.filter(option =>
-  //   option?.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
+  const filteredOptionsUsers = allSearchData?.users?.filter(option =>
+
+    option?.full_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const filteredOptionsPosts = allSearchData?.posts?.filter(option =>
+    option.title.toLowerCase().includes(searchTerm.toLowerCase())
+    ||option.post_owner.includes(searchTerm)||option.post_content
+.includes(searchTerm)
+  );
 
 /********************************************** */
 
@@ -106,7 +111,16 @@ if(!allSearchData)return "mjjkjlkjkl"
 
           <div className="hidden md:block">
             <div className="relative">
+
+
+
+
+
+
+
+
               <input
+              list="searchList"
                 type="text"
               className="rounded-[30px] bg-gray-100 p-1.5 text-sm pl-8 h-12 w-[35rem] "
                 placeholder="Search"
@@ -143,27 +157,61 @@ if(!allSearchData)return "mjjkjlkjkl"
 
 
 
-        <select
-        className="block w-full py-2 px-3 rounded-md text-gray-900 placeholder-gray-500 border border-gray-300 bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+
+
+
+
+
+              </div>       
+        <div> 
+{searchTerm.trim()!=""?
+    <select   id="searchList" type="text"
+        className=" w-[25rem] max-h-36 py-2 px-3 absolute overflow-y-auto rounded-md bg-blue-gray-500 text-gray-900 placeholder-gray-500 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
         value={selectedOption}
-        onChange={handleOptionSelect}
-      >{console.log(allSearchData)}
-        {allSearchData?.users.map((option) =>
+        
+        onChange={handleOptionSelect   }>
+        
+       <optgroup label="People">
+        {filteredOptionsUsers.length!=0? filteredOptionsUsers?.slice(0,3).map((option) =>
          (
    
-      <option key={option.user_id} value={option}>
+      <option key={option.user_id} value={option.full_name} className="bg-white cursor-pointer text-gray-800 active:bg-lnav">
             {option.full_name}
           </option> 
         )
         
-        )}
-      </select>
+        ):
+           
+      <option value=""  className="bg-white cursor-pointer text-gray-800 active:bg-lnav">
+           No People founded
+          </option> 
+        
+        }
+         </optgroup>
+     <optgroup label="Posts">
+        {filteredOptionsPosts.length!=0 ?
+        
+        filteredOptionsPosts?.slice(0,3).map((option) =>
+         (
+   
+      <option key={option.post_id} value={option.title} className="bg-white cursor-pointer text-gray-800 active:bg-lnav">
+            {option.title}
+          </option> 
+        )
+        
+        )
+        :
+       <option  value=""  className="bg-white cursor-pointer text-gray-800 active:bg-lnav">
+           No posts founded
+          </option> 
+        
+        }
+     </optgroup>
+      </select>:""}
+      
+      </div>      
 
 
-
-
-
-              </div>
             </div>
           </div>
 

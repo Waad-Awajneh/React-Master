@@ -40,7 +40,7 @@ export const AllRoutes = (params) => {
         <Route exact path="/Landing" element={<Landing />} />
         <Route exact path="/AddPost" element={<AddPost />} />
         <Route exact path="/Favorite" element={<Favorite />} />
-        <Route exact path="search/:q" element={<Search />} />
+        <Route exact path="/search" element={<Search />} />
 
         {/*   <Route
           path="/SinglePost/:id"

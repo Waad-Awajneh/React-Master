@@ -8,6 +8,7 @@ import { AuthProvider } from "react-auth-kit";
 import { AllRoutes } from "./routes/routes";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import DropdownSearch from "./components/SearchComponent/DropdownSearchList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,6 +20,7 @@ root.render(
       cookieSecure={window.location.protocol === "https:"}
     >
       <Provider store={store}>
+        {/* <DropdownSearch /> */}
         <AllRoutes />
       </Provider>
     </AuthProvider>
