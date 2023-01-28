@@ -105,11 +105,11 @@ function Card(cards) {
   return (
     <>
       <div className="   my-5 bg-white dark:bg-[#18191c] shadow-xl h-fit sm:auto hover:shadow duration-200 rounded-xl">
-        <div className="relative w-full h-72 card:pm600:h-[42rem] xss:cover:h-[29rem] xsm:h-[25rem] pmi600:pm720:h-[33rem] pmi1400:h-[26rem] rounded-xl">
+        <div className="relative w-full h-72  card:pm600:h-[42rem] xss:cover:h-[29rem] xsm:h-[25rem] pmi600:pm720:h-[33rem] pmi1400:h-[26rem] rounded-xl">
           <Link to={`/SinglePost/${cardInfo.post_id}`}>
             {cardInfo.images.length != 0 ? (
               <img
-                className="rounded-xl hover:scale-105 w-full duration-300 h-full "
+                className="rounded-2xl hover:scale-105 w-full duration-300 h-full "
                 src={`data:image/jpeg;base64,${cardInfo.images[0].image}`}
                 // src={
                 //   cardInfo.images.length != 0
