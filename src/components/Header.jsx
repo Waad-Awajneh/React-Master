@@ -15,13 +15,13 @@ import {  getPostSearchData,getUserSearchData, getSearchData, setSearch } from "
 export default function Header() {
   const signOut = useSignOut();
   const navigate = useNavigate();
-  const isAuthenticated = useIsAuthenticated();
   const auth = useAuthUser();
-  const [searchResults, setSearchResults] = useState([]);
-  // const [search, setSearch] = useState("");
- const { search } = useSelector((state) => state.SearchData);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
 
+const [searchParams, setSearchParams]= useSearchParams();
 
+ const { userSearchData, postSearchData,search ,allSearchData} = useSelector((state) => state.SearchData);
   const { isOpen } = useSelector((state) => state.ModalReducer);
   const { profileData, update } = useSelector((state) => state.PostsData);
   const [searchParam, setSearchParam] = useSearchParams();
@@ -39,18 +39,48 @@ export default function Header() {
 
     dispatch(getProfileData(config));
   }, [update]);
-// console.log(postSearchData,userSearchData);
-// useEffect(()=>{
-//   console.log(search);
-//    dispatch(getSearchData());
-//    dispatch(getUserSearchData(search));
-//    dispatch(getPostSearchData(search));
-// },[search])
- const handelSearch = (e) => {
 
-   dispatch( setSearch(e.target.value ));
-        navigate(`search/q=${e.target.value}`);
+
+
+// console.log(postSearchData,userSearchData);
+
+useEffect(()=>{
+  console.log(searchTerm);
+   dispatch(getSearchData());
+  //  dispatch(getUserSearchData(search));
+  //  dispatch(getPostSearchData(search));
+},[searchTerm])
+
+
+  /**************************************** */
+
+
+  const handleSearch = event => {
+    // console.log(event.target.value);
+    setSearchTerm(event.target.value);
+    setSearchParams({search: event.target.value});
   };
+
+  const handleOptionSelect = event => {
+    setSelectedOption(event.target.value);
+    setSearchParams({selected: event.target.value});
+  };
+
+  // const filteredOptions1 = allSearchData?.filter(option =>
+  //   console.log(option)
+  //   // option?.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+  // // const filteredOptions2 = postSearchData?.filter(option =>
+  //   option?.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+
+/********************************************** */
+
+
+
+{console.log(allSearchData)}
+
+if(!allSearchData)return "mjjkjlkjkl"
   return (
     <>
       <nav
@@ -81,17 +111,18 @@ export default function Header() {
               className="rounded-[30px] bg-gray-100 p-1.5 text-sm pl-8 h-12 w-[35rem] "
                 placeholder="Search"
                 // onChange={(e)=>handelSearch(e)}
-                      onChange={(e) => {
-                      setSearchParam({ search: e.target.value });
-                      console.log(e.target.value.length);
-                       dispatch( setSearch(e.target.value ));
-                      if (e.target.value.length == 0) {
-                   
-                        navigate("/");
-                      }
-                      navigate(`/search/${e.target.value}`);
-                    }}
-              value={searchParam.get("search")}
+                      // onChange={(e) => {
+                      // setSearchParam({ search: e.target.value });
+                      // console.log(e.target.value.length);
+                      //  dispatch( setSearch(e.target.value ));
+
+                    
+        value={searchTerm}
+        onChange={handleSearch}
+                     
+                    // }
+                  // }
+          
               />
               <div className="absolute top-2 left-2 text-lnav">
                 <svg
@@ -108,9 +139,52 @@ export default function Header() {
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   ></path>
                 </svg>
+
+
+
+
+        <select
+        className="block w-full py-2 px-3 rounded-md text-gray-900 placeholder-gray-500 border border-gray-300 bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+        value={selectedOption}
+        onChange={handleOptionSelect}
+      >{console.log(allSearchData)}
+        {allSearchData?.users.map((option) =>
+         (
+   
+      <option key={option.user_id} value={option}>
+            {option.full_name}
+          </option> 
+        )
+        
+        )}
+      </select>
+
+
+
+
+
               </div>
             </div>
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           <div className="flex text-lnav items-center">
             <Link to={"/"}>

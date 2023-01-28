@@ -7,6 +7,7 @@ import FormAskPriceModal from "../components/Modal/FormAskPriceModal";
 import FormConnectModal from "../components/Modal/FormConnectModal";
 import FormModal from "../components/Modal/FormConnectModal";
 import ModalAddPost from "../components/Modal/ModalAddPost";
+import DropdownSearchList from "../components/SearchComponent/DropdownSearchList";
 import SignUp from "../components/signUp";
 import SinglePost from "../components/singlePost";
 import About from "../views/about";
@@ -22,7 +23,10 @@ export const AllRoutes = (params) => {
     <BrowserRouter>
     <FormConnectModal />
     <FormAskPriceModal/>
+           
       <Routes>
+        {/* <Route exact path="/" element={<DropdownSearchList  options={["test","esfft","waad","hyggtyf","byfctdxrx"]}/>}></Route> */}
+         
         <Route exact path="/" element={<App />}>
           <Route exact index element={<Home openTap={1} />} />
           <Route exact path="Home" element={<Home openTap={1} />} />

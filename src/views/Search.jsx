@@ -28,7 +28,7 @@ function Search() {
   style="underline"
   className='justify-center'
 >
-  <Tabs.Item title="Profile"> 
+  <Tabs.Item title="Posts"    active={true}> 
    <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 cover:gap-4  cover:grid-cols-1 cover:m-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
   {postSearchData?.map((ele)=>{
@@ -38,8 +38,8 @@ function Search() {
   })} </div>
   </Tabs.Item>
   <Tabs.Item
-    active={true}
-    title="Dashboard"
+
+    title="People"
   > 
   <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 cover:gap-3  cover:grid-cols-1 cover:m-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  ">
 

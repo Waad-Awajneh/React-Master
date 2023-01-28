@@ -17,7 +17,7 @@ export const getSearchData = createAsyncThunk(
 
 
 const initialState = {
-  searchData: [],
+  allSearchData: [],
 userSearchData:[],
 postSearchData:[],
 search:"",
@@ -28,12 +28,12 @@ export const SearchReducer = createSlice({
   initialState,
   reducers: {
     getUserSearchData: (state, action) => {  
-      state.userSearchData = state.searchData?.users?.filter((ele) => {
+      state.userSearchData = state.allSearchData?.users?.filter((ele) => {
         return ele.full_name.includes(action.payload);
       });
     },
     getPostSearchData: (state, action) => {
-      state.postSearchData = state.searchData?.posts?.filter((ele) => {
+      state.postSearchData = state.allSearchData?.posts?.filter((ele) => {
     
         return ele.title.includes(action.payload)||ele.post_owner.includes(action.payload)||ele.post_content
 .includes(action.payload)
@@ -53,7 +53,7 @@ export const SearchReducer = createSlice({
     builder.addCase(getSearchData.fulfilled, (state, action) => {
       state.status = "Fulfilled";
       console.log(action.payload);
-      state.searchData = action.payload;
+      state.allSearchData = action.payload;
     });
 
     builder.addCase(getSearchData.rejected, (state) => {
