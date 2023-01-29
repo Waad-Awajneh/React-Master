@@ -131,7 +131,7 @@ function AddPost() {
             <input
               type="text"
               name="title"
-              className="block py-2.5 px-0 rounded-xl text-lg   text-gray-800 bg-transparent border-0 border-b-4 border-lb focus:border-pcol appearance-none focus:outline-none focus:ring-0 peer"
+              className="block font-[Satisfy] py-2.5 px-0 rounded-xl text-lg   text-gray-800 bg-transparent border-0 border-b-4 border-lb focus:border-pcol appearance-none focus:outline-none focus:ring-0 peer"
               placeholder=" "
               required
               onChange={(e) => {

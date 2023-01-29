@@ -247,7 +247,8 @@ element.style {
                        
                         {/* <span className="text-base text-[12px] font-[900]   w-[90px] text-left uppercase  text-black"></span> */}
                       <span className="text-base text-[12px] font-[900]   block uppercase tracking-wide w-[50px] text-black">
-                      <HiUserGroup size={"25px"}  color={"#D9AD90"} />  {profileData.follower_count}
+                      <HiUserGroup size={"25px"}  color={"#D9AD90"} />  {profileData.follower_info.length}
+                      {console.log(profileData)}
                         </span> 
                         </div>
                   

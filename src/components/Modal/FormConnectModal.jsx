@@ -54,6 +54,16 @@ export default function FormConnectModal() {
                 required={true}
               />
             </div>
+            <div className=" xss:cover:w-[48%]  xss:cover:mr-[2%] xss:cover:inline-block  block" >
+              <div className="mb-2 block">
+                <Label htmlFor="address" value="Your address" />
+              </div>
+              <TextInput
+                id="address"
+                placeholder="Amman , Jordan "
+                required={true}
+              />
+            </div>
             <div className=" xss:cover:w-[47%]  xss:cover:inline-block  block" >
               <div className="mb-2 block">
                 <Label htmlFor="date" value="Event Date" />
