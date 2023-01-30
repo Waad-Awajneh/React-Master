@@ -140,10 +140,10 @@ function AddPost() {
             />
             <label
               for="title"
-              className="absolute text-lg font-[Satisfy] focus:text-lg  font-medium text-gray-800  duration-300 transform -translate-y-8 scale-75 top-6 left-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-800  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-100 peer-focus:-translate-y-7"
+              className="absolute text-lg font-[Satisfy] focus:text-lg  font-medium text-gray-800  duration-300 transform -translate-y-8 scale-75 top-4 left-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-800  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-100 peer-focus:-translate-y-7"
             >
               Add Your Title
-            </label>
+            </label>  
           </div>
           <div className="flex relative ">
             <div className="flex  ml-9 mb-10 justify-evenly items-center">

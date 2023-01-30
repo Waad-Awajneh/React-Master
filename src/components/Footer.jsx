@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function FooterComponent() {
   return (
-    <div className="flex flex-warp pt-3 items-center justify-evenly">
+    <div className="flex flex-warp pt-3 items-center font-[Satisfy] justify-evenly">
       <div className="flex ">
         <img
           src={require("./../assests/img/logo.png")}

@@ -121,7 +121,7 @@ export default function Navbar(props) {
                   alt=" Logo"
                 />
               </div>
-              <ul className="flex text-lnav items-center justify-around">
+              <ul className="flex text-lnav items-center justify-around font-[Satisfy]">
                 <li className=" mx-5 cursor-pointer">
                   <NavLink to={"/"}>Discover</NavLink>
                 </li>

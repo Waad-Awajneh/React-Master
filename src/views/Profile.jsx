@@ -20,68 +20,85 @@ import { AiOutlineComment } from "react-icons/ai";
 import { HiUserGroup } from "react-icons/hi";
 import { SiStackexchange } from "react-icons/si";
 import {SlBriefcase} from "react-icons/sl"
+import { handleEdit } from "../actions/editImage";
 
 export default function Profile() {
   const auth = useAuthUser();
   const { profileData, update } = useSelector((state) => state.PostsData);
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   /******************************************************* */
   const [profilePic, setProfilePic] = useState({
     profile_Img: undefined,
   });
+  const [coverPic, setCoverPic] = useState({
+    cover_Img: undefined,
+  });
 
   useEffect(() => {
     if (profilePic.profile_Img != undefined) {
+   handleEdit(profilePic.profile_Img,"http://localhost:8000/api/editProfilePic",auth().token,"profile_Img");
+  // handleEdit()
+    dispatch(setUpdate());
 
-      handleEdit();
     }
   }, [profilePic]);
-  const handleEdit = () => {
-    if (profilePic.profile_Img == "") return null;
-
-    var FormData = require("form-data");
-    var data = new FormData();
-    data.append("profile_Img", profilePic.profile_Img);
-
-    var config = {
-      method: "post",
-      url: "http://localhost:8000/api/editProfilePic",
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Accept: "application/vnd.api+json",
-        Authorization: `Bearer ${auth().token}`,
-      },
-      data: data,
-    };
-
-    axios(config)
-      .then(function (response) {
-
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-right",
-          iconColor: "white",
-          customClass: {
-            popup: "colored-toast",
-          },
-          showConfirmButton: false,
-          timer: 1500,
-          timerProgressBar: true,
-        });
-        Toast.fire({
-          icon: "success",
-          title: response.data.message,
-        });
 
 
-        dispatch(setUpdate());
+  useEffect(() => {
+    if (coverPic.cover_Img != undefined) {
+      console.log();
+   handleEdit(coverPic.cover_Img,"http://localhost:8000/api/editCoverPic",auth().token,"cover_Img");
+    dispatch(setUpdate());
 
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+    }
+  }, [coverPic]);
+
+  // const handleEdit = () => {
+  //   if (profilePic.profile_Img == "") return null;
+
+  //   var FormData = require("form-data");
+  //   var data = new FormData();
+  //   data.append("profile_Img", profilePic.profile_Img);
+
+  //   var config = {
+  //     method: "post",
+  //     url: "http://localhost:8000/api/editProfilePic",
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //       Accept: "application/vnd.api+json",
+  //       Authorization: `Bearer ${auth().token}`,
+  //     },
+  //     data: data,
+  //   };
+
+  //   axios(config)
+  //     .then(function (response) {
+
+  //       const Toast = Swal.mixin({
+  //         toast: true,
+  //         position: "top-right",
+  //         iconColor: "green",
+  //         customClass: {
+  //           popup: "colored-toast",
+  //         },
+  //         showConfirmButton: false,
+  //         timer: 1500,
+  //         timerProgressBar: true,
+  //       });
+  //       Toast.fire({
+  //         icon: "success",
+  //         title: response.data.message,
+  //       });
+
+
+  //       dispatch(setUpdate());
+
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
   /********************************************************** */
 
@@ -107,11 +124,62 @@ export default function Profile() {
 
       <main className="profile-page h-fit">
         <section className="relative block h-[500px] sm:h-[370px] cover:h-[400px]">
-          <img
+          {/* <img
             src={require("./../assests/img/1.jpg")} //cover_Img
             className="absolute top-0 w-full h-full bg-center cover:h-auto bg-cover"
             alt=" Logo"
-          />
+          /> */}
+
+{/************************************************************************************** */}
+
+<img
+                        alt="..."
+                        // src={require("../assests/img/pro.jpg")} //profile_Img
+                        src={
+                          profileData.cover_Img != null
+                            ? `data:image/jpeg;base64,${profileData.cover_Img}`
+                            : require("../assests/img/pro.jpg")
+                        }
+                        // className="peer shadow-xl rounded-full h-auto align-middle border-none group-hover:block absolute -m-16 -ml-20 lg:-ml-16  top-[80px]  "
+                        className="absolute peer top-0 w-full h-full bg-center cover:h-auto bg-cover"
+                        // style={{ maxWidth: "160px", width:"160px" ,height:"160px"}}
+                      />
+                   
+                      <label
+                        for="dropzone-file2"
+                        className="peer-hover:visible hover:visible invisible   shadow-xl rounded-full   align-middle border-none absolute  bottom-1 right-1 pm600:top-0 pm600:w-[75px] pm600:h-[75px]
+                        bg-gray-600 opacity-60  w-[100px] h-[100px] max-w-[100px]
+                        " 
+                      >
+                    {<RiImageEditFill className="hover:visible absolute w-40 h-16 right-[-2rem]  top-4 pm600:w-20 pm600:h-10 pm600:right-[-2px]" color="#fff" />}
+                 </label>
+                      <input
+                        id="dropzone-file2"
+                        type="file"
+                        class="hidden"
+                        onChange={(e) => {
+                          setCoverPic((pervs) => ({
+                            ...pervs,
+                            cover_Img: e.target.files[0],
+                          }));
+                        }}
+                      />
+
+
+
+
+
+
+
+{/************************************************************************************** */}
+
+
+
+
+
+
+
+
 
           {/* <div
             className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
@@ -134,13 +202,14 @@ export default function Profile() {
           </div>*/}
         </section>
         <section className="relative pb-16">
-          <div className=" w-[93%]   ml-14  pl-4  pm900:w-full pm900L:pl-0 pmi900:pm1400:ml-5 pm900:ml-5 flex pm600:flex-wrap ">
+          <div className=" w-[93%]   ml-14  pl-4  pm900:w-full pm900L:pl-0 pmi900:pm1400:ml-5 pm900:ml-5 flex pm600:flex-wrap  ">
             <div className="relative h-fit   bg-[#ffffff80] flex basis-[25%] flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64 pmi900:pm1400:basis-[40%]  pm900:basis-[50%] pm600:basis-[92%]  xsm:basis-[84%]  ">
               <div className="px-6 pm900:p-0 ">
                 <div className="flex flex-wrap  w-full">
                   <div className="w-full  px-4 lg:order-2 flex relative justify-center items-center   ">
                     {/*************************************************************** */}
-                
+                    {/* <ImageComponen image={profileData.profile_Img} gender={profileData.gender} setProfilePic={setProfilePic}/> */}
+
                       <img
                         alt="..."
                         // src={require("../assests/img/pro.jpg")} //profile_Img
@@ -259,7 +328,7 @@ element.style {
                             ? 0
                             : profileData.comments.length}
                         </span>
-{console.log(profileData.comments.length)}
+
                       </div>
                     </div>
                   </div>

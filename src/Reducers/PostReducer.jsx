@@ -40,6 +40,7 @@ const initialState = {
   favoritePosts: [],
   status: "",
   update: false,
+  updateImage: false,
 };
 
 export const postReducer = createSlice({
@@ -59,6 +60,10 @@ export const postReducer = createSlice({
     },
     setUpdate: (state) => {
       state.update = !state.update;
+    },  
+    setUpdateImage: (state) => {
+   
+      state.updateImage = !state.updateImage;
     },
   },
   extraReducers: (builder) => {
@@ -96,7 +101,7 @@ export const postReducer = createSlice({
 });
 
 
-export const { getSinglePost, getFavoritePosts, setUpdate } =
+export const { getSinglePost, getFavoritePosts, setUpdate,setUpdateImage } =
   postReducer.actions;
 
 export default postReducer.reducer;
