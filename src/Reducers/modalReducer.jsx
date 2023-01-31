@@ -42,6 +42,7 @@ export const modalReducer = createSlice({
     handelOpenPriceModel: (state) => {
 
       state.openFormPriceModal = !state.openFormPriceModal;
+
     },
   },
 });

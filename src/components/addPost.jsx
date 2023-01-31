@@ -48,7 +48,7 @@ function AddPost() {
         const Toast = Swal.mixin({
           toast: true,
           position: "top-right",
-          iconColor: "white",
+          iconColor: "green",
           customClass: {
             popup: "colored-toast",
           },
@@ -77,13 +77,13 @@ function AddPost() {
         <div className="flex justify-center items-center mr-16 pm720:mr-0 pm720:p-0 border-2 p-6 border-gray-400 text-center w-[50%] pm720:w-auto  pm720:h-auto h-full  ">
           <label
             for="dropzone-file"
-            className="flex flex-col justify-center items-center bg-gray-100 rounded-lg border-4 border-gray-500 border-dashed cursor-pointer  hover:bg-gray-100"
+            className="flex flex-col items-center justify-center bg-gray-100 border-4 border-gray-500 border-dashed rounded-lg cursor-pointer hover:bg-gray-100"
           >
          
-            <div className="flex flex-col justify-center items-center pm720:p-0 p-5">
+            <div className="flex flex-col items-center justify-center p-5 pm720:p-0">
               <svg
                 aria-hidden="true"
-                className="mb-3 w-10 h-10 text-gray-600"
+                className="w-10 h-10 mb-3 text-gray-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -127,7 +127,7 @@ function AddPost() {
               />)
        }
         <div className=" relative  flex  flex-col w-[24rem] pm720:w-full cover:pl-5 ">
-          <div className="relative z-0 mb-6  group m-5 flex  flex-col  ">
+          <div className="relative z-0 flex flex-col m-5 mb-6 group ">
             <input
               type="text"
               name="title"
@@ -145,8 +145,8 @@ function AddPost() {
               Add Your Title
             </label>  
           </div>
-          <div className="flex relative ">
-            <div className="flex  ml-9 mb-10 justify-evenly items-center">
+          <div className="relative flex ">
+            <div className="flex items-center mb-10 ml-9 justify-evenly">
               <img
                 className="w-[60px] h-[60px] rounded-full"
                 src={
@@ -187,7 +187,7 @@ function AddPost() {
 
    
           </form>
-      <div className=" py-8 mt-5 flex justify-end ">
+      <div className="flex justify-end py-8 mt-5 ">
      
               <button
                 type="button"

@@ -66,9 +66,9 @@ const id=useParams();
         });
         Toast.fire({
           icon: "success",
-          title: "your post published successfully",
+          title: "your Message send successfully",
         });
-
+        dispatch(handelOpenFormModel())
 
       })
       .catch(function (error) {
@@ -98,12 +98,12 @@ const id=useParams();
         show={openFormModal} size="lg"  position="center" popup={true} onClose={() => dispatch(handelOpenFormModel())}>
         <Modal.Header />
         <Modal.Body>
-          <div className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
+          <div className="px-6 pb-4 space-y-6 sm:pb-6 lg:px-8 xl:pb-8">
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">
             Message Vendor
             </h3>
             <div className=" xss:cover:w-[48%]  xss:cover:inline-block  xss:cover:mr-[2%] block  "  >
-              <div className="mb-2 block ">
+              <div className="block mb-2 ">
                 <Label htmlFor="flName" value="First and Last Name" />
               </div>
               <TextInput
@@ -118,7 +118,7 @@ const id=useParams();
                 
             </div>
             <div  className=" xss:cover:w-[47%]  xss:cover:inline-block block">
-              <div className="mb-2 block">
+              <div className="block mb-2">
                 <Label htmlFor="phone" value="Phone Number" />
               </div>
               <TextInput
@@ -132,7 +132,7 @@ const id=useParams();
               />
             </div>
             <div className=" xss:cover:w-[48%]  xss:cover:mr-[2%] xss:cover:inline-block  block" >
-              <div className="mb-2 block">
+              <div className="block mb-2">
                 <Label htmlFor="email" value="Your email" />
               </div>
               <TextInput
@@ -146,7 +146,7 @@ const id=useParams();
               />
             </div>
             <div className=" xss:cover:w-[48%]  xss:cover:mr-[2%] xss:cover:inline-block  block" >
-              <div className="mb-2 block">
+              <div className="block mb-2">
                 <Label htmlFor="address" value="Your address" />
               </div>
               <TextInput
@@ -160,7 +160,7 @@ const id=useParams();
               />
             </div>
             <div className=" xss:cover:w-[47%]  xss:cover:inline-block  block" >
-              <div className="mb-2 block">
+              <div className="block mb-2">
                 <Label htmlFor="date" value="Event Date" />
               </div>
               <TextInput name="event_date" id="date" type="date" required={true}
@@ -170,7 +170,7 @@ const id=useParams();
             </div>
 
             <div id="textarea">
-  <div className="mb-2 block">
+  <div className="block mb-2">
     <Label
       htmlFor="message"
       value="Your message"

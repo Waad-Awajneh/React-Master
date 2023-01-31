@@ -5,22 +5,30 @@ import { HiLocationMarker } from "react-icons/hi";
 import { MdPhoneIphone } from "react-icons/md";
 
 import { AiTwotoneMail } from "react-icons/ai";
+import { BsFillBriefcaseFill } from "react-icons/bs";
+import { SiAboutdotme } from "react-icons/si";
+
 
 function InputFiled(props) {
 
   return (
     <div className="relative w-full mb-3">
-      <span className=" w-full p-1 rounded-lg bg-white hover:bg-lnav flex items-center justify-center  duration-200 group">
+      <span className="flex items-center justify-center w-full p-1 duration-200 bg-white rounded-lg hover:bg-lnav group">
         {props.icon == "RiLockPasswordFill" ? (
-          <RiLockPasswordFill className="text-2xl group-hover:text-white m-2" />
+          <RiLockPasswordFill className="m-2 text-2xl group-hover:text-white" />
         ) : props.icon == "AiTwotoneMail" ? (
-          <AiTwotoneMail className="text-2xl group-hover:text-white m-2" />
+          <AiTwotoneMail className="m-2 text-2xl group-hover:text-white" />
         ) : props.icon == "MdFace" ? (
-          <MdFace className="text-2xl group-hover:text-white m-2" />
+          <MdFace className="m-2 text-2xl group-hover:text-white" />
         ) : props.icon == "HiLocationMarker" ? (
-          <HiLocationMarker className="text-2xl group-hover:text-white m-2" />
+          <HiLocationMarker className="m-2 text-2xl group-hover:text-white" />
         ) : props.icon == "MdPhoneIphone" ? (
-          <MdPhoneIphone className="text-2xl group-hover:text-white m-2" />
+          <MdPhoneIphone className="m-2 text-2xl group-hover:text-white" />
+        ) : props.icon == "BsFillBriefcaseFill" ? (
+          <BsFillBriefcaseFill className="m-2 text-2xl group-hover:text-white" />
+        ) : props.icon == "SiAboutdotme" ? (
+   
+          <SiAboutdotme className="m-2 text-2xl group-hover:text-white" />
         ) : (
           ""
         )}
@@ -38,7 +46,7 @@ function InputFiled(props) {
           style={{ transition: "all .15s ease" }}
           name={props.name}
           onChange={(e) => props.onChange(e)}
- 
+ value={props.value}
         />
       </span>
     </div>
