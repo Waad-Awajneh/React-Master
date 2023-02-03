@@ -21,7 +21,7 @@ const Tabs = ({ color }) => {
             <li className=" w-40 h-30 mx-5  last:mr-0 last:ml-0 text-center text-xl  xss:cover:w-[116px] font-[Satisfy] ">
               <Link
                 className={
-                  "  w-40 h-30 mr-3 ml-3 inline-block text-white hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active xss:cover:w-[116px]" +
+                  "  w-40 h-30 mr-3 ml-3 inline-block text-lg text-white hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4  font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active xss:cover:w-[116px]" +
                   (location.pathname == "/Home" || location.pathname == "/"
                     ? " text-white bg-" + color + " "
                     : " text-" + color + " bg-white")
@@ -37,7 +37,7 @@ const Tabs = ({ color }) => {
               <li className="  w-40 h-30 mx-5 last:mr-0 last:ml-0  text-center text-xl font-[Satisfy] xss:cover:w-[116px] ">
                 <Link
                   className={
-                    " w-40 h-30 mr-3 ml-3 flex items-center text-white hover:text-gray-600  hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 active xss:cover:w-[116px]" +
+                    " w-40 h-30 mr-3 ml-3 flex items-center text-white hover:text-gray-600  hover:border-gray-300 rounded-t-lg py-4 px-4 text-lg font-medium text-center border-transparent border-b-2 active xss:cover:w-[116px]" +
                     (location.pathname === "/follow"
                       ? " text-white bg-" + color + ""
                       : " text-" + color + " bg-white")

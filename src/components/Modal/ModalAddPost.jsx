@@ -35,7 +35,7 @@ export default function ModalAddPost({ open }) {
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex items-center flex-wrap-reverse justify-center min-h-full p-4 text-center">
+            <div className="flex flex-wrap-reverse items-center justify-center min-h-full p-4 text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -45,20 +45,20 @@ export default function ModalAddPost({ open }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel  className=" flex flex-row-reverse p-8 cover:p-0 cover:pt-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl rounded-2xl">
+                <Dialog.Panel  className="flex flex-row-reverse p-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl  cover:p-0 cover:pt-6 rounded-2xl">
                   {
-                    // <div   className=" bg-pcol w-12 h-12 gard rounded-full  flex justify-center  items-center">
+                    // <div   className="flex items-center justify-center w-12 h-12 rounded-full  bg-pcol gard">
                            <AiOutlineClose
                     size={"30px"}
                    className="items-center hover:text-red-700 "
-                      onClick={() => dispatch(closeModal())}
+                   onClick={() => dispatch(closeModal())}
                       
                     />
                     // </div>
                
                   }
 
-                  {<AddPost />}
+                  {<AddPost isEdit={false} />}
                 </Dialog.Panel>
               </Transition.Child>
             </div>

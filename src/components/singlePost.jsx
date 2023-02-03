@@ -19,17 +19,21 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { AiFillEdit } from "react-icons/ai";
-import { handelOpenModelToEditComment } from "../Reducers/modalReducer";
+import { handelOpenModelToEditComment, handelOpenModelToEditPost } from "../Reducers/modalReducer";
 import EditComment from "./Modal/EditComment";
 import GetVideo from "./VideoPost/GetVideo";
 import { handleDelete } from "../actions/handelDelete";
+import EditPost from "./Modal/editPost";
+import { Favorite } from "./generalComponent/Favorite";
 
 function SinglePost() {
+  let openPopOver=undefined;
   const { id } = useParams();
   const auth = useAuthUser();
   const navigate=useNavigate();
   const [count, setCount] = useState(1);
   const [loadingComment, setLoadingComment] = useState(true);
+  const [updateFav, setUpdateFav] = useState(false);
   const [comment, setComment] = useState({
     comment: "",
     post_id: id,
@@ -143,13 +147,13 @@ console.log(postsData)
 
 
 
-              
-              
+<Favorite post={singlePost} setUpdate={setUpdateFav} update={updateFav}/>
+{/*               
               <div className="absolute flex items-center space-x-2 bottom-3 left-4">
                 <span className="p-1.5 rounded-lg bg-white hover:bg-red-500 flex items-center justify-center w-fit group duration-200">
                   <BsHeartFill className="text-sm text-red-500 group-hover:text-white" />
                 </span>
-              </div>
+              </div> */}
             </div>
 
             <div className="relative w-full p-4 ">
@@ -220,14 +224,14 @@ console.log(postsData)
                                               fontSize: 18,
                                               cursor: "pointer",
                                             }}
-                                            // onClick={() =>
-                                            //   dispatch(
-                                            //     handelOpenModelToEditComment()
-                                            //   )
-                                            // }
+                                            onClick={() =>
+                                              dispatch(
+                                                handelOpenModelToEditPost(singlePost)
+                                              )
+                                            }
                                           />
                                         </IconButton>
-                                        {/* <EditComment comment={comment} /> */}
+                                        <EditPost post={singlePost} />
                                       </div>
                                     ) : ( 
                                       <div></div>
@@ -313,7 +317,9 @@ console.log(postsData)
                                         <div className="flex">
                                           <Popover
                                             color="red"
+         open={openPopOver}
                                             animate={{
+                                      
                                               mount: { scale: 1, y: 0 },
                                               unmount: { scale: 0, y: 25 },
                                             }}
@@ -337,10 +343,14 @@ console.log(postsData)
                                                 color="red"
                                                 name="delete"
                                                 onClick={() => {
-                                                  handleDelete(
-                                                    comment.comment_id,
-                                                    "comment"
-                                                  );
+                                                  // handleDelete(
+                                                  //   comment.comment_id,
+                                                  //   "comment"
+                                                  // );
+                                                 openPopOver=false;
+                                                  handleDelete(comment.comment_id,"deleteComment",`Bearer ${auth().token}`,setLoadingComment,loadingComment);
+                                                  // setLoadingComment(!loadingComment);
+                                             
                                                 }}
                                               >
                                                 delete

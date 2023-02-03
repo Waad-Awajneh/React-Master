@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const handleDelete = (id,deleteUrl,token,setLoadingComment,loadingComment,navigate) => {
+  console.log(navigate);
     const config = {
       method: "delete",
       url: `http://127.0.0.1:8000/api/${deleteUrl}/${id}`,
@@ -12,8 +13,8 @@ export const handleDelete = (id,deleteUrl,token,setLoadingComment,loadingComment
     };
     axios(config).then((resp) => {
       console.log(resp);
+      navigate? navigate("/")
+   :  setLoadingComment((previous) => (!previous));
 
-    //   setLoadingComment(!loadingComment);
-    navigate("/")
     });
   };

@@ -6,15 +6,18 @@ import { useAuthUser } from "react-auth-kit";
 
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { closeModal } from "../Reducers/modalReducer";
+import { handleEdit } from "../actions/handelEdit";
+import { closeModal, handelOpenModelToEditPost } from "../Reducers/modalReducer";
 import { getPosts, setUpdate } from "../Reducers/PostReducer";
 
-function AddPost() {
+function AddPost({isEdit,post }) {
   const auth = useAuthUser();
 
+  // const {post} = useSelector((state) => state.ModalReducer);
+console.log(post);
   const [newPost, setNewPost] = useState({
-    content: "",
-    title: "",
+    content: isEdit? post.post_content: "",
+    title: isEdit ? post.title: "",
     image: "",
   });
   const dispatch = useDispatch();
@@ -100,7 +103,7 @@ function AddPost() {
                 <span className="font-semibold">Click to upload</span> or drag and
                 drop
               </p>
-              <p className="text-sm font-[Satisfy] text-gray-600 cover:hidden">
+              <p className="text-sm font-[Satisfy] text-gray-600 cover:hidden">  
                 SVG, PNG, JPG or GIF (MAX. 800x400px)
               </p>
             </div>
@@ -108,6 +111,7 @@ function AddPost() {
               id="dropzone-file"
               type="file"
               className="hidden"
+        // value={post.image}
               onChange={(e) => {
                 setNewPost((pervs) => ({ ...pervs, image: e.target.files[0] }));
               }}
@@ -134,6 +138,7 @@ function AddPost() {
               className="block font-[Satisfy] py-2.5 px-0 rounded-xl text-lg   text-gray-800 bg-transparent border-0 border-b-4 border-lb focus:border-pcol appearance-none focus:outline-none focus:ring-0 peer"
               placeholder=" "
               required
+             value={newPost.title}
               onChange={(e) => {
                 setNewPost((pervs) => ({ ...pervs, title: e.target.value }));
               }}
@@ -173,12 +178,14 @@ function AddPost() {
               Tell everyone what your Post is about
             </label>
           ):""}
+
             <textarea
               id="label"
-              className={ (newPost.content.trim() == "" 
+              className={ (newPost.content?.trim() == "" 
                 ? " "
                 : " border-t-4 ") +"peer  font-[Satisfy] w-full  focus:border-pcol h-[87%] mt-11 bg-white border-0 border-b-4 focus:border-t-4 empty:b-t-4 border-lb outline-none py-3 px-4 text-lg "}
               type="text"
+              value={newPost.content}
               onChange={(e) => {
                 setNewPost((pervs) => ({ ...pervs, content: e.target.value }));
               
@@ -197,7 +204,7 @@ function AddPost() {
                     hover:bg-red-700 focus:outline-none focus:ring-2   hover:text-white
                      focus:ring-offset-2 focus:ring-black rounded-3xl font-[Satisfy]  text-xl
                   "
-                onClick={() => dispatch(closeModal())}
+                onClick={()=>{isEdit?dispatch(handelOpenModelToEditPost()):dispatch(closeModal())  }    }
 
               >
                 Cancel
@@ -209,7 +216,7 @@ function AddPost() {
                     text-center text-gray-700 hover:bg-pcol   hover:text-white
                     focus:outline-none focus:ring-2 focus:ring-offset-2  leading-[2.5rem]
                      focus:ring-black font-[Satisfy] text-xl "
-                onClick={handleAddNewPost}
+                onClick={()=>{isEdit? handleEdit(post,isEdit,dispatch,`Bearer ${auth().token}`): handleAddNewPost()}}
               >
                 Save
               </button>
