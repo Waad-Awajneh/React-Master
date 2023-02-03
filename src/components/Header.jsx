@@ -26,7 +26,10 @@ const [searchParams, setSearchParams]= useSearchParams();
   const { profileData, update } = useSelector((state) => state.PostsData);
   const [searchParam, setSearchParam] = useSearchParams();
   const dispatch = useDispatch();
+    const isAuthenticated = useIsAuthenticated();
+
   useEffect(() => {
+    if(isAuthenticated()){
     const config = {
       method: "get",
       url: "http://127.0.0.1:8000/api/profile",
@@ -37,7 +40,7 @@ const [searchParams, setSearchParams]= useSearchParams();
       },
     };
 
-    dispatch(getProfileData(config));
+    dispatch(getProfileData(config));}
   }, [update]);
 
 

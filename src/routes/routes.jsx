@@ -1,3 +1,4 @@
+import { useIsAuthenticated } from "react-auth-kit";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "../App";
 import AddPost from "../components/addPost";
@@ -20,18 +21,20 @@ import Search from "../views/Search";
 import UserProfile from "../views/UserProfile";
 
 export const AllRoutes = (params) => {
+    const isAuthenticated = useIsAuthenticated();
+
   return (
     <BrowserRouter>
     <FormConnectModal />
     <FormAskPriceModal/>
-           
+          { console.log(isAuthenticated)}
       <Routes>
         {/* <Route exact path="/" element={<DropdownSearchList  options={["test","esfft","waad","hyggtyf","byfctdxrx"]}/>}></Route> */}
          
         <Route exact path="/" element={<App />}>
           <Route exact index element={<Home openTap={1} />} />
           <Route exact path="Home" element={<Home openTap={1} />} />
-          <Route exact path="follow" element={<Home openTap={2} />} />{" "}
+          <Route exact path="follow" element={<Home openTap={2} />} />
         </Route>
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/profile/:id" element={<UserProfile />} />

@@ -5,7 +5,7 @@ import { BsHeartFill, BsTrashFill } from "react-icons/bs";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, getSinglePost } from "../Reducers/PostReducer";
-import { useAuthUser } from "react-auth-kit";
+import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
 import Header from "./Header";
 import { useState } from "react";
 import axios from "axios";
@@ -25,11 +25,14 @@ import GetVideo from "./VideoPost/GetVideo";
 import { handleDelete } from "../actions/handelDelete";
 import EditPost from "./Modal/editPost";
 import { Favorite } from "./generalComponent/Favorite";
+import Navbar from "./Navbar";
 
 function SinglePost() {
   let openPopOver=undefined;
   const { id } = useParams();
   const auth = useAuthUser();
+    const isAuthenticated = useIsAuthenticated();
+
   const navigate=useNavigate();
   const [count, setCount] = useState(1);
   const [loadingComment, setLoadingComment] = useState(true);
@@ -61,7 +64,8 @@ console.log(postsData)
     if (allCommentData?.length != 0) dispatch(getPostComments(id));
   }, [allCommentData, comment]);
 
-  const commentConfig = {
+
+  const handleComment = () => {  const commentConfig = {
     method: "post",
     url: "http://127.0.0.1:8000/api/addComment",
     headers: {
@@ -71,7 +75,6 @@ console.log(postsData)
     },
     data: comment,
   };
-  const handleComment = () => {
     if (comment.comment === "") return null;
     axios(commentConfig)
       .then(function (res) {
@@ -113,7 +116,7 @@ console.log(postsData)
   return (
     <>
  
-      <Header />
+        {isAuthenticated() ? <Header /> : <Navbar />}
       <div
         className="flex flex-wrap mt-6 justify-evenly md:m-10"
         style={{ width: "100vw", height: "75vh" }}
@@ -177,7 +180,7 @@ console.log(postsData)
                 </div></Link>
                 <span className="absolute right-0 ">
                                     
-                                    {
+                                    {isAuthenticated()?
                                     singlePost.post_owner.id ==
                                     auth().user.user_id ? (
                                       <div className="flex">
@@ -235,7 +238,7 @@ console.log(postsData)
                                       </div>
                                     ) : ( 
                                       <div></div>
-                               )} 
+                               ):""} 
                                   </span>
               </div>
               <h1 className="text-lg font-normal dark:text-white mt-7">
@@ -420,7 +423,7 @@ console.log(postsData)
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-lnav hover:bg-pcol focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={handleComment}
+                    onClick={()=>{isAuthenticated()? handleComment():navigate("/login")}}
                   >
                     Done
                   </button>       
