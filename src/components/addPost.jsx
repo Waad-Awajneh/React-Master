@@ -6,15 +6,18 @@ import { useAuthUser } from "react-auth-kit";
 
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { closeModal } from "../Reducers/modalReducer";
+import { handleEdit } from "../actions/handelEdit";
+import { closeModal, handelOpenModelToEditPost } from "../Reducers/modalReducer";
 import { getPosts, setUpdate } from "../Reducers/PostReducer";
 
-function AddPost() {
+function AddPost({isEdit,post }) {
   const auth = useAuthUser();
 
+  // const {post} = useSelector((state) => state.ModalReducer);
+console.log(post);
   const [newPost, setNewPost] = useState({
-    content: "",
-    title: "",
+    content: isEdit? post.post_content: "",
+    title: isEdit ? post.title: "",
     image: "",
   });
   const dispatch = useDispatch();
@@ -48,7 +51,7 @@ function AddPost() {
         const Toast = Swal.mixin({
           toast: true,
           position: "top-right",
-          iconColor: "white",
+          iconColor: "green",
           customClass: {
             popup: "colored-toast",
           },
@@ -77,13 +80,13 @@ function AddPost() {
         <div className="flex justify-center items-center mr-16 pm720:mr-0 pm720:p-0 border-2 p-6 border-gray-400 text-center w-[50%] pm720:w-auto  pm720:h-auto h-full  ">
           <label
             for="dropzone-file"
-            className="flex flex-col justify-center items-center bg-gray-100 rounded-lg border-4 border-gray-500 border-dashed cursor-pointer  hover:bg-gray-100"
+            className="flex flex-col items-center justify-center bg-gray-100 border-4 border-gray-500 border-dashed rounded-lg cursor-pointer hover:bg-gray-100"
           >
          
-            <div className="flex flex-col justify-center items-center pm720:p-0 p-5">
+            <div className="flex flex-col items-center justify-center p-5 pm720:p-0">
               <svg
                 aria-hidden="true"
-                className="mb-3 w-10 h-10 text-gray-600"
+                className="w-10 h-10 mb-3 text-gray-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -100,7 +103,7 @@ function AddPost() {
                 <span className="font-semibold">Click to upload</span> or drag and
                 drop
               </p>
-              <p className="text-sm font-[Satisfy] text-gray-600 cover:hidden">
+              <p className="text-sm font-[Satisfy] text-gray-600 cover:hidden">  
                 SVG, PNG, JPG or GIF (MAX. 800x400px)
               </p>
             </div>
@@ -108,6 +111,7 @@ function AddPost() {
               id="dropzone-file"
               type="file"
               className="hidden"
+        // value={post.image}
               onChange={(e) => {
                 setNewPost((pervs) => ({ ...pervs, image: e.target.files[0] }));
               }}
@@ -127,26 +131,27 @@ function AddPost() {
               />)
        }
         <div className=" relative  flex  flex-col w-[24rem] pm720:w-full cover:pl-5 ">
-          <div className="relative z-0 mb-6  group m-5 flex  flex-col  ">
+          <div className="relative z-0 flex flex-col m-5 mb-6 group ">
             <input
               type="text"
               name="title"
-              className="block py-2.5 px-0 rounded-xl text-lg   text-gray-800 bg-transparent border-0 border-b-4 border-lb focus:border-pcol appearance-none focus:outline-none focus:ring-0 peer"
+              className="block font-[Satisfy] py-2.5 px-0 rounded-xl text-lg   text-gray-800 bg-transparent border-0 border-b-4 border-lb focus:border-pcol appearance-none focus:outline-none focus:ring-0 peer"
               placeholder=" "
               required
+             value={newPost.title}
               onChange={(e) => {
                 setNewPost((pervs) => ({ ...pervs, title: e.target.value }));
               }}
             />
             <label
               for="title"
-              className="absolute text-lg font-[Satisfy] focus:text-lg  font-medium text-gray-800  duration-300 transform -translate-y-8 scale-75 top-6 left-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-800  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-100 peer-focus:-translate-y-7"
+              className="absolute text-lg font-[Satisfy] focus:text-lg  font-medium text-gray-800  duration-300 transform -translate-y-8 scale-75 top-4 left-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-800  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-100 peer-focus:-translate-y-7"
             >
               Add Your Title
-            </label>
+            </label>  
           </div>
-          <div className="flex relative ">
-            <div className="flex  ml-9 mb-10 justify-evenly items-center">
+          <div className="relative flex ">
+            <div className="flex items-center mb-10 ml-9 justify-evenly">
               <img
                 className="w-[60px] h-[60px] rounded-full"
                 src={
@@ -173,12 +178,14 @@ function AddPost() {
               Tell everyone what your Post is about
             </label>
           ):""}
+
             <textarea
               id="label"
-              className={ (newPost.content.trim() == "" 
+              className={ (newPost.content?.trim() == "" 
                 ? " "
                 : " border-t-4 ") +"peer  font-[Satisfy] w-full  focus:border-pcol h-[87%] mt-11 bg-white border-0 border-b-4 focus:border-t-4 empty:b-t-4 border-lb outline-none py-3 px-4 text-lg "}
               type="text"
+              value={newPost.content}
               onChange={(e) => {
                 setNewPost((pervs) => ({ ...pervs, content: e.target.value }));
               
@@ -187,7 +194,7 @@ function AddPost() {
 
    
           </form>
-      <div className=" py-8 mt-5 flex justify-end ">
+      <div className="flex justify-end py-8 mt-5 ">
      
               <button
                 type="button"
@@ -197,7 +204,7 @@ function AddPost() {
                     hover:bg-red-700 focus:outline-none focus:ring-2   hover:text-white
                      focus:ring-offset-2 focus:ring-black rounded-3xl font-[Satisfy]  text-xl
                   "
-                onClick={() => dispatch(closeModal())}
+                onClick={()=>{isEdit?dispatch(handelOpenModelToEditPost()):dispatch(closeModal())  }    }
 
               >
                 Cancel
@@ -209,7 +216,7 @@ function AddPost() {
                     text-center text-gray-700 hover:bg-pcol   hover:text-white
                     focus:outline-none focus:ring-2 focus:ring-offset-2  leading-[2.5rem]
                      focus:ring-black font-[Satisfy] text-xl "
-                onClick={handleAddNewPost}
+                onClick={()=>{isEdit? handleEdit(post,isEdit,dispatch,`Bearer ${auth().token}`): handleAddNewPost()}}
               >
                 Save
               </button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Follow } from './Follow';
 
 export const UserCard  = ({info}) => {
     console.log(info);
@@ -36,12 +37,14 @@ export const UserCard  = ({info}) => {
 }
           </small>
           <span className="space-x-2">
-            <button className="py-1 px-3 rounded-lg text-white bg-[#ff4757] text-[0.6rem] duration-300 hover:-translate-y-0.5">
+            {/* <button className="py-1 px-3 rounded-lg text-white bg-[#ff4757] text-[0.6rem] duration-300 hover:-translate-y-0.5">
               Open
-            </button>
+            </button> */}
+            <Follow id={info.user_id} />
             <button className="py-1 px-3 rounded-lg bg-white shadow-xl dark:bg-primary text-[0.6rem] duration-300 hover:-translate-y-1">
               Cancel
             </button>
+    
           </span>
         </div>
       </div>

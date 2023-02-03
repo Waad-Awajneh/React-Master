@@ -20,7 +20,7 @@ function Card(cards) {
   const isAuthenticated = useIsAuthenticated();
 
   const { favoritePostsId } = useSelector((state) => state.UserData);
-  let test = "https://youtu.be/_0qsO_fVSwY";
+
   const dispatch = useDispatch();
 
   const HandelAddToFavorite = (id) => {

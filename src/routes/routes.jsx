@@ -14,6 +14,7 @@ import About from "../views/about";
 import Contact from "../views/contact";
 import Favorite from "../views/Favorite";
 import Landing from "../views/landing";
+import { NotFound } from "../views/notFoundPage";
 import Profile from "../views/Profile";
 import Search from "../views/Search";
 import UserProfile from "../views/UserProfile";
@@ -49,6 +50,7 @@ export const AllRoutes = (params) => {
     />*/}
         <Route exact path="/SinglePost/:id" element={<SinglePost />} />
         <Route exact path="/SignUp" element={<SignUp />} />
+        <Route exact path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

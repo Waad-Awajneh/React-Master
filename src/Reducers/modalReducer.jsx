@@ -3,9 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isOpen: false,
   openEditComment: false,
+  openEditPost: false,
   update: false,
   openFormModal:false,
-  openFormPriceModal:false
+  openFormPriceModal:false,
+  post:{},
 };
 
 export const modalReducer = createSlice({
@@ -15,7 +17,7 @@ export const modalReducer = createSlice({
     openModal: (state) => {
 
       state.isOpen = true;
-
+console.log( state.isOpen);
     },
     closeModal: (state) => {
       state.isOpen = false;
@@ -23,6 +25,11 @@ export const modalReducer = createSlice({
     handelOpenModelToEditComment: (state) => {
    
       state.openEditComment = !state.openEditComment;
+    },  
+      handelOpenModelToEditPost: (state,action) => {
+   
+      state.openEditPost = !state.openEditPost;
+      state.post=action.payload;
     },
     handelUpdate: (state) => {
       state.update = !state.update;
@@ -42,6 +49,7 @@ export const modalReducer = createSlice({
     handelOpenPriceModel: (state) => {
 
       state.openFormPriceModal = !state.openFormPriceModal;
+
     },
   },
 });
@@ -52,7 +60,8 @@ export const {
   openModal,
   handelOpenModelToEditComment,
   handelUpdate,handelOpenFormModel
-  ,handelOpenPriceModel
+  ,handelOpenPriceModel,
+  handelOpenModelToEditPost
 } = modalReducer.actions;
 
 export default modalReducer.reducer;

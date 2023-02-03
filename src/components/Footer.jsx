@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function FooterComponent() {
   return (
-    <div className="flex flex-warp pt-3 items-center justify-evenly">
+    <div className="flex flex-warp pt-3 items-center font-[Satisfy] justify-evenly text-lg hover:text-pcol hover:translate-x-2">
       <div className="flex ">
         <img
           src={require("./../assests/img/logo.png")}
@@ -12,8 +12,8 @@ function FooterComponent() {
         />
       </div>
 
-      <ul className="px-15 text-lnav flex">
-        <li className="px-5">
+      <ul className="px-15 text-lnav text-lg hover:text-pcol hover:translate-x-2 flex">
+        <li className="px-5 text-lg hover:text-pcol hover:translate-x-2">
           <Link to="/landing">Home</Link>
         </li>
         <li className="px-5">

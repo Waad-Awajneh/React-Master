@@ -36,9 +36,10 @@ function Landing() {
         <Section>{<SectionOne />}</Section>
         <Section>{<SectionTwo />}</Section>
         <Section>{<SectionThree />}</Section>
-        <Section>{<SectionFour />}</Section>
+        <Section>{<SectionFour />}</Section>   
+   
       </SectionsContainer>
-      {<FooterComponent />}
+        {<FooterComponent />}
     </>
   );
 }
