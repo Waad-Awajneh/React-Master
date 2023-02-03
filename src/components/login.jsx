@@ -91,8 +91,8 @@ function Login() {
           ></div>
           <div className="container mx-auto px-4 h-full ">
             <div className="flex content-center items-center justify-end h-full ">
-              <div className="w-full lg:w-4/12 px-4">
-                <div className=" max-[380px]:h-80  max-[320px]:h-64  relative flex flex-col min-w-0 break-words w-full mb-6 border-0 my-5 bg-white dark:bg-[#18191c] shadow-xl hover:shadow duration-200 rounded-xl">
+              <div className="w-full 2xl:w-4/12 xl:w-5/12  lg:w-6/12 px-4">
+                <div className="  relative flex flex-col min-w-0 break-words w-full mb-6 border-0 my-5 bg-white dark:bg-[#18191c] shadow-xl hover:shadow duration-200 rounded-xl">
                   <div className="rounded-t mb-0 px-6 py-6">
                     <div className="text-center mb-5">
                       <h6 className="text-gray-600 text-sm font-bold">
