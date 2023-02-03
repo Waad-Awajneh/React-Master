@@ -9,8 +9,14 @@ import { useState } from "react";
 import { openModal } from "../Reducers/modalReducer";
 import { getProfileData } from "../Reducers/PostReducer";
 import { useEffect } from "react";
-import {  getPostSearchData,getUserSearchData, getSearchData, setSearch } from "../Reducers/SearchReducer";
+import { GoSearch } from "react-icons/go";
 
+import {
+  getPostSearchData,
+  getUserSearchData,
+  getSearchData,
+  setSearch,
+} from "../Reducers/SearchReducer";
 
 export default function Header() {
   const signOut = useSignOut();
@@ -19,76 +25,75 @@ export default function Header() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
 
-const [searchParams, setSearchParams]= useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
- const { userSearchData, postSearchData,search ,allSearchData} = useSelector((state) => state.SearchData);
+  const { userSearchData, postSearchData, search, allSearchData } = useSelector(
+    (state) => state.SearchData
+  );
   const { isOpen } = useSelector((state) => state.ModalReducer);
   const { profileData, update } = useSelector((state) => state.PostsData);
   const [searchParam, setSearchParam] = useSearchParams();
   const dispatch = useDispatch();
-    const isAuthenticated = useIsAuthenticated();
+  const isAuthenticated = useIsAuthenticated();
 
   useEffect(() => {
-    if(isAuthenticated()){
-    const config = {
-      method: "get",
-      url: "http://127.0.0.1:8000/api/profile",
-      headers: {
-        Accept: "application/vnd.api+json",
-        "Content-Type": "application/vnd.api+json",
-        Authorization: `Bearer ${auth().token}`,
-      },
-    };
+    if (isAuthenticated()) {
+      const config = {
+        method: "get",
+        url: "http://127.0.0.1:8000/api/profile",
+        headers: {
+          Accept: "application/vnd.api+json",
+          "Content-Type": "application/vnd.api+json",
+          Authorization: `Bearer ${auth().token}`,
+        },
+      };
 
-    dispatch(getProfileData(config));}
+      dispatch(getProfileData(config));
+    }
   }, [update]);
 
+  // console.log(postSearchData,userSearchData);
 
-
-// console.log(postSearchData,userSearchData);
-
-useEffect(()=>{
-  console.log(searchTerm);
-   dispatch(getSearchData());
-   dispatch(getUserSearchData(searchTerm));
-   dispatch(getPostSearchData(searchTerm));
-},[searchTerm])
-
+  useEffect(() => {
+    console.log(searchTerm);
+    dispatch(getSearchData());
+    dispatch(getUserSearchData(searchTerm));
+    dispatch(getPostSearchData(searchTerm));
+  }, [searchTerm]);
 
   /**************************************** */
 
-
-  const handleSearch = event => {
+  const handleSearch = (event) => {
     // console.log(event.target.value);
     setSearchTerm(event.target.value);
-    setSearchParams({search: event.target.value});  
-    dispatch( setSearch(event.target.value ));
+    setSearchParams({ search: event.target.value });
+    dispatch(setSearch(event.target.value));
   };
 
-  const handleOptionSelect = event => {
-    setSelectedOption(event.target.value);
-    setSearchParams({selected: event.target.value});
-     dispatch(setSearch(event.target.value));
-    navigate(`/search`)
+  const handleOptionSelect = (event) => {
+    setSelectedOption(event);
+    setSearchParams({ selected: event });
+    dispatch(setSearch(event));
+    navigate(`/search`);
   };
 
-  const filteredOptionsUsers = allSearchData?.users?.filter(option =>
-
+  const filteredOptionsUsers = allSearchData?.users?.filter((option) =>
     option?.full_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  const filteredOptionsPosts = allSearchData?.posts?.filter(option =>
-    option.title.toLowerCase().includes(searchTerm.toLowerCase())
-    ||option.post_owner.includes(searchTerm)||option.post_content
-.includes(searchTerm)
+  const filteredOptionsPosts = allSearchData?.posts?.filter(
+    (option) =>
+      option.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      option.post_owner.includes(searchTerm) ||
+      option.post_content.includes(searchTerm)
   );
 
-/********************************************** */
+  /********************************************** */
 
+  {
+    console.log(allSearchData);
+  }
 
-
-{console.log(allSearchData)}
-
-if(!allSearchData)return "mjjkjlkjkl"
+  if (!allSearchData) return "mjjkjlkjkl";
   return (
     <>
       <nav
@@ -107,41 +112,9 @@ if(!allSearchData)return "mjjkjlkjkl"
             </Link>
           </div>
 
-
-
-
-
-
-          <div className="hidden md:block">
-            <div className="relative">
-
-
-
-
-
-
-
-
-              <input
-              list="searchList"
-                type="text"
-              className="rounded-[30px] bg-gray-100 p-1.5 text-sm pl-8 h-12 w-[35rem] "
-                placeholder="Search"
-                // onChange={(e)=>handelSearch(e)}
-                      // onChange={(e) => {
-                      // setSearchParam({ search: e.target.value });
-                      // console.log(e.target.value.length);
-                      //  dispatch( setSearch(e.target.value ));
-
-                    
-        value={searchTerm}
-        onChange={handleSearch}
-                     
-                    // }
-                  // }
-          
-              />
-              <div className="absolute top-2 left-2 text-lnav">
+          <div className="hidden  md:flex items-center flex-wrap">
+            <div className=" rounded-[30px] bg-gray-100  text-sm   h-12 w-[35rem]">
+              <div className="flex items-center px-3 basis-full h-full">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4"
@@ -156,86 +129,131 @@ if(!allSearchData)return "mjjkjlkjkl"
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   ></path>
                 </svg>
+                <input
+                  list="searchList"
+                  type="text"
+                  className="block  bg-transparent border-none w-[85%] outline-0 p-2"
+                  placeholder="Search"
+                  value={searchTerm}
+                  onChange={handleSearch}
+                />
+              </div>
 
-
-
-
-
-
-
-
-
-              </div>       
-        <div> 
-{searchTerm.trim()!=""?
-    <select   id="searchList" type="text"
-        className=" w-[25rem] max-h-36 py-2 px-3 absolute overflow-y-auto rounded-md bg-blue-gray-500 text-gray-900 placeholder-gray-500 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
-        value={selectedOption}
-        
-        onChange={handleOptionSelect   }>
-        
-       <optgroup label="People">
-        {filteredOptionsUsers.length!=0? filteredOptionsUsers?.slice(0,3).map((option) =>
-         (
-   
-      <option key={option.user_id} value={option.full_name} className="bg-white cursor-pointer text-gray-800 active:bg-lnav">
-            {option.full_name}
-          </option> 
-        )
-        
-        ):
-           
-      <option value=""  className="bg-white cursor-pointer text-gray-800 active:bg-lnav">
-           No People founded
-          </option> 
-        
-        }
-         </optgroup>
-     <optgroup label="Posts">
-        {filteredOptionsPosts.length!=0 ?
-        
-        filteredOptionsPosts?.slice(0,3).map((option) =>
-         (
-   
-      <option key={option.post_id} value={option.title} className="bg-white cursor-pointer text-gray-800 active:bg-lnav">
-            {option.title}
-          </option> 
-        )
-        
-        )
-        :
-       <option  value=""  className="bg-white cursor-pointer text-gray-800 active:bg-lnav">
-           No posts founded
-          </option> 
-        
-        }
-     </optgroup>
-      </select>:""}
-      
-      </div>      
-
-
+              <div>
+                {searchTerm.trim() != "" ? (
+                  // <select
+                  //   id="searchList"
+                  //   type="text"
+                  //   className="relative w-full max-h-36 py-2 px-3   rounded-md bg-blue-gray-500 text-gray-900 placeholder-gray-500 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                  //   value={selectedOption}
+                  //   onChange={handleOptionSelect}
+                  // >
+                  //   <optgroup label="People">
+                  //     {filteredOptionsUsers.length != 0 ? (
+                  //       filteredOptionsUsers?.slice(0, 3).map((option) => (
+                  //         <option
+                  //           key={option.user_id}
+                  //           value={option.full_name}
+                  //           className="bg-white cursor-pointer text-gray-800 active:bg-lnav"
+                  //         >
+                  //           {option.full_name}
+                  //         </option>
+                  //       ))
+                  //     ) : (
+                  //       <option
+                  //         value=""
+                  //         className="bg-white cursor-pointer text-gray-800 active:bg-lnav"
+                  //       >
+                  //         No People founded
+                  //       </option>
+                  //     )}
+                  //   </optgroup>
+                  //   <optgroup label="Posts">
+                  //     {filteredOptionsPosts.length != 0 ? (
+                  //       filteredOptionsPosts?.slice(0, 3).map((option) => (
+                  //         <option
+                  //           key={option.post_id}
+                  //           value={option.title}
+                  //           className="bg-white cursor-pointer text-gray-800 active:bg-lnav"
+                  //         >
+                  //           {option.title}
+                  //         </option>
+                  //       ))
+                  //     ) : (
+                  //       <option
+                  //         value=""
+                  //         className="bg-white cursor-pointer text-gray-800 active:bg-lnav"
+                  //       >
+                  //         No posts founded
+                  //       </option>
+                  //     )}
+                  //   </optgroup>
+                  // </select>
+                  <div className="relative w-full z-10 py-2 px-3  rounded-md bg-[#e4dbd0cf] text-gray-900 placeholder-gray-500 border border-gray-300 ">
+                    <div className="">
+                      <h6 className="mb-1">People</h6>
+                      {filteredOptionsUsers?.length != 0 ? (
+                        filteredOptionsUsers?.slice(0, 3).map((option) => (
+                          <div
+                            key={option.user_id}
+                            className="bg-white cursor-pointer text-gray-800 active:bg-lnav flex items-center py-1 px-2  hover:bg-blue-gray-400 "
+                            onClick={(e) => {
+                              handleOptionSelect(option.full_name);
+                              e.target.parentNode.parentNode.style.display =
+                                "none";
+                            }}
+                          >
+                            <img
+                              className="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                              src={
+                                option.profile_Img != null
+                                  ? `data:image/jpeg;base64,${option.profile_Img}`
+                                  : option.gender == "Female"
+                                  ? "https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666545148?k=6&m=666545148&s=170667a&w=0&h=ycJvJHz6ZMWsErum0XpjVabgZsP8dib2feSIJ5dIWYk="
+                                  : "https://th.bing.com/th/id/OIP.P07J6hJbgyuIm-DlaSAlLQAAAA?pid=ImgDet&rs=1"
+                              }
+                              alt=""
+                            />
+                            {option.full_name}
+                          </div>
+                        ))
+                      ) : (
+                        <p className="bg-white cursor-pointer text-gray-800 active:bg-lnav p-2">
+                          No People founded
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <h6 className="m-1">Posts</h6>
+                      {filteredOptionsPosts?.length != 0 ? (
+                        filteredOptionsPosts?.slice(0, 3).map((option) => (
+                          <div
+                            key={option.post_id}
+                            className="bg-white cursor-pointer text-gray-800 active:bg-lnav flex items-center py-2 px-2 hover:bg-blue-gray-400"
+                            onClick={() => {
+                              handleOptionSelect(option.title);
+                            }}
+                          >
+                            <GoSearch className="mr-2" />
+                            {option.title}
+                          </div>
+                        ))
+                      ) : (
+                        <div
+                          value=""
+                          className="bg-white cursor-pointer text-gray-800 active:bg-lnav p-2"
+                        >
+                          No posts founded
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           <div className="flex text-lnav items-center">
             <Link to={"/"}>
@@ -248,7 +266,7 @@ if(!allSearchData)return "mjjkjlkjkl"
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
               </svg>
             </Link>
-    
+
             <button
               onClick={() => {
                 dispatch(openModal(1));
@@ -269,7 +287,7 @@ if(!allSearchData)return "mjjkjlkjkl"
                 ></path>
               </svg>
             </button>
-     
+
             <Link to={"/Favorite"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

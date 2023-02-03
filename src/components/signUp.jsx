@@ -110,20 +110,20 @@ function SignUp() {
       {success ? (
         Navigate("/")
       ) : (
-        <section className="absolute w-full h-full">
+        <section className="relative w-full h-full z-0">
           <div
-            className="absolute top-0 w-full h-full bg-gray-900"
+            className="absolute top-0 w-full h-[92%] bg-gray-900"
             style={{
               backgroundImage: "url(" + require("./../assests/img/1.jpg") + ")",
-              backgroundSize: "100%",
+              backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
             }}
           ></div>
 
-          <div className="container mx-auto px-4 h-full ">
+          <div className="container cover:max-w-full md:mx-auto px-4 py-6 h-full ">
             <div className="flex content-center items-center justify-end h-full ">
-              <div className="w-full lg:w-4/12 px-4">
-                <div className=" max-[380px]:h-80  max-[320px]:h-64  relative flex flex-col min-w-0 break-words w-full mb-6 border-0 my-5 bg-white dark:bg-[#18191c] shadow-xl hover:shadow duration-200 rounded-xl">
+              <div className="w-full 2xl:w-5/12 xl:w-6/12  lg:w-8/12 xss: px-4">
+                <div className=" relative  flex flex-col  break-words w-full mb-6 border-0 my-5 bg-white dark:bg-[#18191c] shadow-xl hover:shadow   rounded-xl">
                   <div className="rounded-t mb-0 px-6 py-6">
                     <div className="text-center mb-5">
                       <h6 className="text-gray-600 text-sm font-bold">
@@ -138,14 +138,6 @@ function SignUp() {
                       >
                         <BsGoogle className="w-5 mr-1" />
                         Google
-                      </button>
-                      <button
-                        className="bg-white active:bg-gray-100 text-gray-800  px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
-                        type="button"
-                        style={{ transition: "all .15s ease" }}
-                      >
-                        <FaFacebookSquare className="w-5 mr-1" />
-                        FaceBook
                       </button>
                     </div>
                     <hr className="mt-6 border-b-1 border-gray-400" />

@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
-
 import { BsHeartFill } from "react-icons/bs";
 import { RiMessage3Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +11,6 @@ import { getFavorite } from "../Reducers/UserReducer";
 
 import { ReadMore } from "./generalComponent/ReadMore";
 import GetVideo from "./VideoPost/GetVideo";
-
 
 function Card(cards) {
   const cardInfo = cards.cards;
@@ -36,7 +34,6 @@ function Card(cards) {
 
     axios(config)
       .then(function (res) {
-
         const Toast = Swal.mixin({
           toast: true,
           position: "top-right",
@@ -53,7 +50,7 @@ function Card(cards) {
           color: "black",
           title: res.data,
         });
-       
+
         const config = {
           method: "get",
           url: "http://localhost:8000/api/getFavorite",
@@ -71,7 +68,6 @@ function Card(cards) {
       });
   };
   const HandelRemoveFromFavorite = (id) => {
-    
     const config = {
       method: "delete",
       url: `http://localhost:8000/api/deleteFavorite/${id}`,
@@ -83,8 +79,6 @@ function Card(cards) {
     };
     axios(config)
       .then(function (res) {
-       
-
         const config = {
           method: "get",
           url: "http://localhost:8000/api/getFavorite",
@@ -121,8 +115,6 @@ function Card(cards) {
               />
             ) : (
               <GetVideo isSingle={true} id={cardInfo.videos[0]?.video_id} />
-    
-
             )}
           </Link>
           <div className="absolute bottom-3 left-4 flex items-center space-x-2">
@@ -186,12 +178,9 @@ function Card(cards) {
           )}
 
           <small className=" p-2 text-left text-xs block w-full font-light text-primary dark:text-gray-400">
-
             {cardInfo.title.length < 30 ? (
-
               cardInfo.title
             ) : (
-  
               <ReadMore>{cardInfo.title}</ReadMore>
             )}
           </small>

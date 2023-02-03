@@ -2,9 +2,11 @@ import React from "react";
 import { Avatar } from "flowbite-react";
 import Button from "./button";
 import { Link, NavLink } from "react-router-dom";
-;
+import { GoGrabber } from "react-icons/go";
+import { useState } from "react";
 
 export default function Navbar(props) {
+  const [brgier, setBrgier] = useState(false);
 
   return (
     <>
@@ -12,11 +14,10 @@ export default function Navbar(props) {
         className={
           (props.transparent
             ? "top-0 absolute z-50 w-full"
-            : "relative  bg-white shadow-lg") +
-          " flex flex-wrap items-center justify-between px-2  "
+            : "relative  bg-white shadow-lg") + "  "
         }
       >
-        <div className="h-full w-full max-w-7xl  mx-auto flex items-center justify-between">
+        <div className="h-full  ">
           {props.page == "profile" ? (
             <>
               <Link to={"/profile"}>
@@ -114,31 +115,68 @@ export default function Navbar(props) {
             </>
           ) : (
             <>
-              <div>
+              <div className="md:hidden flex justify-between relative ">
+                <img
+                  src={require("./../assests/img/logo.png")}
+                  className="h-16 w-16 ml-3 block"
+                  alt=" Logo"
+                />
+                <button
+                  onClick={() => {
+                    setBrgier(!brgier);
+                  }}
+                >
+                  <GoGrabber size={30} />
+                </button>
+                <ul
+                  className={`${
+                    brgier ? "flex" : "hidden"
+                  } absolute w-full z-10 top-16  text-white items-center flex-col bg-lb  font-[Satisfy] `}
+                >
+                  <li className=" mx-5 cursor-pointer py-3 ">
+                    <NavLink to={"/"}>Discover</NavLink>
+                  </li>
+                  <li className=" mx-5 cursor-pointer py-3">
+                    <NavLink to={"/about"}>About US</NavLink>
+                  </li>
+                  <li className="mx-5 cursor-pointer py-3">
+                    <NavLink to={"/contact"}>Contact</NavLink>
+                  </li>
+                  <li className="mx-5 ml-5 cursor-pointer py-3">
+                    <div className="flex flex-wrap ">
+                      <NavLink to={"/login"}>
+                        <Button color={"lnav"} name={"login"} />
+                      </NavLink>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="hidden md:flex justify-between  ">
                 <img
                   src={require("./../assests/img/logo.png")}
                   className="h-16 w-16 ml-3"
                   alt=" Logo"
                 />
+                <ul className="flex text-lnav items-center justify-around font-[Satisfy] ">
+                  <li className=" mx-5 cursor-pointer">
+                    <NavLink to={"/"}>Discover</NavLink>
+                  </li>
+                  <li className=" mx-5 cursor-pointer">
+                    <NavLink to={"/about"}>About US</NavLink>
+                  </li>
+                  <li className="mx-5 cursor-pointer">
+                    <NavLink to={"/contact"}>Contact</NavLink>
+                  </li>
+                  <li className="mx-5 ml-5 cursor-pointer">
+                    <div className="flex flex-wrap ">
+                      <NavLink to={"/login"}>
+                        <Button color={"lnav"} name={"login"} />
+                      </NavLink>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <ul className="flex text-lnav items-center justify-around font-[Satisfy]">
-                <li className=" mx-5 cursor-pointer">
-                  <NavLink to={"/"}>Discover</NavLink>
-                </li>
-                <li className=" mx-5 cursor-pointer">
-                  <NavLink to={"/about"}>About US</NavLink>
-                </li>
-                <li className="mx-5 cursor-pointer">
-                  <NavLink to={"/contact"}>Contact</NavLink>
-                </li>
-                <li className="mx-5 ml-5 cursor-pointer">
-                  <div className="flex flex-wrap ">
-                    <NavLink to={"/login"}>
-                      <Button color={"lnav"} name={"login"} />
-                    </NavLink>
-                  </div>
-                </li>
-              </ul>
             </>
           )}
         </div>
