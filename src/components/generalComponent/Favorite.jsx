@@ -10,13 +10,28 @@ import Swal from "sweetalert2";
 import { getFavorite, getFavoritePostsId } from "../../Reducers/UserReducer";
 
 export const Favorite = ({post,setUpdate,update}) => {
-    const { favoritePostsId } = useSelector((state) => state.UserData);
+    const { favoritePostsId ,favoritePostsData} = useSelector((state) => state.UserData);
     const auth = useAuthUser();
     const isAuthenticated = useIsAuthenticated();
-
+const [favUpdate,setFavUpdate]=useState(true)
     const dispatch = useDispatch();
+
+      const favConfig = {
+            method: "get",
+            url: "http://localhost:8000/api/getFavorite",
+            headers: {
+              Accept: "application/vnd.api+json",
+              "Content-Type": "application/vnd.api+json",
+              Authorization: `Bearer ${auth().token}`,
+            },
+          };
     useEffect(()=>{
+     
         dispatch(getFavoritePostsId())
+     } ,[favoritePostsData])
+  
+    useEffect(()=>{
+   dispatch(getFavorite(favConfig))
      } ,[update])
   
     const HandelAddToFavorite = (id) => {
@@ -49,20 +64,9 @@ export const Favorite = ({post,setUpdate,update}) => {
             color: "black",
             title: res.data,
           });
-         
-          const config = {
-            method: "get",
-            url: "http://localhost:8000/api/getFavorite",
-            headers: {
-              Accept: "application/vnd.api+json",
-              "Content-Type": "application/vnd.api+json",
-              Authorization: `Bearer ${auth().token}`,
-            },
-          };
-        
-          dispatch(getFavorite(config));
-          dispatch(getFavoritePostsId()) 
+   
            setUpdate(!update)
+ 
            
         })
         .catch(function (error) {
@@ -82,22 +86,9 @@ export const Favorite = ({post,setUpdate,update}) => {
       };
       axios(config)
         .then(function (res) {
-         
   
-          const config = {
-            method: "get",
-            url: "http://localhost:8000/api/getFavorite",
-            headers: {
-              Accept: "application/vnd.api+json",
-              "Content-Type": "application/vnd.api+json",
-              Authorization: `Bearer ${auth().token}`,
-            },
-          };
-  
-          dispatch(getFavorite(config));
-          dispatch(getFavoritePostsId())
           setUpdate(!update)
-     
+    
 
         })
         .catch(function (error) {

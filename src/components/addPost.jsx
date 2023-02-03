@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useAuthUser } from "react-auth-kit";
+import { RiImageEditFill } from "react-icons/ri";
 
 
 import { useDispatch, useSelector } from "react-redux";
@@ -12,13 +13,13 @@ import { getPosts, setUpdate } from "../Reducers/PostReducer";
 
 function AddPost({isEdit,post }) {
   const auth = useAuthUser();
-
+const[flag,setFlag]=useState(false);
   // const {post} = useSelector((state) => state.ModalReducer);
 console.log(post);
   const [newPost, setNewPost] = useState({
     content: isEdit? post.post_content: "",
     title: isEdit ? post.title: "",
-    image: "",
+    image:isEdit? post.images[0].image: "",
   });
   const dispatch = useDispatch();
 
@@ -75,7 +76,7 @@ console.log(post);
   return (
     <>
     
-      <div className="flex flex-wrap lg:flex-nowrap md:flex-nowrap bg-white justify-center items-center  dark:bg-[#18191c] ">
+      <div className="flex  flex-wrap lg:flex-nowrap md:flex-nowrap bg-white justify-center items-center  dark:bg-[#18191c] ">
         { newPost.image=="" ?   (
         <div className="flex justify-center items-center mr-16 pm720:mr-0 pm720:p-0 border-2 p-6 border-gray-400 text-center w-[50%] pm720:w-auto  pm720:h-auto h-full  ">
           <label
@@ -114,21 +115,71 @@ console.log(post);
         // value={post.image}
               onChange={(e) => {
                 setNewPost((pervs) => ({ ...pervs, image: e.target.files[0] }));
-              }}
+              
+             }}
+
             />
           </label>
         </div>
     ) :
     // console.log(newPost.image)
-       (        <img
+       (     <>   <img
        
-           className="flex justify-center items-center mr-16 pm720:mr-0 cover:w-[150px] cover:h-[150px] rounded-lg pm720:p-0 border-2 p-6 border-gray-400 text-center w-[50%] h-[25rem]  "
+           className=" flex justify-center items-center mr-16 pm720:mr-0 cover:w-[150px] cover:h-[150px] rounded-lg pm720:p-0 border-2 p-6 border-gray-400 text-center w-[50%] h-[25rem]  "
 
-                src={ URL.createObjectURL(newPost.image)
+                src={(isEdit && !flag) ?`data:image/jpeg;base64,${newPost.image}` : URL.createObjectURL(newPost.image)
             
                 }
                 alt="Rounded avatar"
-              />)
+              />
+
+
+
+
+
+  <label
+                        for="dropzone-file5"
+                        className="    shadow-xl rounded-full   align-middle border-none absolute  bottom-1  pm600:top-0 pm600:w-[75px] pm600:h-[75px]
+                        bg-gray-600 opacity-60  w-[75px] h-[75px] max-w-[75px]
+                        " 
+                      >
+                    {<RiImageEditFill className=" absolute w-[40px] h-[40px]   top-4 pm600:w-20 pm600:h-10 pm600:right-[-2px]" color="#fff" />}
+                 </label>
+                      <input
+                        id="dropzone-file5"
+                        type="file"
+                        class="hidden"
+                      onChange={(e) => {
+                setNewPost((pervs) => ({ ...pervs, image: e.target.files[0] } ));
+             
+              isEdit?setFlag(true):setFlag(false) }
+            
+            }
+                      />
+</>
+       )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        }
         <div className=" relative  flex  flex-col w-[24rem] pm720:w-full cover:pl-5 ">
           <div className="relative z-0 flex flex-col m-5 mb-6 group ">
@@ -216,7 +267,7 @@ console.log(post);
                     text-center text-gray-700 hover:bg-pcol   hover:text-white
                     focus:outline-none focus:ring-2 focus:ring-offset-2  leading-[2.5rem]
                      focus:ring-black font-[Satisfy] text-xl "
-                onClick={()=>{isEdit? handleEdit(post,isEdit,dispatch,`Bearer ${auth().token}`): handleAddNewPost()}}
+                onClick={()=>{isEdit? handleEdit(newPost,post.post_id,dispatch,`Bearer ${auth().token}`,flag): handleAddNewPost()}}
               >
                 Save
               </button>
