@@ -4,47 +4,42 @@ import axios from "axios";
 
 const searchURL = "http://localhost:8000/api/search";
 
-
-
 export const getSearchData = createAsyncThunk(
   "search/getSearchData",
   async () => {
-   const response = await axios.get(searchURL);
-   return response.data;
-
+    const response = await axios.get(searchURL);
+    return response.data;
   }
 );
 
-
 const initialState = {
   allSearchData: [],
-userSearchData:[],
-postSearchData:[],
-search:"",
+  userSearchData: [],
+  postSearchData: [],
+  search: "",
 };
 
 export const SearchReducer = createSlice({
   name: "SearchData",
   initialState,
   reducers: {
-    getUserSearchData: (state, action) => {  
+    getUserSearchData: (state, action) => {
       state.userSearchData = state.allSearchData?.users?.filter((ele) => {
         return ele.full_name.includes(action.payload);
       });
     },
     getPostSearchData: (state, action) => {
       state.postSearchData = state.allSearchData?.posts?.filter((ele) => {
-    
-        return ele.title.includes(action.payload)||ele.post_owner.includes(action.payload)||ele.post_content
-.includes(action.payload)
+        return (
+          ele.title.includes(action.payload) ||
+          ele.post_owner.name.includes(action.payload) ||
+          ele.post_content.includes(action.payload)
+        );
       });
     },
     setSearch: (state, action) => {
-      state.search = action.payload
-    
-
+      state.search = action.payload;
     },
- 
   },
   extraReducers: (builder) => {
     builder.addCase(getSearchData.pending, (state) => {
@@ -59,13 +54,10 @@ export const SearchReducer = createSlice({
     builder.addCase(getSearchData.rejected, (state) => {
       state.status = "Rejected";
     });
-
-
-   
   },
 });
 
-
-export const { getPostSearchData ,getUserSearchData,setSearch } = SearchReducer.actions;
+export const { getPostSearchData, getUserSearchData, setSearch } =
+  SearchReducer.actions;
 
 export default SearchReducer.reducer;

@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 
-function HomeGallery({data,profile}) {
-const profileData=[...data].reverse()
+function HomeGallery({ data, profile }) {
+  const profileData = [...data].reverse();
   const [items, setItems] = useState([]);
 
   const { update } = useSelector((state) => state.PostsData);
@@ -13,8 +13,7 @@ const profileData=[...data].reverse()
 
   useEffect(() => {
     fetchData(page);
-  
-  }, [page,update]);
+  }, [page, update]);
 
   const fetchData = (page) => {
     const newItems = [];
@@ -36,15 +35,28 @@ const profileData=[...data].reverse()
     const scrollHeight = document.documentElement.scrollHeight;
     const clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight) {
-      setPage((prev)=> prev + 4);
+      setPage((prev) => prev + 4);
     }
   };
   useEffect(() => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [items,update]);
+  }, [items, update]);
 
-  if (items.length == 0 && data.length == 0) return "loading";
+  if (items.length == 0 && data.length == 0)
+    return (
+      <>
+        <h3 className="mb-16 card:mt-16">
+          Expand your network and stay informed by following others.
+          <Link
+            to={"/"}
+            className="text-lg ml-2 font-bold text-lnav font-[Satisfy]"
+          >
+            <span>Follow now</span>
+          </Link>
+        </h3>
+      </>
+    );
 
   return (
     <>
@@ -58,7 +70,7 @@ const profileData=[...data].reverse()
           {page <= data.length ? (
             <Link
               className="font-normal text-lnav shadow-lg hover:text-pcol p-2"
-              onClick={() => setPage((prev)=>prev + 4)}
+              onClick={() => setPage((prev) => prev + 4)}
             >
               Show more
             </Link>
@@ -73,9 +85,8 @@ const profileData=[...data].reverse()
         </>
       ) : (
         // <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 cover:gap-3  cover:grid-cols-2 cover:m-1 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 cover:gap-4  cover:grid-cols-1 cover:m-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  pmi1400:grid-cols-5">
-
-        {data.map((cardinfo) => (
+        <div className="m-5 grid grid-flow-row gap-8 text-neutral-600 cover:gap-4  cover:grid-cols-1 cover:m-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  pmi1400:grid-cols-5">
+          {data.map((cardinfo) => (
             <Card key={cardinfo.id} cards={cardinfo} />
           ))}
         </div>

@@ -2,9 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 const allPosts = "http://localhost:8000/api/allPosts";
-
 
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
   const response = await axios.get(allPosts);
@@ -40,6 +38,7 @@ const initialState = {
   favoritePosts: [],
   status: "",
   update: false,
+  isEdit: false,
   updateImage: false,
 };
 
@@ -60,9 +59,11 @@ export const postReducer = createSlice({
     },
     setUpdate: (state) => {
       state.update = !state.update;
-    },  
+    },
+    setIsEdit: (state) => {
+      state.isEdit = true;
+    },
     setUpdateImage: (state) => {
-   
       state.updateImage = !state.updateImage;
     },
   },
@@ -100,8 +101,12 @@ export const postReducer = createSlice({
   },
 });
 
-
-export const { getSinglePost, getFavoritePosts, setUpdate,setUpdateImage } =
-  postReducer.actions;
+export const {
+  getSinglePost,
+  getFavoritePosts,
+  setUpdate,
+  setUpdateImage,
+  setIsEdit,
+} = postReducer.actions;
 
 export default postReducer.reducer;

@@ -17,6 +17,9 @@ import {
   getSearchData,
   setSearch,
 } from "../Reducers/SearchReducer";
+import { GoogleLogout } from "react-google-login";
+import { CLIENT_ID } from "../constant/googleLoginConstant";
+import Logout from "../actions/googleLogout";
 
 export default function Header() {
   const signOut = useSignOut();
@@ -30,8 +33,11 @@ export default function Header() {
   const { userSearchData, postSearchData, search, allSearchData } = useSelector(
     (state) => state.SearchData
   );
+
   const { isOpen } = useSelector((state) => state.ModalReducer);
-  const { profileData, update } = useSelector((state) => state.PostsData);
+  const { profileData, update, isEdit } = useSelector(
+    (state) => state.PostsData
+  );
   const [searchParam, setSearchParam] = useSearchParams();
   const dispatch = useDispatch();
   const isAuthenticated = useIsAuthenticated();
@@ -83,7 +89,7 @@ export default function Header() {
   const filteredOptionsPosts = allSearchData?.posts?.filter(
     (option) =>
       option.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      option.post_owner.includes(searchTerm) ||
+      option.post_owner.name.includes(searchTerm) ||
       option.post_content.includes(searchTerm)
   );
 
@@ -255,7 +261,7 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="flex text-lnav items-center">
+          <div className="flex text-lnav items-center w-[250px] justify-around rounded-2xl">
             <Link to={"/"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -309,8 +315,12 @@ export default function Header() {
               <Link to={"/profile"}>
                 <Avatar
                   img={
-                    profileData.profile_Img != null
+                    profileData.profile_Img != null &&
+                    (!auth().google || profileData.profile_Img.split(":"))[0] !=
+                      "https"
                       ? `data:image/jpeg;base64,${profileData.profile_Img}`
+                      : auth().google
+                      ? profileData.profile_Img
                       : profileData.gender == "Female"
                       ? "https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666545148?k=6&m=666545148&s=170667a&w=0&h=ycJvJHz6ZMWsErum0XpjVabgZsP8dib2feSIJ5dIWYk="
                       : "https://th.bing.com/th/id/OIP.P07J6hJbgyuIm-DlaSAlLQAAAA?pid=ImgDet&rs=1"
@@ -327,7 +337,9 @@ export default function Header() {
                 navigate("/landing");
               }}
             >
-              <MdOutlineLogout className="h-6 w-6 mx-2 cursor-pointer" />
+              <Logout>
+                {/* <MdOutlineLogout className="h-6 w-6 mx-2 cursor-pointer" /> */}
+              </Logout>
             </div>
           </div>
         </div>

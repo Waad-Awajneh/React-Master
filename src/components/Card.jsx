@@ -99,7 +99,7 @@ function Card(cards) {
   return (
     <>
       <div className="   my-5 bg-white dark:bg-[#18191c] shadow-xl h-fit sm:auto hover:shadow duration-200 rounded-xl">
-        <div className="relative w-full h-72  card:pm600:h-[42rem] xss:cover:h-[29rem] xsm:h-[25rem] pmi600:pm720:h-[33rem] pmi1400:h-[26rem] rounded-xl">
+        <div className="relative w-full h-72  card:pm600:h-[26rem] xss:cover:h-[29rem] xsm:h-[25rem] pmi600:pm720:h-[28rem] pmi1400:h-[26rem] rounded-xl">
           <Link to={`/SinglePost/${cardInfo.post_id}`}>
             {cardInfo.images.length != 0 ? (
               <img
@@ -149,34 +149,39 @@ function Card(cards) {
             </Link>
           </div>
         </div>
-
-        <div className="p-4 flex flex-wrap items-center">
-          <img
-            className="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-            src={
-              cardInfo.post_owner.profile_image != null
-                ? `data:image/jpeg;base64,${cardInfo.post_owner.profile_image}`
-                : cardInfo.post_owner.gender == "Female"
-                ? "https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666545148?k=6&m=666545148&s=170667a&w=0&h=ycJvJHz6ZMWsErum0XpjVabgZsP8dib2feSIJ5dIWYk="
-                : "https://th.bing.com/th/id/OIP.P07J6hJbgyuIm-DlaSAlLQAAAA?pid=ImgDet&rs=1"
-            }
-            alt=""
-          />
-          {isAuthenticated() &&
-          cardInfo.post_owner.id == auth().user.user_id ? (
-            <Link to={`/profile`}>
-              <h5 className="text-primary dark:text-white font-medium text-l">
-                {cardInfo.post_owner.name}
-              </h5>
-            </Link>
-          ) : (
-            <Link to={`/profile/${cardInfo.post_owner.id}`}>
-              <h5 className="text-primary dark:text-white font-medium text-l">
-                {cardInfo.post_owner.name}
-              </h5>
-            </Link>
-          )}
-
+        {console.log(cardInfo)}
+        <div className="p-4 flex flex-wrap items-center h-fit min-h-[130px] ">
+          <div className="flex flex-nowrap">
+            <img
+              className="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+              src={
+                cardInfo.post_owner.profile_image != null &&
+                (!auth().google ||
+                  cardInfo.post_owner.profile_image.split(":"))[0] != "https"
+                  ? `data:image/jpeg;base64,${cardInfo.post_owner.profile_image}`
+                  : auth().google
+                  ? cardInfo.post_owner.profile_image
+                  : cardInfo.post_owner.gender == "Female"
+                  ? "https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666545148?k=6&m=666545148&s=170667a&w=0&h=ycJvJHz6ZMWsErum0XpjVabgZsP8dib2feSIJ5dIWYk="
+                  : "https://th.bing.com/th/id/OIP.P07J6hJbgyuIm-DlaSAlLQAAAA?pid=ImgDet&rs=1"
+              }
+              alt=""
+            />
+            {isAuthenticated() &&
+            cardInfo.post_owner.id == auth().user.user_id ? (
+              <Link to={`/profile`}>
+                <h5 className="text-primary dark:text-white font-medium text-l">
+                  {cardInfo.post_owner.name}
+                </h5>
+              </Link>
+            ) : (
+              <Link to={`/profile/${cardInfo.post_owner.id}`}>
+                <h5 className="text-primary dark:text-white font-medium text-l">
+                  {cardInfo.post_owner.name}
+                </h5>
+              </Link>
+            )}
+          </div>
           <small className=" p-2 text-left text-xs block w-full font-light text-primary dark:text-gray-400">
             {cardInfo.title.length < 30 ? (
               cardInfo.title

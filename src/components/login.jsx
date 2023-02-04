@@ -14,6 +14,7 @@ import { useSignIn } from "react-auth-kit";
 
 // ES6 Modules or TypeScript
 import Swal from "sweetalert2";
+import LoginG from "../actions/googleLogin";
 
 function Login() {
   const signIn = useSignIn();
@@ -50,6 +51,7 @@ function Login() {
               user: response.data.data.user,
               token: response.data.data.access_token,
               role: response.data.data.user.role,
+              google: false,
             },
           })
         ) {
@@ -108,14 +110,7 @@ function Login() {
                         <BsGoogle className="w-5 mr-1" />
                         Google
                       </button>
-                      <button
-                        className="bg-white active:bg-gray-100 text-gray-800  px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
-                        type="button"
-                        style={{ transition: "all .15s ease" }}
-                      >
-                        <FaFacebookSquare className="w-5 mr-1" />
-                        FaceBook
-                      </button>
+                      <LoginG />
                     </div>
                     <hr className="mt-6 border-b-1 border-gray-400" />
                   </div>
@@ -153,15 +148,6 @@ function Login() {
                       </div>
                     </form>
                     <div className="flex flex-wrap mt-6">
-                      <div className="w-1/2">
-                        <a
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                          className="text-gray-800 hover:shadow-lg"
-                        >
-                          <small>Forgot password?</small>
-                        </a>
-                      </div>
                       <div className="w-1/2 text-right">
                         <Link
                           to="/signup"
