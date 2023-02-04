@@ -294,14 +294,14 @@ export default function Profile() {
                       {/* <Button isClick={true} page={"profile"} name={"Connect"} /> */}
                       <button
                         type="button"
-                        className=" text-white bg-lnav w-[11rem] h-[3.5rem]  font-[500] hover:bg-lb focus:outline-none focus:ring-4 focus:ring-pcol rounded-full text-sm px-2 py-2.5 text-center mr-2 m-4 dark:bg-pcol dark:hover:bg-blue-700 dark:focus:ring-pcol"
+                        className=" text-white bg-lnav w-[11rem] h-[3.5rem]  font-[600] hover:bg-lb focus:outline-none focus:ring-4 focus:ring-pcol rounded-full text-xl px-2 py-2.5 text-center mr-2 m-4 dark:bg-pcol dark:hover:bg-blue-700 dark:focus:ring-pcol"
                         onClick={() => dispatch(handelOpenFormModel())}
                       >
                         Connect
                       </button>
                       <button
                         type="button"
-                        className="text-white bg-lnav  w-[11rem] h-[3.5rem]  font-[500] hover:bg-lb focus:outline-none focus:ring-4 focus:ring-pcol  rounded-full text-sm px-2 py-2.5 text-center mr-2 m-4 dark:bg-pcol dark:hover:bg-blue-700 dark:focus:ring-pcol"
+                        className="text-white bg-lnav  w-[11rem] h-[3.5rem]  font-[600] hover:bg-lb focus:outline-none focus:ring-4 focus:ring-pcol  rounded-full text-xl px-2 py-2.5 text-center mr-2 m-4 dark:bg-pcol dark:hover:bg-blue-700 dark:focus:ring-pcol"
                         onClick={() => dispatch(handelOpenPriceModel())}
                       >
                         Edit information{" "}

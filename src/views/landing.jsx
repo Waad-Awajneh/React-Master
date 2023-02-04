@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   ScrollToTopOnMount,
@@ -14,7 +13,6 @@ import SectionOne from "../components/landingComponent/SectionOne";
 import SectionTwo from "../components/landingComponent/SectionTwo";
 import SectionThree from "../components/landingComponent/SectionThree";
 import SectionFour from "../components/landingComponent/SectionFour";
-
 
 function Landing() {
   let options = {
@@ -36,10 +34,9 @@ function Landing() {
         <Section>{<SectionOne />}</Section>
         <Section>{<SectionTwo />}</Section>
         <Section>{<SectionThree />}</Section>
-        <Section>{<SectionFour />}</Section>   
-   
+        <Section>{<SectionFour />}</Section>
       </SectionsContainer>
-        {<FooterComponent />}
+      <Footer>{<FooterComponent />}</Footer>
     </>
   );
 }

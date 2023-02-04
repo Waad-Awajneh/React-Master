@@ -87,7 +87,7 @@ function Login() {
             className="absolute top-0 w-full h-full bg-gray-900"
             style={{
               backgroundImage: "url(" + require("./../assests/img/1.jpg") + ")",
-              backgroundSize: "100%",
+              backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
             }}
           ></div>
@@ -102,14 +102,14 @@ function Login() {
                       </h6>
                     </div>
                     <div className="btn-wrapper text-center">
-                      <button
+                      {/* <button
                         className="bg-white active:bg-gray-100 text-gray-800  px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
                         type="button"
                         style={{ transition: "all .15s ease" }}
                       >
                         <BsGoogle className="w-5 mr-1" />
                         Google
-                      </button>
+                      </button> */}
                       <LoginG />
                     </div>
                     <hr className="mt-6 border-b-1 border-gray-400" />
@@ -123,7 +123,7 @@ function Login() {
                         placeholder={"Email "}
                         type={"email"}
                         icon={"AiTwotoneMail"}
-                        validName={validEmail}
+                        validName={"none"}
                         name="email"
                         onChange={onChange}
                       />
@@ -131,12 +131,12 @@ function Login() {
                         placeholder={"Password "}
                         type={"password"}
                         icon={"RiLockPasswordFill"}
-                        validName={validPwd}
+                        validName={"none"}
                         name="password"
                         onChange={onChange}
                       />
 
-                      <Checkbox data="Remember me" />
+                      {/* <Checkbox data="Remember me" /> */}
                       <div className="text-center mt-6">
                         <button
                           className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"

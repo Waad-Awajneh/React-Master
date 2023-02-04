@@ -15,12 +15,12 @@ function Logout() {
 
   return (
     <GoogleLogout
-      className=" bg-transparent outline-none border-0 relative"
+      className=" bg-transparent outline-none border-0 relative w-8 text-center"
       clientId={CLIENT_ID}
       onLogoutSuccess={onSuccess}
       icon={false}
     >
-      <MdOutlineLogout className="h-6 w-6 mx-2 cursor-pointer " />
+      <MdOutlineLogout className="h-10 ml-1 w-6 cursor-pointer text-lnav " />
     </GoogleLogout>
   );
 }

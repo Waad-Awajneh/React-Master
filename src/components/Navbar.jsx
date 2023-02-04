@@ -131,8 +131,11 @@ export default function Navbar(props) {
                 <ul
                   className={`${
                     brgier ? "flex" : "hidden"
-                  } absolute w-full z-10 top-16  text-white items-center flex-col bg-lb  font-[Satisfy] `}
+                  } absolute w-full z-10 top-16  text-white items-center flex-col bg-lb  font-[Satisfy] font-[700] text-lg `}
                 >
+                  <li className=" mx-5 cursor-pointer">
+                    <NavLink to={"/landing"}>Home</NavLink>
+                  </li>
                   <li className=" mx-5 cursor-pointer py-3 ">
                     <NavLink to={"/"}>Discover</NavLink>
                   </li>
@@ -158,7 +161,10 @@ export default function Navbar(props) {
                   className="h-16 w-16 ml-3"
                   alt=" Logo"
                 />
-                <ul className="flex text-lnav items-center justify-around font-[Satisfy] ">
+                <ul className="flex text-lnav items-center justify-around font-[Satisfy] font-[700] text-lg  ">
+                  <li className=" mx-5 cursor-pointer">
+                    <NavLink to={"/landing"}>Home</NavLink>
+                  </li>
                   <li className=" mx-5 cursor-pointer">
                     <NavLink to={"/"}>Discover</NavLink>
                   </li>

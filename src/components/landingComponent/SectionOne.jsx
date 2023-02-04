@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 
-
 const SectionOne = () => {
   return (
     <div
       className="w-full h-full mb-10 pb-10 px-6 xl:px-0 "
       style={{
-        backgroundImage:
-          "url('https://img.freepik.com/premium-photo/concept-wedding-accessories-with-wedding-rings-white-background_185193-71419.jpg?w=2000')",
+        backgroundImage: `url(${require("./../../assests/img/10.jpg")})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
     >
       <div className="max-w-5xl mx-auto sm:max-w-xl md:max-w-2xl">
         <div className="text-center">
-          <div className="flex -w-xl  pt-80 mb-5 md:mx-auto sm:text-center lg:max-w-xl md:mb-7">
+          <div className="flex -w-xl  pt-80 mb-5 md:mx-auto sm:text-center md:mb-7 bg-[#ffffff80]">
             <span className="relative inline-block left-16">
               <img
                 alt="..."
@@ -23,13 +23,13 @@ const SectionOne = () => {
             </span>
             <span className=" w-xl my-10 font-serif text-5xl font-bold leading-none tracking-tight text-pcol sm:text-4xl md:mx-auto">
               <h2>WED</h2>
-              <p className=" text-2xl text-pcol ml-5 mb-5 ">
+              <p className=" text-4xl text-pcol ml-5 mb-5 ">
                 Wedding Planner Hub
               </p>
             </span>
           </div>
 
-          <Link
+          {/* <Link
             to="/landing#sectionTwo"
             aria-label="Scroll down"
             className="flex flex-warp items-center justify-center w-14 h-14 flex-col mx-auto text-lnav duration-300 transform border border-lnav rounded-full hover:text-deep-purple-accent-400 hover:border-deep-purple-accent-400 hover:shadow hover:scale-110"
@@ -46,7 +46,7 @@ const SectionOne = () => {
             >
               <path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" />
             </svg>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

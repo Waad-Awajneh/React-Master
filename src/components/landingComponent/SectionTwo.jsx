@@ -1,68 +1,43 @@
-
+import { Button } from "flowbite-react";
 import { BsPerson } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const SectionTwo = () => {
   return (
     <>
-      <div>
-        <section>
-          <div className="w-full relative pb-10 px-6 xl:px-0">
-    
-
-            <div className="pt-32 lg:flex items-center relative z-10 container lg:mx-auto">
-              <div className="w-full lg:w-1/2  lg:pr-10 xl:pr-0 ">
-                <img
-                  tabIndex="0"
-                  role="img"
-                  aria-label="people smiling"
-                  className="mx-auto rounded-lg h-auto"
-                  src={require("./../../assests/img/12.jpg")}
-                  alt="people smiling"
-                />
-              </div>
-              <div role="contentinfo" className="w-full lg:w-1/2 h-full">
-                <p> </p>
-                <h1
-                  tabIndex="0"
-                  className="text-lnav text-4xl lg:text-6xl font-black mb-8"
+      <div className="xl:flex xl:justify-end pt-10 w-full   font-[Satisfy]">
+        <div className="container lg:mx-auto w-[80%] ">
+          <div className="block xl:flex justify-between xl:items-center lg:items-center md:flex">
+            <div className="  text-center items-center mr-6 justify-center flex flex-col">
+              <h1 className="text-xl lg:text-2xl xl:text-3xl font-bold text-lnav text-center lg:text-left">
+                Let's find your wedding team
+              </h1>
+              <Link to="/signUp">
+                <button
+                  type="button"
+                  className="text-white bg-lnav  w-[9rem] h-[3.5rem] 
+                     font-[500] hover:bg-lb focus:outline-none focus:ring-4 focus:ring-pcol 
+                      rounded-full text-xl px-2 py-2.5 text-center mr-2 m-4  
+                      "
                 >
-                  Let's find your wedding team
-                </h1>
-                <p tabIndex="0" className="text-pcol font-regular mb-8">
-                  Search over 250,000 professionals with reviews, pricing,
-                  availability, and more
-                </p>
-                <div className="bg-white lg:mt-16 py-4 px-4 flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center shadow-lg rounded-lg">
-                  <div className="sm:flex items-center py-2">
-                    <div className="flex items-center">
-                      <BsPerson />
-                      <input
-                        aria-label="Wedding Planner name"
-                        className=" w-96  text-gray-800 ml-2.5 placeholder-lnav"
-                        placeholder="Wedding Planner Name"
-                      />
-                    </div>
-                  </div>
-                  <button
-                    role="button"
-                    aria-label="search"
-                    className="focus:bg-lnav focus:ring-pcol focus:ring-2 focus:ring-offset-2 text-white bg-lnav hover:bg-pcol mt-4 sm:mt-0 p-3 lg:-ml-8 rounded w-full sm:w-auto relative"
-                  >
-                    <img
-                      className="absolute right-0 mr-2 sm:mr-auto sm:relative icon icon-tabler icon-tabler-search cursor-pointer"
-                      src="https://tuk-cdn.s3.amazonaws.com/can-uploader/right_aligned_with_searchbar_Svg7.svg"
-                      alt="search"
-                    />
-                    <input
-                      aria-label="search"
-                      className="sm:hidden w-full bg-transparent pr-6"
-                    />
-                  </button>
-                </div>
-              </div>
+                  Sign Up
+                </button>
+              </Link>
+            </div>
+            <div className="w-11/12 xl:w-4/12 mx-5 mt-8 xl:mt-0 flex justify-end md:w-5/12  bg-lb relative py-20">
+              {/* <div className="h-4/5 w-4/5 mx-3"> */}
+              <img
+                tabIndex="0"
+                role="img"
+                aria-label="people smiling"
+                className="mx-auto  w-full overflow-hidden object-cover relative z-10 xl:-ml-56 lg:-ml-32 sm:-ml-20 -ml-12 md:-ml-20 rounded"
+                src={require("./../../assests/img/12.jpg")}
+                alt="people smiling"
+              />
+              {/* </div> */}
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </>
   );

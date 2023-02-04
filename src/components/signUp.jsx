@@ -16,6 +16,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { MdFace } from "react-icons/md";
 import { SignUpPostConfig } from "../api/axios";
 import { useSignIn } from "react-auth-kit";
+import LoginG from "../actions/googleLogin";
+import Swal from "sweetalert2";
 
 function SignUp() {
   const signIn = useSignIn();
@@ -66,17 +68,63 @@ function SignUp() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validName) {
+      Swal.fire({
+        title: "Invalid name must be more than 4 characters long",
+        text: "Try again, please ",
+        icon: "error",
+        width: 500,
+        showConfirmButton: true,
+        confirmButtonColor: "black",
 
+        showCloseButton: true,
+        closeButtonAriaLabel: "Close",
+      });
+      return;
+    }
     if (!validEmail || !validPwd) {
-      setErrMsg("Invalid email or password ");
+      setErrMsg();
+      Swal.fire({
+        title: "Invalid email or password ",
+        text: "Try again, please ",
+        icon: "error",
+        width: 500,
+        showConfirmButton: true,
+        confirmButtonColor: "black",
+
+        showCloseButton: true,
+        closeButtonAriaLabel: "Close",
+      });
       return;
     }
     if (!validPhone) {
       setErrMsg("Invalid Phone number");
+      Swal.fire({
+        title: "Invalid Phone number",
+        text: "Try again, please ",
+        icon: "error",
+        width: 500,
+        showConfirmButton: true,
+        confirmButtonColor: "black",
+
+        showCloseButton: true,
+        closeButtonAriaLabel: "Close",
+      });
       return;
     }
     if (!validMatch) {
       setErrMsg("Unmatched password");
+      Swal.fire({
+        title: "Unmatched password",
+        text: "Try again, please ",
+        icon: "error",
+        width: 500,
+        showConfirmButton: true,
+        confirmButtonColor: "black",
+
+        showCloseButton: true,
+        closeButtonAriaLabel: "Close",
+      });
       return;
     }
 
@@ -98,10 +146,20 @@ function SignUp() {
           setSuccess(true);
           return Navigate("/");
         }
-        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
+        Swal.fire({
+          title: error.response.data.message,
+          text: "Try again, please ",
+          icon: "error",
+          width: 500,
+          showConfirmButton: true,
+          confirmButtonColor: "black",
+
+          showCloseButton: true,
+          closeButtonAriaLabel: "Close",
+        });
       });
   };
 
@@ -132,14 +190,15 @@ function SignUp() {
                       </h6>
                     </div>
                     <div className="btn-wrapper text-center">
-                      <button
+                      {/* <button
                         className="bg-white active:bg-gray-100 text-gray-800  px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
                         type="button"
                         style={{ transition: "all .15s ease" }}
                       >
                         <BsGoogle className="w-5 mr-1" />
                         Google
-                      </button>
+                      </button> */}
+                      <LoginG />
                     </div>
                     <hr className="mt-6 border-b-1 border-gray-400" />
                   </div>
@@ -211,10 +270,10 @@ function SignUp() {
                         name="password_confirmation"
                         onChange={onChange}
                       />
-                      <Checkbox
+                      {/* <Checkbox
                         data="I agree to the terms and conditions.
 "
-                      />
+                      /> */}
                       <div className="text-center mt-6">
                         <button
                           className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
@@ -232,12 +291,12 @@ function SignUp() {
                     </form>
                     <div className="flex flex-wrap mt-6">
                       <div className="w-1/2">
-                        <Link
+                        {/* <Link
                           href="#pablo"
                           className="text-gray-800 hover:shadow-lg"
                         >
                           <small>Forgot password?</small>
-                        </Link>
+                        </Link> */}
                       </div>
                       <div className="w-1/2 text-right">
                         <Link

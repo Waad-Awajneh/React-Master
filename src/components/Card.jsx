@@ -5,7 +5,7 @@ import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
 import { BsHeartFill } from "react-icons/bs";
 import { RiMessage3Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getFavorite } from "../Reducers/UserReducer";
 
@@ -20,7 +20,7 @@ function Card(cards) {
   const { favoritePostsId } = useSelector((state) => state.UserData);
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const HandelAddToFavorite = (id) => {
     const config = {
       method: "post",
@@ -126,9 +126,11 @@ function Card(cards) {
                 "p-1.5 rounded-lg  flex items-center justify-center w-fit duration-200 group   "
               }
               onClick={() => {
-                favoritePostsId.includes(cardInfo.post_id)
-                  ? HandelRemoveFromFavorite(cardInfo.post_id)
-                  : HandelAddToFavorite(cardInfo.post_id);
+                if (isAuthenticated()) {
+                  favoritePostsId.includes(cardInfo.post_id)
+                    ? HandelRemoveFromFavorite(cardInfo.post_id)
+                    : HandelAddToFavorite(cardInfo.post_id);
+                } else navigate("/login");
               }}
             >
               <BsHeartFill
@@ -155,12 +157,19 @@ function Card(cards) {
             <img
               className="p-1 mr-3 w-8 h-8 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
               src={
-                cardInfo.post_owner.profile_image != null &&
-                (!auth().google ||
-                  cardInfo.post_owner.profile_image.split(":"))[0] != "https"
+                isAuthenticated()
+                  ? cardInfo.post_owner.profile_image != null &&
+                    (!auth().google ||
+                      cardInfo.post_owner.profile_image.split(":")[0] !=
+                        "https")
+                    ? `data:image/jpeg;base64,${cardInfo.post_owner.profile_image}`
+                    : auth().google
+                    ? cardInfo.post_owner.profile_image
+                    : cardInfo.post_owner.gender == "Female"
+                    ? "https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666545148?k=6&m=666545148&s=170667a&w=0&h=ycJvJHz6ZMWsErum0XpjVabgZsP8dib2feSIJ5dIWYk="
+                    : "https://th.bing.com/th/id/OIP.P07J6hJbgyuIm-DlaSAlLQAAAA?pid=ImgDet&rs=1"
+                  : cardInfo.post_owner.profile_image != null
                   ? `data:image/jpeg;base64,${cardInfo.post_owner.profile_image}`
-                  : auth().google
-                  ? cardInfo.post_owner.profile_image
                   : cardInfo.post_owner.gender == "Female"
                   ? "https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666545148?k=6&m=666545148&s=170667a&w=0&h=ycJvJHz6ZMWsErum0XpjVabgZsP8dib2feSIJ5dIWYk="
                   : "https://th.bing.com/th/id/OIP.P07J6hJbgyuIm-DlaSAlLQAAAA?pid=ImgDet&rs=1"

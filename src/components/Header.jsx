@@ -27,6 +27,7 @@ export default function Header() {
   const auth = useAuthUser();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
+  const [inputSearch, setInputSearch] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -107,7 +108,7 @@ export default function Header() {
           "top-0  z-50  rounded-sm  bg-white shadow-lg flex flex-wrap items-center justify-between px-2 text-lnav"
         }
       >
-        <div className="h-full w-full max-w-7xl mx-auto flex items-center justify-between ">
+        <div className="h-full w-full   flex items-center justify-between relative ">
           <div>
             <Link to={"/"}>
               <img
@@ -118,9 +119,16 @@ export default function Header() {
             </Link>
           </div>
 
-          <div className="hidden  md:flex items-center flex-wrap">
-            <div className=" rounded-[30px] bg-gray-100  text-sm   h-12 w-[35rem]">
-              <div className="flex items-center px-3 basis-full h-full">
+          <div
+            className={` md:flex items-center flex-wrap  rounded-xl w-[50%]  bg-gray-100  z-10 ${
+              inputSearch
+                ? "absolute top-28 left-[50%] translate-x-[-50%]  translate-y-[-50%] z-10 w-[250px]"
+                : "absolute pmi720:relative pmi720:z-10 -z-10 top-0 pmi720:left-0 left-[50%] pmi720:translate-x-0 translate-x-[-50%] pmi720:translate-y-0 translate-y-[-50%]"
+            }`}
+            style={{ transition: "all 1s " }}
+          >
+            <div className=" rounded-[30px] bg-gray-100  text-sm w-full   h-12  ">
+              <div className="flex items-center px-3 basis-full h-full w-full">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4"
@@ -138,7 +146,7 @@ export default function Header() {
                 <input
                   list="searchList"
                   type="text"
-                  className="block  bg-transparent border-none w-[85%] outline-0 p-2"
+                  className="block  bg-transparent border-none w-full outline-0 p-2"
                   placeholder="Search"
                   value={searchTerm}
                   onChange={handleSearch}
@@ -147,55 +155,7 @@ export default function Header() {
 
               <div>
                 {searchTerm.trim() != "" ? (
-                  // <select
-                  //   id="searchList"
-                  //   type="text"
-                  //   className="relative w-full max-h-36 py-2 px-3   rounded-md bg-blue-gray-500 text-gray-900 placeholder-gray-500 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
-                  //   value={selectedOption}
-                  //   onChange={handleOptionSelect}
-                  // >
-                  //   <optgroup label="People">
-                  //     {filteredOptionsUsers.length != 0 ? (
-                  //       filteredOptionsUsers?.slice(0, 3).map((option) => (
-                  //         <option
-                  //           key={option.user_id}
-                  //           value={option.full_name}
-                  //           className="bg-white cursor-pointer text-gray-800 active:bg-lnav"
-                  //         >
-                  //           {option.full_name}
-                  //         </option>
-                  //       ))
-                  //     ) : (
-                  //       <option
-                  //         value=""
-                  //         className="bg-white cursor-pointer text-gray-800 active:bg-lnav"
-                  //       >
-                  //         No People founded
-                  //       </option>
-                  //     )}
-                  //   </optgroup>
-                  //   <optgroup label="Posts">
-                  //     {filteredOptionsPosts.length != 0 ? (
-                  //       filteredOptionsPosts?.slice(0, 3).map((option) => (
-                  //         <option
-                  //           key={option.post_id}
-                  //           value={option.title}
-                  //           className="bg-white cursor-pointer text-gray-800 active:bg-lnav"
-                  //         >
-                  //           {option.title}
-                  //         </option>
-                  //       ))
-                  //     ) : (
-                  //       <option
-                  //         value=""
-                  //         className="bg-white cursor-pointer text-gray-800 active:bg-lnav"
-                  //       >
-                  //         No posts founded
-                  //       </option>
-                  //     )}
-                  //   </optgroup>
-                  // </select>
-                  <div className="relative w-full z-10 py-2 px-3  rounded-md bg-[#e4dbd0cf] text-gray-900 placeholder-gray-500 border border-gray-300 ">
+                  <div className=" w-full z-30 py-2 px-3  rounded-md bg-[#e4dbd0cf] text-gray-900 placeholder-gray-500 border border-gray-300 ">
                     <div className="">
                       <h6 className="mb-1">People</h6>
                       {filteredOptionsUsers?.length != 0 ? (
@@ -261,7 +221,29 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="flex text-lnav items-center w-[250px] justify-around rounded-2xl">
+          <div className="flex text-lnav items-center  gap-3 ml-3   rounded-2xl">
+            <button
+              className="md:hidden "
+              onClick={(e) => {
+                setInputSearch(!inputSearch);
+                setSearchTerm("");
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </button>
             <Link to={"/"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -316,10 +298,10 @@ export default function Header() {
                 <Avatar
                   img={
                     profileData.profile_Img != null &&
-                    (!auth().google || profileData.profile_Img.split(":"))[0] !=
-                      "https"
+                    ((auth() && !auth().google) ||
+                      profileData.profile_Img.split(":"))[0] != "https"
                       ? `data:image/jpeg;base64,${profileData.profile_Img}`
-                      : auth().google
+                      : auth() && auth().google
                       ? profileData.profile_Img
                       : profileData.gender == "Female"
                       ? "https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666545148?k=6&m=666545148&s=170667a&w=0&h=ycJvJHz6ZMWsErum0XpjVabgZsP8dib2feSIJ5dIWYk="
@@ -331,15 +313,14 @@ export default function Header() {
             </div>
 
             <div
-              className="flex flex-wrap gap-2 "
+              className="flex flex-wrap gap-2  "
               onClick={() => {
                 signOut();
                 navigate("/landing");
               }}
             >
-              <Logout>
-                {/* <MdOutlineLogout className="h-6 w-6 mx-2 cursor-pointer" /> */}
-              </Logout>
+              <Logout />
+              {/* <MdOutlineLogout className="h-6 w-6 mx-2 cursor-pointer" /> */}
             </div>
           </div>
         </div>
