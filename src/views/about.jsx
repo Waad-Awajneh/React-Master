@@ -12,21 +12,14 @@ const About = () => {
             About
           </p>
           <h2 className="xl:w-8/12 lg:w-10/12 w-full font-bold text-pcol lg:text-4xl text-3xl lg:leading-10 leading-9 mt-2">
-            We are here to make great design accessible and delightfull for
-            everyone
+            Who We Are
           </h2>
           <p className="font-normal text-base leading-6 text-gray-600 mt-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            varius hendrerit ipsum, sit amet bibendum dui congue sed. Praesent
-            ac dapibus massa, sit amet lobortis augue. Morbi tincidunt commodo
-            porta. Morbi eu lacus vel leo fringilla dictum. Cras euismod sem
-            maximus tortor finibus ultricies. Maecenas eu nunc vel nisl congue
-            suscipit quis a tortor. Etiam tristique varius urna, vitae viverra
-            tellus consequat ac. Quisque non suscipit enim, sed pellentesque
-            eros. Curabitur efficitur pharetra nisi scelerisque facilisis.
-            Aliquam tempor efficitur quam, sit amet vulputate arcu fermentum
-            vel. Mauris nec magna consectetur, mattis urna non, consequat mi.
-            Mauris ullamcorper placerat erat non egestas.
+            Wed is the largest and most trusted global marketplace connecting
+            engaged couples with local wedding professionals. Millions of
+            couples around the world are able to search, compare and book from a
+            directory of over 500,000 vendors. Wed's portfolio of sites help
+            couples and businesses in different countries.
           </p>
         </div>
 
@@ -50,25 +43,22 @@ const About = () => {
 
         <div className="lg:mt-16 sm:mt-12 mt-16 flex lg:flex-row justify-between flex-col lg:gap-8 gap-12">
           <div className="w-full xl:w-5/12 lg:w-6/12">
-            <h2 className="font-bold lg:text-4xl text-3xl lg:leading-9 leading-7 text-pcol">
-              Our Story
-            </h2>
+            <h2 className="font-bold lg:text-4xl text-3xl lg:leading-9 leading-7 text-pcol"></h2>
             <p className="font-normal text-base leading-6 text-gray-600 mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-              varius hendrerit ipsum, sit amet bibendum dui congue sed. Praesent
-              ac dapibus massa, sit amet lobortis augue. Morbi tincidunt commodo
-              porta. Morbi eu lacus vel leo fringilla dictum. Cras euismod sem
-              maximus tortor finibus ultricies. Maecenas eu nunc vel nisl congue
-              suscipit quis a tortor. Etiam tristique varius urna, vitae viverra
-              tellus consequat ac.
+              <span className="text-lnav font-[Satisfy] font-bold">
+                VENDORS
+              </span>{" "}
+              Get exposure to millions of couples through a premium WeddingWire
+              listing. Our features and benefits will drive leads and bookings
+              to businesses, highlight consumer reviews and more.
             </p>
             <p className="font-normal text-base leading-6 text-gray-600 mt-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-              varius hendrerit ipsum, sit amet bibendum dui congue sed. Praesent
-              ac dapibus massa, sit amet lobortis augue. Morbi tincidunt commodo
-              porta. Morbi eu lacus vel leo fringilla dictum. Cras euismod sem
-              maximus tortor finibus ultricies. Maecenas eu nunc vel nisl congue
-              suscipit quis a tortor.
+              <span className="text-lnav font-[Satisfy] font-bold">
+                ENGAGED COUPLES{" "}
+              </span>
+              Our comprehensive directory of wedding professionals, from venues
+              to photographers, features millions of consumer reviews, detailed
+              pricing and availability information, payments and more.
             </p>
           </div>
           <div className="lg:flex items-center w-full lg:w-1/2 ">

@@ -7,9 +7,12 @@ function SectionFour() {
       <div className="container lg:mx-auto w-[80%]">
         <div className="block xl:flex justify-between xl:items-center lg:items-center md:flex">
           <div className="xl:mx-0 md:w-5/12  text-center items-center justify-center flex flex-col">
-            <h1 className="text-xl lg:text-2xl xl:text-3xl font-bold text-lnav text-center lg:text-left">
-              Sign up to share and find Awesome ideas
+            <h1 className="text-xl lg:text-2xl xl:text-3xl font-medium text-lnav text-center lg:text-left">
+              Connecting couples and vendors around the world
             </h1>
+            <p className="text-xl  font-normal text-gray-700 text-center lg:text-left">
+              Sign up to share and find and share Awesome ideas
+            </p>
 
             <Link to="/signUp">
               <button className="text-white bg-lnav  w-[11rem] h-[3.5rem]  font-[600] hover:bg-lb focus:outline-none focus:ring-4 focus:ring-pcol  rounded-full text-xl px-2 py-2.5 text-center mr-2 m-4 dark:bg-pcol dark:hover:bg-blue-700 dark:focus:ring-pcol">

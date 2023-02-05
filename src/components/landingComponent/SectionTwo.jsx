@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 const SectionTwo = () => {
   return (
     <>
-      <div className="xl:flex xl:justify-end pt-10 w-full   font-[Satisfy]">
-        <div className="container lg:mx-auto w-[80%] ">
-          <div className="block xl:flex justify-between xl:items-center lg:items-center md:flex">
-            <div className="  text-center items-center mr-6 justify-center flex flex-col">
-              <h1 className="text-xl lg:text-2xl xl:text-3xl font-bold text-lnav text-center lg:text-left">
-                Let's find your wedding team
+      <div className="xl:flex pt-10 w-full   font-[Satisfy]">
+        <div className="container  w-[100%] ">
+          <div className="block xl:flex justify-between  w-[100%]  md:flex">
+            <div className=" items-center justify-center flex flex-col">
+              <h1 className="text-lg w-[40%] lg:text-xl xl:text-2xl font-normal text-lnav ">
+                Wedding planning starts here We help couples discover vendors
+                and ideas and provide them with online tools to help them create
+                their ideal wedding day.
               </h1>
               <Link to="/signUp">
                 <button

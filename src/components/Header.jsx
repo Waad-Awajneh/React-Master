@@ -313,7 +313,7 @@ export default function Header() {
             </div>
 
             <div
-              className="flex flex-wrap gap-2  "
+              className="flex flex-wrap  "
               onClick={() => {
                 signOut();
                 navigate("/landing");

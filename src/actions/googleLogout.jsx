@@ -20,7 +20,7 @@ function Logout() {
       onLogoutSuccess={onSuccess}
       icon={false}
     >
-      <MdOutlineLogout className="h-10 ml-1 w-6 cursor-pointer text-lnav " />
+      <MdOutlineLogout className="h-10 mr-[0.5rem] w-6 cursor-pointer text-lnav " />
     </GoogleLogout>
   );
 }

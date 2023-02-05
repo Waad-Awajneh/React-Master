@@ -11,18 +11,21 @@ export default function SectionThree() {
             <h1 className="text-2xl lg:text-2xl xl:text-3xl font-bold text-lnav text-center lg:text-left">
               Are You A wedding Planner ?
             </h1>
-            <p className=" text-lg leading-normal text-gray-600 mt-4 md:w-8/12 lg:w-11/12 text-center lg:text-left">
+            <div className=" text-xl leading-normal text-gray-600 mt-4 md:w-8/12 lg:w-11/12 text-center lg:text-left">
               Are you ready to take your wedding business to new horizons?
               <br />
-              <span className=" text-pcol font-bold text-xl">
-                Advertise on WED
-              </span>
-              <br /> Bring your business to a new level.
+              <p className=" text-pcol font-bold text-xl">Advertise on WED</p>
+              <br />
+              <p className="text-xl">
+                Where wedding businesses grow We help wedding professionals
+                reach more engaged local couples, book more weddings and drive
+                success to their businesses.
+              </p>
               <br />
               <span className=" text-pcol font-bold text-xl">
                 Reach today’s couples and book more weddings.
               </span>
-            </p>{" "}
+            </div>
             <Link to="/signUp">
               <button className="text-white bg-lnav  w-[11rem] h-[3.5rem]  font-[600] hover:bg-lb focus:outline-none focus:ring-4 focus:ring-pcol  rounded-full text-xl px-2 py-2.5 text-center mr-2 m-4 dark:bg-pcol dark:hover:bg-blue-700 dark:focus:ring-pcol">
                 Sign up
